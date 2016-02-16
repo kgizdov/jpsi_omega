@@ -11,7 +11,7 @@ end = '.py'
 if mode == 'norm': middle = '_norm_'
 if mode == 'b2': middle = '_B2psiomega_'
 
-script='/afs/cern.ch/user/k/kgizdov/b2psiomega/python/DV' + middle + year + end  # fix path to script
+script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV' + middle + year + end  # fix path to script
 
 job_name = 'B2psiomega_data' + str(year)
 print job_name
