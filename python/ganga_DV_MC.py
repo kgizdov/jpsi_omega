@@ -1,5 +1,6 @@
 # Script to create DaVinci Job
 # Greig Cowan
+# Konstantin Gizdov
 
 import sys
 
