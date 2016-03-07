@@ -5,7 +5,8 @@
 
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
-from GaudiUtils import *
+# from GaudiUtils import *
+from GaudiConf import IOHelper
 from PhysSelPython.Wrappers import AutomaticData, Selection, SelectionSequence
 from Configurables import FilterDesktop
 from Configurables import DaVinci
@@ -28,6 +29,11 @@ OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
 location='Phys/SelB2PsiOmegaForPsiX0/Particles'
+
+# Use the local input data
+IOHelper().inputFiles([
+    '/afs/cern.ch/work/k/kgizdov/00041170_00000020_1.psix0.mdst'
+], clear=True)
 
 #########################################################################################################
 # Set up the MCDecayTreeTuples for each of the decays that we are interested in.
