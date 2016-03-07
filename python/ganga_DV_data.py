@@ -18,7 +18,7 @@ print job_name
 print script
 
 DV = DaVinci()
-DV.version = 'v38r1p1'  # latest is v38r1p1, was set to v36r1
+DV.version = 'v36r3p1'  # latest is v38r1p1, was set to v36r3p1
 DV.optsfile = [File(script)]
 
 

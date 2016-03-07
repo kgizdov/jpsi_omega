@@ -279,8 +279,10 @@ DaVinci().RootInTES = rootInTES
 DaVinci().InputType = "MDST"
 DaVinci().Simulation = False
 DaVinci().Lumi = True
-DaVinci().DataType = "2011"
-CondDB( LatestGlobalTagByDataType = '2011' )
+# DaVinci().DataType = "2011"
+DaVinci().DataType = "2012"
+# CondDB( LatestGlobalTagByDataType = '2011' )
+CondDB( LatestGlobalTagByDataType = '2012' )
 
 if False: # Add the DST writing algorithms
 	DaVinci().appendToMainSequence( [ dstWriter.sequence(), printTree ] )
