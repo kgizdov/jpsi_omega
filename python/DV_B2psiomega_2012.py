@@ -23,7 +23,7 @@ from Configurables import TupleToolMCTruth
 from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
-EVTMAX = 10000
+EVTMAX = -1
 MODE = 'data'
 OUTPUTLEVEL = ERROR
 
