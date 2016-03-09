@@ -23,17 +23,17 @@ from Configurables import TupleToolMCTruth
 from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
-EVTMAX = -1
+EVTMAX = 10000
 MODE = 'data'
 OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
 location='Phys/SelB2PsiOmegaForPsiX0/Particles'
 
-# Use the local input data
-IOHelper().inputFiles([
-    '/afs/cern.ch/work/k/kgizdov/00041170_00000020_1.psix0.mdst'
-], clear=True)
+# # Use the local input data
+# IOHelper().inputFiles([
+#     '/afs/cern.ch/work/k/kgizdov/00041170_00000020_1.psix0.mdst'
+# ], clear=True)
 
 #########################################################################################################
 # Set up the MCDecayTreeTuples for each of the decays that we are interested in.
