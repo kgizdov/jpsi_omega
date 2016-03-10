@@ -108,7 +108,7 @@ j = Job(
     outputfiles     = [LocalFile("*.root")],
     do_auto_resubmit = True,
     backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
-    postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
     )
 j.submit()
 

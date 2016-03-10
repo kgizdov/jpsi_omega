@@ -22,7 +22,7 @@ from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
 EVTMAX = -1
-MODE = 'MC'
+MODE = "MC"
 OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
