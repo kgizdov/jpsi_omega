@@ -267,6 +267,7 @@ SelDSTWriterElements = {
 SelDSTWriterConf = {
     'default'              : stripDSTStreamConf()
     }
+sc = StrippingConf();
 if MODE == 'MC':
   dstWriter = SelDSTWriter( "MyDSTWriter",
                           StreamConf = SelDSTWriterConf,
