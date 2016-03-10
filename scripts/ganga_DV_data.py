@@ -18,7 +18,7 @@ print job_name
 print script
 
 DV = DaVinci()
-DV.version = 'v36r7p7'  # latest is v38r1p1, was set to v36r3p1
+DV.version = 'v36r7p7'  # latest is v38r1p1, was set to v36r3p1, working is v36r7p7
 DV.optsfile = [File(script)]
 
 
@@ -43,7 +43,7 @@ for path in BK_locations:
     tmp = bk.getDataset()
     print path, len(tmp.files)
     if len(tmp.files) > 0:
-        data.extend( tmp )
+            data.extend( tmp )
 
 print data
 
@@ -52,16 +52,16 @@ if len(data.files) < 1:
     sys.exit()
 
 j = Job(
-  name           = job_name,
-  application    = DV,
-  splitter       = SplitByFiles(filesPerJob = 2, maxFiles = -1), # set maxFiles = 1 when debugging and -1 otherwise
-  inputdata      = data,
-  outputfiles     = [LocalFile("*.root")],
-  do_auto_resubmit = True,
-  backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
-  # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True )]
-  postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite=True )]
-  # postprocessors = [SmartMerger( files = ['DVTuples1.root'], ignorefailed = True )]
-  )
+    name           = job_name,
+    application    = DV,
+    splitter       = SplitByFiles(filesPerJob = 2, maxFiles = -1), # set maxFiles = 1 when debugging and -1 otherwise
+    inputdata      = data,
+    outputfiles     = [LocalFile("*.root")],
+    do_auto_resubmit = True,
+    backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
+    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True )]
+    postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+    # postprocessors = [SmartMerger( files = ['DVTuples1.root'], ignorefailed = True )]
+    )
 j.submit()
 
