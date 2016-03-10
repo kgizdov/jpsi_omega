@@ -5,6 +5,7 @@
 
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
+from StrippingConf.Configuration import StrippingConf
 # from GaudiUtils import *
 from GaudiConf import IOHelper
 from PhysSelPython.Wrappers import AutomaticData, Selection, SelectionSequence
@@ -267,7 +268,7 @@ SelDSTWriterElements = {
 SelDSTWriterConf = {
     'default'              : stripDSTStreamConf()
     }
-sc = StrippingConf();
+
 if MODE == 'MC':
   dstWriter = SelDSTWriter( "MyDSTWriter",
                           StreamConf = SelDSTWriterConf,
