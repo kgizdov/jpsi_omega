@@ -6,7 +6,14 @@
 
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
-from StrippingConf.Configuration import StrippingConf
+
+####
+from StrippingConf.Configuration import StrippingConf, StrippingStream
+from StrippingSettings.Utils import strippingConfiguration
+from StrippingArchive.Utils import buildStreams
+from StrippingArchive import strippingArchive
+####
+
 # from GaudiUtils import *
 from GaudiConf import IOHelper
 from PhysSelPython.Wrappers import AutomaticData, Selection, SelectionSequence

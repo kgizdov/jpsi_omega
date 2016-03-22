@@ -1,2 +1,4 @@
 stripping v8r2
 Davinci v35r0
+
+LbLogin -c x86_64-slc6-gcc48-opt
