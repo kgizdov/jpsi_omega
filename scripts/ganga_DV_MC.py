@@ -4,9 +4,9 @@
 
 import sys
 
-sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib')
-sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python')
-sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts')
+# sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib')
+# sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python')
+# sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts')
 
 year = sys.argv[1]
 mode = sys.argv[2]
@@ -27,8 +27,10 @@ print script
 stripping_1 = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib/StrippingPsiX0.py'
 
 DV = DaVinci()
-DV.version = 'v36r7p7'  # latest is v38r1p1, was v36r1, working now is v36r7p7
-DV.optsfile = [File(script), File(stripping_1)]
+# DV.version = 'v36r7p7'  # latest is v38r1p1, was v36r1, working now is v36r7p7
+DV.version = 'v35r0'  # latest is v38r1p1, was v36r1, working now is v36r7p7
+DV.platform = 'x86_64-slc6-gcc48-opt'
+DV.optsfile = [File(script)]
 
 BK_locations = []
 
