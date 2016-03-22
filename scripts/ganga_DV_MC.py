@@ -24,9 +24,11 @@ job_name = 'MC' + str(year) + mode + magnet
 print job_name
 print script
 
+stripping_1 = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib'
+
 DV = DaVinci()
 DV.version = 'v36r7p7'  # latest is v38r1p1, was v36r1, working now is v36r7p7
-DV.optsfile = [File(script)]
+DV.optsfile = [File(script), File(stripping_1)]
 
 BK_locations = []
 
