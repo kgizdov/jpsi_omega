@@ -264,7 +264,9 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                               )
 ### NEW CODE ###
 
-from stripping_lib import StrippingPsiX0
+#from stripping_lib import StrippingPsiX0
+
+import StrippingPsiX0
 
 stripping='stripping20'
 config  = strippingConfiguration(stripping)
