@@ -4,7 +4,9 @@
 
 import sys
 
-sys.path.insert(0, '../python/stripping_lib')
+sys.path.insert(0, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib')
+sys.path.insert(0, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python')
+sys.path.insert(0, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts')
 
 year = sys.argv[1]
 mode = sys.argv[2]
