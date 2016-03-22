@@ -236,6 +236,36 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                         stripDSTStreamConf,
                                         stripDSTElements
                                         )
+
+### NEW CODE ###
+
+from StrippingSelections import StrippingPsiX0
+
+stripping='stripping20'
+config  = strippingConfiguration(stripping)
+archive = strippingArchive(stripping)
+streams = buildStreams(stripping=config, archive=archive)
+
+# Select my line
+MyStream = StrippingStream("MyStream")
+MyLines = [ 'StrippingPsiX0' ]
+
+for stream in streams:
+    for line in stream.lines:
+            if line.name() in MyLines:
+                        MyStream.appendLines( [ line ] )
+
+# Configure Stripping
+from Configurables import ProcStatusCheck
+filterBadEvents = ProcStatusCheck()
+
+sc = StrippingConf( Streams = [ MyStream ],
+                    MaxCandidates = 2000,
+                    AcceptBadEvents = False,
+                    BadEventSelection = filterBadEvents )
+
+################
+
 SelDSTWriterElements = {
     'default'              : stripDSTElements()
     }

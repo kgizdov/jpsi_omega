@@ -262,9 +262,9 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                               stripDSTStreamConf,
                                               stripDSTElements
                                               )
-from StrippingSelections import StrippingPsiX0
-
 ### NEW CODE ###
+
+from StrippingSelections import StrippingPsiX0
 
 stripping='stripping20'
 config  = strippingConfiguration(stripping)
