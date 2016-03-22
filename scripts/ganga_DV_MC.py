@@ -4,6 +4,8 @@
 
 import sys
 
+sys.path.insert(0, '../python/stripping_lib')
+
 year = sys.argv[1]
 mode = sys.argv[2]
 magnet = sys.argv[3]

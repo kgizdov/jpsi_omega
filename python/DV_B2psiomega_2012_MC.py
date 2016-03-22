@@ -265,8 +265,8 @@ from DSTWriters.Configuration import (SelDSTWriter,
 ### NEW CODE ###
 
 #from stripping_lib import StrippingPsiX0
-import sys
-sys.path.insert(0, './')
+# import sys
+# sys.path.insert(0, './stripping_lib')
 import StrippingPsiX0
 
 stripping='stripping20'
