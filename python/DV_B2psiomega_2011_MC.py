@@ -150,15 +150,15 @@ TISTOSTool.addTool( TriggerTisTos, name="TriggerTisTos")
 
 LoKi_B = LoKi__Hybrid__TupleTool("LoKi_B")
 LoKi_B.Variables =  {
-        "ETA" : "ETA",
-        "PHI" : "PHI",
-    "FDCHI2"          : "BPVVDCHI2",
-    "FDS"             : "BPVDLS",
-    "DIRA"            : "BPVDIRA",
-    "DTF_CTAU"        : "DTF_CTAU( 0, True )",
-    "DTF_CTAUS"       : "DTF_CTAUSIGNIFICANCE( 0, True )",
-    "DTF_CHI2NDOF"    : "DTF_CHI2NDOF( True )",
-    "DTF_CTAUERR"     : "DTF_CTAUERR( 0, True )",
+    "ETA"               : "ETA",
+    "PHI"               : "PHI",
+    "FDCHI2"            : "BPVVDCHI2",
+    "FDS"               : "BPVDLS",
+    "DIRA"              : "BPVDIRA",
+    "DTF_CTAU"          : "DTF_CTAU( 0, True )",
+    "DTF_CTAUS"         : "DTF_CTAUSIGNIFICANCE( 0, True )",
+    "DTF_CHI2NDOF"      : "DTF_CHI2NDOF( True )",
+    "DTF_CTAUERR"       : "DTF_CTAUERR( 0, True )",
     "DTF_MASS_constr1"  : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )" ,
     "DTF_VCHI2NDOF"     : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )",
     }
@@ -173,37 +173,38 @@ tuple_B2psiomega.Inputs = [ location ]
 tuple_B2psiomega.ToolList = tupletools[:]
 tuple_B2psiomega.Decay = '[B0 -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )]CC'
 tuple_B2psiomega.Branches = {
-        # 'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-        # 'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma ) ) ]CC",
-        # 'gamma1'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma ) ) ]CC",
-        # 'gamma2'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma ) ) ]CC",
-        #
-        'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-        'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-        'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-        'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-        'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  pi0 ) ]CC",
-        'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  pi0 ) ]CC",
-        'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  pi0 ) ]CC",
-        'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^pi0 ) ]CC",
-        #
-        # "Lambda_b0" : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-        # "chi_c"     : "[Lambda_b0 -> ^(chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-        # "Jpsi"      : "[Lambda_b0 ->  (chi_c1(1P) -> ^(J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-        # "gamma"     : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-) ^gamma)  p+  K-]CC",
-        # "muplus"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) -> ^mu+  mu-)  gamma)  p+  K-]CC",
-        # "muminus"   : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+ ^mu-)  gamma)  p+  K-]CC",
-        # "proton"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma) ^p+  K-]CC",
-        # "kaon"      : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+ ^K-]CC",
-	}
+    # 'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+    # 'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma ) ) ]CC",
+    # 'gamma1'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma ) ) ]CC",
+    # 'gamma2'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma ) ) ]CC",
+    #
+    'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+    'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+    'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+    'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+    'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  pi0 ) ]CC",
+    'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  pi0 ) ]CC",
+    'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  pi0 ) ]CC",
+    'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^pi0 ) ]CC",
+    #
+    # "Lambda_b0" : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+    # "chi_c"     : "[Lambda_b0 -> ^(chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+    # "Jpsi"      : "[Lambda_b0 ->  (chi_c1(1P) -> ^(J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+    # "gamma"     : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-) ^gamma)  p+  K-]CC",
+    # "muplus"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) -> ^mu+  mu-)  gamma)  p+  K-]CC",
+    # "muminus"   : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+ ^mu-)  gamma)  p+  K-]CC",
+    # "proton"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma) ^p+  K-]CC",
+    # "kaon"      : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+ ^K-]CC",
+}
+
 for particle in ["B", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
-        tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
+    tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
 tuples = [ tuple_B2psiomega
@@ -232,9 +233,9 @@ for tup in tuples:
 ##################################################################
 from DSTWriters.microdstelements import *
 from DSTWriters.Configuration import (SelDSTWriter,
-                                              stripDSTStreamConf,
-                                              stripDSTElements
-                                              )
+                                        stripDSTStreamConf,
+                                        stripDSTElements
+                                        )
 SelDSTWriterElements = {
     'default'              : stripDSTElements()
     }
