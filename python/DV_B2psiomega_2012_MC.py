@@ -2,6 +2,7 @@
 # Greig Cowan 2015
 # Konstantin Gizdov 2016
 
+import StrippingPsiX0
 
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
@@ -264,7 +265,7 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                               )
 ### NEW CODE ###
 
-from python.stripping_lib import StrippingPsiX0
+# from python.stripping_lib import StrippingPsiX0
 # import sys
 # sys.path.insert(0, './stripping_lib')
 # import StrippingPsiX0
