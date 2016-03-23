@@ -125,7 +125,7 @@ if len(data.files) < 1:
 j = Job(
     name           = job_name,
     application    = DV,
-    splitter       = SplitByFiles(filesPerJob = 2, maxFiles = 1), #set to 1 for debugging, was 20
+    splitter       = SplitByFiles(filesPerJob = 2, maxFiles = 2), #set to 1 for debugging, was 20
     inputdata      = data,
     outputfiles     = [LocalFile("*.root")],
     do_auto_resubmit = True,
