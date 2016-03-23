@@ -21,7 +21,7 @@ else:
     script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC.py'
 
 # job_name = 'MC' + str(year) + mode + magnet
-job_name = 'MC' + str(year) + mode + magnet
+job_name = 'MC' + str(year) + mode
 if magnet[3] == 'D':
     job_name = job_name + 'MD'
 if magnet[3] == 'U':
