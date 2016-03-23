@@ -55,7 +55,7 @@ LoKi_Photos.Variables = {
 # mctuple_B2Kmumu = MCDecayTreeTuple( 'MCTuple_B2Kmumu' )
 mctuple_B2psiomega = MCDecayTreeTuple( 'MCTuple_B2psiomega' )
 # mctuple_B2psiomega.Decay = "[ [ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+ ^mu- ...) ^(omega(782) -> ^pi+ ^pi- ^(pi0 -> ^gamma ^gamma) ) ]CC"
-mctuple_B2psiomega.Decay = "[ [ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+ ^mu- ...) ^(omega(782) -> ^pi+ ^pi- ^pi0 ) ]CC"
+mctuple_B2psiomega.Decay = "[ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+ ^mu- ...) ^(omega(782) -> ^pi+ ^pi- ^pi0 ) ]CC"
 mctuple_B2psiomega.Branches = {
         # 'B'       : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
         # 'Jpsi'    : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
