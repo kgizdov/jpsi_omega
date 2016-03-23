@@ -127,16 +127,27 @@ for path in BK_locations:
 import sys
 if len(data.files) < 1:
     sys.exit()
-
-j = Job(
-    name           = job_name,
-    application    = DV,
-    splitter       = SplitByFiles(filesPerJob = 2, maxFiles = 2), #set to 1 for debugging, was 20
-    inputdata      = data,
-    outputfiles     = [LocalFile("*.root")],
-    do_auto_resubmit = True,
-    backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
-    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
-    )
+if year == 2011:
+    j = Job(
+        name           = job_name,
+        application    = DV,
+        splitter       = SplitByFiles(filesPerJob = 2, maxFiles = -1), #set to 1 for debugging, was 20
+        inputdata      = data,
+        outputfiles     = [LocalFile("*.root")],
+        do_auto_resubmit = True,
+        backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
+        # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+        )
+if year == 2012:
+    j = Job(
+        name           = job_name,
+        application    = DV,
+        splitter       = SplitByFiles(filesPerJob = 2, maxFiles = 2), #set to 1 for debugging, was 20
+        inputdata      = data,
+        outputfiles     = [LocalFile("*.root")],
+        do_auto_resubmit = True,
+        backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
+        # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+        )
 j.submit()
 
