@@ -46,8 +46,8 @@ if year == '2011' and mode == 'signal':
 
 if year == '2011' and mode == 'b2':
     BK_locations = [
-        '/MC/2011/Beam3500GeV-2011-' + magnet + '-Nu2-Pythia6/Sim08e/Digi13/Trig0x40760037/Reco14a/Stripping20r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST'
-        ,'/MC/2011/Beam3500GeV-2011-' + magnet + '-Nu2-Pythia8/Sim08e/Digi13/Trig0x40760037/Reco14a/Stripping20r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST'
+        # '/MC/2011/Beam3500GeV-2011-' + magnet + '-Nu2-Pythia6/Sim08h/Digi13/Trig0x40760037/Reco14c/Stripping20r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST',
+        '/MC/2011/Beam3500GeV-2011-' + magnet + '-Nu2-Pythia8/Sim08h/Digi13/Trig0x40760037/Reco14c/Stripping20r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST'
     ]
 
 if year == '2012' and mode =='signal':
@@ -92,6 +92,13 @@ if year == '2012' and mode == 'b2':
     BK_locations = [
         '/MC/2012/Beam4000GeV-2012-' + magnet + '-Nu2.5-Pythia6/Sim08a/Digi13/Trig0x409f0045/Reco14a/Stripping20NoPrescalingFlagged/13442001/ALLSTREAMS.DST'
         ,'/MC/2012/Beam4000GeV-2012-' + magnet + '-Nu2.5-Pythia8/Sim08a/Digi13/Trig0x409f0045/Reco14a/Stripping20NoPrescalingFlagged/13442001/ALLSTREAMS.DST'
+    ]
+
+if year == '2012' and mode == 'bd':
+    BK_locations = [
+        '/MC/2012/Beam4000GeV-2012-' + magnet + '-Nu2.5-Pythia8/Sim08h/Digi13/Trig0x409f0045/Reco14c/Stripping20NoPrescalingFlagged/11140400/ALLSTREAMS.DST'
+        # '/MC/2012/Beam4000GeV-2012-' + magnet + '-Nu2.5-Pythia6/Sim08a/Digi13/Trig0x409f0045/Reco14a/Stripping20NoPrescalingFlagged/13442001/ALLSTREAMS.DST'
+        # ,'/MC/2012/Beam4000GeV-2012-' + magnet + '-Nu2.5-Pythia8/Sim08a/Digi13/Trig0x409f0045/Reco14a/Stripping20NoPrescalingFlagged/13442001/ALLSTREAMS.DST'
     ]
 
 if year == '2011' and mode == 'Lb_JpsiX':
