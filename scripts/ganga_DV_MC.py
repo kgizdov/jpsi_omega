@@ -162,7 +162,7 @@ if len(data.files) < 1:
 max_files = -1
 # if year == 2012:
 #     max_files = 2
-print ('Max Files =' + max_files)
+print ('Max Files =' + str(max_files))
 
 j = Job(
     name           = job_name,
