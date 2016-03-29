@@ -258,7 +258,7 @@ streams = buildStreams(stripping=config, WGs=[WG])
 
 # Select my line
 MyStream = StrippingStream("MyStream")
-MyLines = [ 'StrippingPsiX0' ]
+MyLines = [ 'StrippingB2PsiOmegaForPsiX0' ]
 
 for stream in streams:
     for line in stream.lines:
