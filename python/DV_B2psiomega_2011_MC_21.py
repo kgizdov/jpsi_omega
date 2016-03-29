@@ -249,10 +249,12 @@ from DSTWriters.Configuration import (SelDSTWriter,
 
 from StrippingSelections.StrippingBandQ import StrippingPsiX0
 
-stripping='Stripping21.StrippingBandQ'
+stripping='Stripping21'
 config  = strippingConfiguration(stripping)
-archive = strippingArchive(stripping)
-streams = buildStreams(stripping=config, archive=archive)
+# archive = strippingArchive(stripping)
+WG = 'BandQ'
+# streams = buildStreams(stripping=config, archive=archive)
+streams = buildStreams(stripping=config, WGs=[WG])
 
 # Select my line
 MyStream = StrippingStream("MyStream")
