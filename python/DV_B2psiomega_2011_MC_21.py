@@ -245,37 +245,37 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                         stripDSTElements
                                         )
 
-### NEW CODE ###
+# ### NEW CODE ###
 
-from StrippingSelections.StrippingBandQ import StrippingPsiX0
+# from StrippingSelections.StrippingBandQ import StrippingPsiX0
 
-# stripping='stripping21r1'
-stripping='StrippingPsiX0'
-config  = strippingConfiguration(stripping)
-# archive = strippingArchive(stripping)
-WG = 'BandQ'
-# streams = buildStreams(stripping=config, archive=archive)
-streams = buildStreams(config, WGs = ['BandQ'])
+# # stripping='stripping21r1'
+# stripping='StrippingPsiX0'
+# config  = strippingConfiguration(stripping)
+# # archive = strippingArchive(stripping)
+# WG = 'BandQ'
+# # streams = buildStreams(stripping=config, archive=archive)
+# streams = buildStreams(config, WGs = ['BandQ'])
 
-# Select my line
-MyStream = StrippingStream("MyStream")
-MyLines = [ 'StrippingB2PsiOmegaForPsiX0' ]
+# # Select my line
+# MyStream = StrippingStream("MyStream")
+# MyLines = [ 'StrippingB2PsiOmegaForPsiX0' ]
 
-for stream in streams:
-    for line in stream.lines:
-            if line.name() in MyLines:
-                        MyStream.appendLines( [ line ] )
+# for stream in streams:
+#     for line in stream.lines:
+#             if line.name() in MyLines:
+#                         MyStream.appendLines( [ line ] )
 
-# Configure Stripping
-from Configurables import ProcStatusCheck
-filterBadEvents = ProcStatusCheck()
+# # Configure Stripping
+# from Configurables import ProcStatusCheck
+# filterBadEvents = ProcStatusCheck()
 
-sc = StrippingConf( Streams = [ MyStream ],
-                    MaxCandidates = 2000,
-                    AcceptBadEvents = False,
-                    BadEventSelection = filterBadEvents )
+# sc = StrippingConf( Streams = [ MyStream ],
+#                     MaxCandidates = 2000,
+#                     AcceptBadEvents = False,
+#                     BadEventSelection = filterBadEvents )
 
-################
+# ################
 
 SelDSTWriterElements = {
     'default'              : stripDSTElements()
