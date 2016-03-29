@@ -249,7 +249,7 @@ from DSTWriters.Configuration import (SelDSTWriter,
 
 from StrippingSelections import StrippingPsiX0
 
-stripping='stripping21'
+stripping='stripping21r1'
 config  = strippingConfiguration(stripping)
 archive = strippingArchive(stripping)
 streams = buildStreams(stripping=config, archive=archive)
