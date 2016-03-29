@@ -254,7 +254,7 @@ config  = strippingConfiguration(stripping)
 # archive = strippingArchive(stripping)
 WG = 'BandQ'
 # streams = buildStreams(stripping=config, archive=archive)
-streams = buildStreams(stripping=config, WGs=[WG])
+streams = buildStreams(config, WGs=[WG])
 
 # Select my line
 MyStream = StrippingStream("MyStream")
