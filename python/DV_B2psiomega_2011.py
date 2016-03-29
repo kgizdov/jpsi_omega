@@ -39,10 +39,10 @@ OUTPUTLEVEL = ERROR
 rootInTES = '/Event/PSIX0'
 location='Phys/SelB2PsiOmegaForPsiX0/Particles'
 
-# Use the local input data
-IOHelper().inputFiles([
-    '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
-], clear=True)
+# # Use the local input data
+# IOHelper().inputFiles([
+#     '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
+# ], clear=True)
 
 ### STRIPPING PREPARE ###
 
