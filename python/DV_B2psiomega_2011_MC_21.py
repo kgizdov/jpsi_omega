@@ -249,7 +249,8 @@ from DSTWriters.Configuration import (SelDSTWriter,
 
 from StrippingSelections.StrippingBandQ import StrippingPsiX0
 
-stripping='stripping21r1'
+# stripping='stripping21r1'
+stripping='StrippingPsiX0'
 config  = strippingConfiguration(stripping)
 # archive = strippingArchive(stripping)
 WG = 'BandQ'
