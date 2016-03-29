@@ -38,9 +38,9 @@ print ('Script: ' + script)
 # stripping_1 = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib/StrippingPsiX0.py'
 
 DV = DaVinci()
-# DV.version = 'v36r7p7'  # latest is v38r1p1, was v36r1, working now is v36r7p7
-DV.version = 'v35r0'  # latest is v38r1p1, was v36r1, working now is v36r7p7
-DV.platform = 'x86_64-slc6-gcc48-opt' # necessary for the older version of DaVinci
+DV.version = 'v39r1'  # latest is v38r1p1, was v36r1, working now is v36r7p7
+# DV.version = 'v35r0'  # latest is v38r1p1, was v36r1, working now is v36r7p7
+# DV.platform = 'x86_64-slc6-gcc48-opt' # necessary for the older version of DaVinci
 DV.optsfile = [File(script)]
 
 BK_locations = []
@@ -160,9 +160,11 @@ import sys
 if len(data.files) < 1:
     sys.exit()
 
+debug = 1
+
 max_files = -1
-# if year == 2012:
-#     max_files = 2
+if debug:
+    max_files = 2
 print ('Max Files =' + str(max_files))
 
 j = Job(
