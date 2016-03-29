@@ -247,7 +247,7 @@ from DSTWriters.Configuration import (SelDSTWriter,
 
 ### NEW CODE ###
 
-from StrippingSelections import StrippingPsiX0
+from StrippingSelections.StrippingBandQ import StrippingPsiX0
 
 stripping='stripping21r1'
 config  = strippingConfiguration(stripping)
