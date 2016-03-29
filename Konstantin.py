@@ -34,7 +34,7 @@ MODE        = "MC"
 OUTPUTLEVEL = ERROR
 
 ## # =============================================================================
-## ## read PSIX0.MDST 
+## ## read PSIX0.MDST
 ## # =============================================================================
 
 ## rootInTES = '/Event/PSIX0'
@@ -44,7 +44,7 @@ OUTPUTLEVEL = ERROR
 
 
 # =============================================================================
-## run PSIX0 WG-selections over ALLSTREAM.DST MC 
+## run PSIX0 WG-selections over ALLSTREAM.DST MC
 # =============================================================================
 jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
 jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
@@ -53,7 +53,7 @@ import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
     'PsiX0'          ,
     config = {
-    'NOPIDHADRONS' : True          ,  ## important here!!!  
+    'NOPIDHADRONS' : True          ,  ## important here!!!
     'DIMUONLINES'  : [ jpsi_line ]
     }
     )
@@ -78,15 +78,15 @@ LoKi_Photos.Variables = {
     "MC_ABSID" : "MCABSID"
 	}
 
-from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE  
+from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 
 mc_selection = SimpleSelection (
     'MCTuple'  ,
     MCTUPLE    ,
     [ b2omega_selection ] ,
-    ## properties 
-    Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " , 
+    ## properties
+    Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
     Branches = {
     'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
     'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
@@ -98,7 +98,7 @@ mc_selection = SimpleSelection (
     'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
     }
     )
-mctuple_B2psiomega = mc_selection.algorithm() 
+mctuple_B2psiomega = mc_selection.algorithm()
 
 
 # List of the mc tuples
@@ -206,7 +206,7 @@ LoKi_Mu.Variables =  {
     }
 
 
-from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE  
+from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 rd_selection = SimpleSelection (
     'Tuple'               ,
@@ -257,7 +257,6 @@ for tup in tuples:
 
 
 
-        
 from PhysSelPython.Wrappers import SelectionSequence
 rd_SEQ = SelectionSequence  ( 'DATA'  , rd_selection )
 mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
@@ -266,13 +265,13 @@ mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
 
 
 ###################### DAVINCI SETTINGS ############################################
-daVinci = DaVinci (  
+daVinci = DaVinci (
     EvtMax             = EVTMAX            ,
     TupleFile          = "DVTuples1.root"  ,
     HistogramFile      = 'DVHistos.root'   ,
     DataType           = "2011"            ,
     Simulation         = True              ,
-    Lumi               = False             , 
+    Lumi               = False             ,
     UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
     )
 
