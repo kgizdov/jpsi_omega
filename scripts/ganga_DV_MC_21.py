@@ -21,9 +21,9 @@ if mode != 'Bd_JpsiOm':
 if magnet not in ['MagDown', 'MagUp']: sys.exit()
 
 if mode == 'norm':
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_Lb2chicpK_norm_' + year + '_MC.py'
+    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_Lb2chicpK_norm_' + year + '_MC_21.py'
 else:
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC.py'
+    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC_21.py'
 
 # job_name = 'MC' + str(year) + mode + magnet
 job_name = 'MC' + str(year) + mode
