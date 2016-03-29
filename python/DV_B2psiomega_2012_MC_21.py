@@ -2,20 +2,20 @@
 # Greig Cowan 2015
 # Konstantin Gizdov 2016
 
+# import StrippingPsiX0
 
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
 
-# ####
-# from StrippingConf.Configuration import StrippingConf, StrippingStream
-# from StrippingSettings.Utils import strippingConfiguration
-# from StrippingArchive.Utils import buildStreams
-# from StrippingArchive import strippingArchive
+####
+from StrippingConf.Configuration import StrippingConf, StrippingStream
+from StrippingSettings.Utils import strippingConfiguration
+from StrippingArchive.Utils import buildStreams
+from StrippingArchive import strippingArchive
+####
 
-# from StrippingSelections.StrippingPsiX0 import PsiX0Conf
-
-# ####
-
+# from GaudiUtils import *
+from GaudiConf import IOHelper
 from PhysSelPython.Wrappers import AutomaticData, Selection, SelectionSequence
 from Configurables import FilterDesktop
 from Configurables import DaVinci
@@ -32,21 +32,25 @@ from Configurables import TupleToolMCTruth
 from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
+local_run = False
+
 EVTMAX = -1
-MODE = 'data'
+MODE = "MC"
 OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
 location='Phys/SelB2PsiOmegaForPsiX0/Particles'
 
 # Use the local input data
-IOHelper().inputFiles([
-    '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
-], clear=True)
-
-### STRIPPING PREPARE ###
-
-_strippingOutput = AutomaticData(Location = location)
+if local_run == True:
+    if MODE == 'data':
+        IOHelper().inputFiles([
+            '/afs/cern.ch/work/k/kgizdov/00041170_00000020_1.psix0.mdst'
+        ], clear=True)
+    if MODE == 'MC':
+        IOHelper().inputFiles([
+            '/afs/cern.ch/work/k/kgizdov/00030154_00000048_1.allstreams.dst'
+        ], clear=True)
 
 #########################################################################################################
 # Set up the MCDecayTreeTuples for each of the decays that we are interested in.
@@ -67,8 +71,20 @@ LoKi_Photos.Variables = {
 
 # mctuple_B2Kmumu = MCDecayTreeTuple( 'MCTuple_B2Kmumu' )
 mctuple_B2psiomega = MCDecayTreeTuple( 'MCTuple_B2psiomega' )
+# mctuple_B2psiomega.Decay = "[ [ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+ ^mu- ...) ^(omega(782) -> ^pi+ ^pi- ^(pi0 -> ^gamma ^gamma) ) ]CC"
 mctuple_B2psiomega.Decay = "[ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+ ^mu- ...) ^(omega(782) -> ^pi+ ^pi- ^pi0 ) ]CC"
 mctuple_B2psiomega.Branches = {
+        # 'B'       : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'Jpsi'    : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'muplus'  : "[ (Beauty & LongLived) -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'muminus' : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'omega'   : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'piplus'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'piminus' : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'pizero'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma ) ) ]CC",
+        # 'gamma1'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma ) ) ]CC",
+        # 'gamma2'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma ) ) ]CC",
+        #
         'B'       : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
         'Jpsi'    : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
         'omega'   : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  pi0 ) ]CC",
@@ -77,12 +93,13 @@ mctuple_B2psiomega.Branches = {
         'piplus'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  pi0 ) ]CC",
         'piminus' : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  pi0 ) ]CC",
         'pizero'  : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^pi0 ) ]CC",
+        #
+		# 'B'       : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  K+  ... ]CC",
+		# 'Kplus'   : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...) ^K+  ... ]CC",
+		# 'psi'     : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  K+  ... ]CC",
+		# 'muplus'  : "[ (Beauty & LongLived) --> ^(J/psi(1S) -> ^mu+  mu- ...)  K+  ... ]CC",
+		# 'muminus' : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+ ^mu- ...)  K+  ... ]CC",
 		}
-        # 'B'       : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...)  K+  ... ]CC",
-        # 'Kplus'   : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+  mu- ...) ^K+  ... ]CC",
-        # 'psi'     : "[ (Beauty & LongLived) --> ^(J/psi(1S) ->  mu+  mu- ...)  K+  ... ]CC",
-        # 'muplus'  : "[ (Beauty & LongLived) -->  (J/psi(1S) -> ^mu+  mu- ...)  K+  ... ]CC",
-        # 'muminus' : "[ (Beauty & LongLived) -->  (J/psi(1S) ->  mu+ ^mu- ...)  K+  ... ]CC",
 
 # List of the mc tuples
 mctuples = [
@@ -170,60 +187,63 @@ TISTOSTool.addTool( TriggerTisTos, name="TriggerTisTos")
 
 LoKi_B = LoKi__Hybrid__TupleTool("LoKi_B")
 LoKi_B.Variables =  {
-    "ETA"               : "ETA",
-    "PHI"               : "PHI",
-    "FDCHI2"            : "BPVVDCHI2",
-    "FDS"               : "BPVDLS",
-    "DIRA"              : "BPVDIRA",
-    "DTF_CTAU"          : "DTF_CTAU( 0, True )",
-    "DTF_CTAUS"         : "DTF_CTAUSIGNIFICANCE( 0, True )",
-    "DTF_CHI2NDOF"      : "DTF_CHI2NDOF( True )",
-    "DTF_CTAUERR"       : "DTF_CTAUERR( 0, True )",
-    "DTF_MASS_constr1"  : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )" ,
-    "DTF_VCHI2NDOF"     : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )",
+        "ETA"               : "ETA",
+        "PHI"               : "PHI",
+        "FDCHI2"            : "BPVVDCHI2",
+        "FDS"               : "BPVDLS",
+        "DIRA"              : "BPVDIRA",
+        "DTF_CTAU"          : "DTF_CTAU( 0, True )",
+        "DTF_CTAUS"         : "DTF_CTAUSIGNIFICANCE( 0, True )",
+        "DTF_CHI2NDOF"      : "DTF_CHI2NDOF( True )",
+        "DTF_CTAUERR"       : "DTF_CTAUERR( 0, True )",
+        "DTF_MASS_constr1"  : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )" ,
+        "DTF_MASS_constr2"  : "DTF_FUN ( M , True , strings(['psi(2S)']) )" ,
+        "DTF_VCHI2NDOF"     : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )",
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
 LoKi_Mu.Variables =  {
-    "NSHAREDMU" : "NSHAREDMU"
+        "NSHAREDMU" : "NSHAREDMU"  # this apparently no longer exists or runs
     }
 
 tuple_B2psiomega = DecayTreeTuple("Tuple")
 tuple_B2psiomega.Inputs = [ location ]
 tuple_B2psiomega.ToolList = tupletools[:]
+# tuple_B2psiomega.Decay = '[B0 -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^(pi0 -> ^gamma ^gamma ) )]CC'
 tuple_B2psiomega.Decay = '[B0 -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )]CC'
 tuple_B2psiomega.Branches = {
-    # 'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma ) ) ]CC",
-    # 'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma ) ) ]CC",
-    # 'gamma1'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma ) ) ]CC",
-    # 'gamma2'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma ) ) ]CC",
-    #
-    'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-    'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-    'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-    'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
-    'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  pi0 ) ]CC",
-    'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  pi0 ) ]CC",
-    'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  pi0 ) ]CC",
-    'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^pi0 ) ]CC",
-    #
-    # "Lambda_b0" : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-    # "chi_c"     : "[Lambda_b0 -> ^(chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-    # "Jpsi"      : "[Lambda_b0 ->  (chi_c1(1P) -> ^(J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
-    # "gamma"     : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-) ^gamma)  p+  K-]CC",
-    # "muplus"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) -> ^mu+  mu-)  gamma)  p+  K-]CC",
-    # "muminus"   : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+ ^mu-)  gamma)  p+  K-]CC",
-    # "proton"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma) ^p+  K-]CC",
-    # "kaon"      : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+ ^K-]CC",
-}
+        # 'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma ) ) ]CC",
+        # 'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma ) ) ]CC",
+        # 'gamma1'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma ) ) ]CC",
+        # 'gamma2'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma ) ) ]CC",
+        #
+        'B'       : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+        'Jpsi'    : "[ B0 --> ^(J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+        'muplus'  : "[ B0 -->  (J/psi(1S) -> ^mu+  mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+        'muminus' : "[ B0 -->  (J/psi(1S) ->  mu+ ^mu- ...)  (omega(782) ->  pi+  pi-  pi0 ) ]CC",
+        'omega'   : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...) ^(omega(782) ->  pi+  pi-  pi0 ) ]CC",
+        'piplus'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) -> ^pi+  pi-  pi0 ) ]CC",
+        'piminus' : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+ ^pi-  pi0 ) ]CC",
+        'pizero'  : "[ B0 -->  (J/psi(1S) ->  mu+  mu- ...)  (omega(782) ->  pi+  pi- ^pi0 ) ]CC",
+        #
+        # "Lambda_b0" : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+        # "chi_c"     : "[Lambda_b0 -> ^(chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+        # "Jpsi"      : "[Lambda_b0 ->  (chi_c1(1P) -> ^(J/psi(1S) ->  mu+  mu-)  gamma)  p+  K-]CC",
+        # "gamma"     : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-) ^gamma)  p+  K-]CC",
+        # "muplus"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) -> ^mu+  mu-)  gamma)  p+  K-]CC",
+        # "muminus"   : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+ ^mu-)  gamma)  p+  K-]CC",
+        # "proton"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma) ^p+  K-]CC",
+        # "kaon"      : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+ ^K-]CC",
+	}
+# for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero", "gamma1", "gamma2"]:
 for particle in ["B", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
-    tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
+        tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
 tuples = [ tuple_B2psiomega
@@ -237,12 +257,15 @@ for tup in tuples:
         tup.ToolList += ["TupleToolMCTruth/TruthTool"]
         tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
 
+    # tup.B0.addTool( LoKi_B )
     tup.B.addTool( LoKi_B )
+    # tup.B0.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B"]
     tup.B.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B"]
     tup.muplus.addTool( LoKi_Mu )
     tup.muplus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
     tup.muminus.addTool( LoKi_Mu )
     tup.muminus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
+    # for particle in [ tup.B0 ]:
     for particle in [ tup.B ]:
         particle.addTool(TISTOSTool, name = "TISTOSTool")
         particle.ToolList += [ "TupleToolTISTOS/TISTOSTool" ]
@@ -252,38 +275,42 @@ for tup in tuples:
 ##################################################################
 from DSTWriters.microdstelements import *
 from DSTWriters.Configuration import (SelDSTWriter,
-                                        stripDSTStreamConf,
-                                        stripDSTElements
-                                        )
+                                              stripDSTStreamConf,
+                                              stripDSTElements
+                                              )
+### NEW CODE ###
 
-# ### NEW CODE ###
+# from python.stripping_lib import StrippingPsiX0
+# import sys
+# sys.path.insert(0, './stripping_lib')
+# import StrippingPsiX0
 
-# from StrippingSelections import StrippingPsiX0
+from StrippingSelections import StrippingPsiX0
 
-# stripping='stripping20'
-# config  = strippingConfiguration(stripping)
-# archive = strippingArchive(stripping)
-# streams = buildStreams(stripping=config, archive=archive)
+stripping='stripping21'
+config  = strippingConfiguration(stripping)
+archive = strippingArchive(stripping)
+streams = buildStreams(stripping=config, archive=archive)
 
-# # Select my line
-# MyStream = StrippingStream("MyStream")
-# MyLines = [ 'StrippingPsiX0' ]
+# Select my line
+MyStream = StrippingStream("MyStream")
+MyLines = [ 'StrippingPsiX0' ]
 
-# for stream in streams:
-#     for line in stream.lines:
-#             if line.name() in MyLines:
-#                         MyStream.appendLines( [ line ] )
+for stream in streams:
+    for line in stream.lines:
+            if line.name() in MyLines:
+                        MyStream.appendLines( [ line ] )
 
-# # Configure Stripping
-# from Configurables import ProcStatusCheck
-# filterBadEvents = ProcStatusCheck()
+# Configure Stripping
+from Configurables import ProcStatusCheck
+filterBadEvents = ProcStatusCheck()
 
-# sc = StrippingConf( Streams = [ MyStream ],
-#                     MaxCandidates = 2000,
-#                     AcceptBadEvents = False,
-#                     BadEventSelection = filterBadEvents )
+sc = StrippingConf( Streams = [ MyStream ],
+                    MaxCandidates = 2000,
+                    AcceptBadEvents = False,
+                    BadEventSelection = filterBadEvents )
 
-# ################
+################
 
 SelDSTWriterElements = {
     'default'              : stripDSTElements()
@@ -291,6 +318,7 @@ SelDSTWriterElements = {
 SelDSTWriterConf = {
     'default'              : stripDSTStreamConf()
     }
+#sc = StrippingConf(Streams = [StrippingPsiX0.stream])
 if MODE == 'MC':
   dstWriter = SelDSTWriter( "MyDSTWriter",
                           StreamConf = SelDSTWriterConf,
@@ -309,8 +337,10 @@ DaVinci().RootInTES = rootInTES
 DaVinci().InputType = "MDST"
 DaVinci().Simulation = False
 DaVinci().Lumi = True
-DaVinci().DataType = "2011"
-CondDB( LatestGlobalTagByDataType = '2011' )
+# DaVinci().DataType = "2011"
+DaVinci().DataType = "2012"
+# CondDB( LatestGlobalTagByDataType = '2011' )
+CondDB( LatestGlobalTagByDataType = '2012' )
 
 if False: # Add the DST writing algorithms
 	DaVinci().appendToMainSequence( [ dstWriter.sequence(), printTree ] )

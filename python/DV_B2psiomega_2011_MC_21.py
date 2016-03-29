@@ -6,15 +6,12 @@
 import GaudiKernel.SystemOfUnits as Units
 from Gaudi.Configuration import *
 
-# ####
-# from StrippingConf.Configuration import StrippingConf, StrippingStream
-# from StrippingSettings.Utils import strippingConfiguration
-# from StrippingArchive.Utils import buildStreams
-# from StrippingArchive import strippingArchive
-
-# from StrippingSelections.StrippingPsiX0 import PsiX0Conf
-
-# ####
+####
+from StrippingConf.Configuration import StrippingConf, StrippingStream
+from StrippingSettings.Utils import strippingConfiguration
+from StrippingArchive.Utils import buildStreams
+from StrippingArchive import strippingArchive
+####
 
 from PhysSelPython.Wrappers import AutomaticData, Selection, SelectionSequence
 from Configurables import FilterDesktop
@@ -33,20 +30,11 @@ from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
 EVTMAX = -1
-MODE = 'data'
+MODE = "MC"
 OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
 location='Phys/SelB2PsiOmegaForPsiX0/Particles'
-
-# Use the local input data
-IOHelper().inputFiles([
-    '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
-], clear=True)
-
-### STRIPPING PREPARE ###
-
-_strippingOutput = AutomaticData(Location = location)
 
 #########################################################################################################
 # Set up the MCDecayTreeTuples for each of the decays that we are interested in.
@@ -222,6 +210,7 @@ tuple_B2psiomega.Branches = {
     # "proton"    : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma) ^p+  K-]CC",
     # "kaon"      : "[Lambda_b0 ->  (chi_c1(1P) ->  (J/psi(1S) ->  mu+  mu-)  gamma)  p+ ^K-]CC",
 }
+
 for particle in ["B", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
     tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
@@ -256,34 +245,34 @@ from DSTWriters.Configuration import (SelDSTWriter,
                                         stripDSTElements
                                         )
 
-# ### NEW CODE ###
+### NEW CODE ###
 
-# from StrippingSelections import StrippingPsiX0
+from StrippingSelections import StrippingPsiX0
 
-# stripping='stripping20'
-# config  = strippingConfiguration(stripping)
-# archive = strippingArchive(stripping)
-# streams = buildStreams(stripping=config, archive=archive)
+stripping='stripping21'
+config  = strippingConfiguration(stripping)
+archive = strippingArchive(stripping)
+streams = buildStreams(stripping=config, archive=archive)
 
-# # Select my line
-# MyStream = StrippingStream("MyStream")
-# MyLines = [ 'StrippingPsiX0' ]
+# Select my line
+MyStream = StrippingStream("MyStream")
+MyLines = [ 'StrippingPsiX0' ]
 
-# for stream in streams:
-#     for line in stream.lines:
-#             if line.name() in MyLines:
-#                         MyStream.appendLines( [ line ] )
+for stream in streams:
+    for line in stream.lines:
+            if line.name() in MyLines:
+                        MyStream.appendLines( [ line ] )
 
-# # Configure Stripping
-# from Configurables import ProcStatusCheck
-# filterBadEvents = ProcStatusCheck()
+# Configure Stripping
+from Configurables import ProcStatusCheck
+filterBadEvents = ProcStatusCheck()
 
-# sc = StrippingConf( Streams = [ MyStream ],
-#                     MaxCandidates = 2000,
-#                     AcceptBadEvents = False,
-#                     BadEventSelection = filterBadEvents )
+sc = StrippingConf( Streams = [ MyStream ],
+                    MaxCandidates = 2000,
+                    AcceptBadEvents = False,
+                    BadEventSelection = filterBadEvents )
 
-# ################
+################
 
 SelDSTWriterElements = {
     'default'              : stripDSTElements()
