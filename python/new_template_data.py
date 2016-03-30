@@ -55,7 +55,7 @@ import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
     'PsiX0'          ,
     config = {
-        'NOPIDHADRONS' : True          ,  ## important here!!!
+        # 'NOPIDHADRONS' : True          ,  ## important here!!!
         'DIMUONLINES'  : [ jpsi_line ]
         # 'PsiX0Lines'  : [ jpsi_line ]
         }
