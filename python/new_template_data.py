@@ -52,7 +52,7 @@ jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
 jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
 
 if MODE == 'DATA':
-    jpsi_line  = '/Phys/%s/Particles' % jpsi_name
+    jpsi_line  = '/Event/PSIX0/Phys/%s/Particles' % jpsi_name
 
 import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
