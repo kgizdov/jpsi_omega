@@ -37,32 +37,32 @@ OUTPUTLEVEL = ERROR
 ## ## read PSIX0.MDST
 ## # =============================================================================
 
-## rootInTES = '/Event/PSIX0'
-## location  = 'Phys/SelB2PsiOmegaForPsiX0/Particles'
-## from PhysSelPython.Wrappers import AutomaticData
-## b2omega_selection = AutomaticData( location )
+rootInTES = '/Event/PSIX0'
+location  = 'Phys/SelB2PsiOmegaForPsiX0/Particles'
+from PhysSelPython.Wrappers import AutomaticData
+b2omega_selection = AutomaticData( location )
 
 
-# =============================================================================
-## run PSIX0 WG-selections over ALLSTREAM.DST MC
-# =============================================================================
-jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
-# jpsi_name  = 'SelB2PsiOmegaForPsiX0'
-# jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
-jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
+# # =============================================================================
+# ## run PSIX0 WG-selections over ALLSTREAM.DST MC
+# # =============================================================================
+# jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
+# # jpsi_name  = 'SelB2PsiOmegaForPsiX0'
+# # jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
+# jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
 
-if MODE == 'DATA':
-    jpsi_line  = '/Event/PSIX0/Phys/%s/Particles' % jpsi_name
+# if MODE == 'DATA':
+#     jpsi_line  = '/Event/PSIX0/Phys/%s/Particles' % jpsi_name
 
-import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
-psix0  = PSIX0.PsiX0Conf  (
-    'PsiX0'          ,
-    config = {
-        # 'NOPIDHADRONS' : True          ,  ## important here!!!
-        'DIMUONLINES'  : [ jpsi_line ]
-        # 'PsiX0Lines'  : [ jpsi_line ]
-        }
-    )
+# import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
+# psix0  = PSIX0.PsiX0Conf  (
+#     'PsiX0'          ,
+#     config = {
+#         # 'NOPIDHADRONS' : True          ,  ## important here!!!
+#         'DIMUONLINES'  : [ jpsi_line ]
+#         # 'PsiX0Lines'  : [ jpsi_line ]
+#         }
+#     )
 
 b2omega_selection = psix0.b2omega()
 
@@ -281,6 +281,7 @@ if MODE == 'MC':
 
 daVinci = DaVinci (
     EvtMax             = EVTMAX            ,
+    RootInTES          = rootInTES         ,
     TupleFile          = "DVTuples1.root"  ,
     HistogramFile      = 'DVHistos.root'   ,
     DataType           = "2011"            ,
