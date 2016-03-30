@@ -43,9 +43,9 @@ from PhysSelPython.Wrappers import AutomaticData
 b2omega_selection = AutomaticData( location )
 
 
-# # =============================================================================
-# ## run PSIX0 WG-selections over ALLSTREAM.DST MC
-# # =============================================================================
+# ## # =============================================================================
+# ## ## run PSIX0 WG-selections over ALLSTREAM.DST MC
+# ## # =============================================================================
 # jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
 # # jpsi_name  = 'SelB2PsiOmegaForPsiX0'
 # # jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
@@ -64,7 +64,7 @@ b2omega_selection = AutomaticData( location )
 #         }
 #     )
 
-b2omega_selection = psix0.b2omega()
+# b2omega_selection = psix0.b2omega()
 
 
 #########################################################################################################
