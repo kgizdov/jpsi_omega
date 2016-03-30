@@ -47,15 +47,18 @@ OUTPUTLEVEL = ERROR
 ## run PSIX0 WG-selections over ALLSTREAM.DST MC
 # =============================================================================
 jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
-jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
+# jpsi_name  = 'SelB2PsiOmegaForPsiX0'
+# jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
+jpsi_line  = '/Event/AllStream/Phys/%s/Particles' % jpsi_name
 
 import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
     'PsiX0'          ,
     config = {
-    'NOPIDHADRONS' : True          ,  ## important here!!!
-    'DIMUONLINES'  : [ jpsi_line ]
-    }
+        'NOPIDHADRONS' : True          ,  ## important here!!!
+        'DIMUONLINES'  : [ jpsi_line ]
+        # 'PsiX0Lines'  : [ jpsi_line ]
+        }
     )
 
 b2omega_selection = psix0.b2omega()
@@ -88,15 +91,15 @@ mc_selection = SimpleSelection (
     ## properties
     Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
     Branches = {
-    'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-    'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-    'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
-    'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-    'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-    'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
-    'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
-    'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
-    }
+        'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+        'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+        'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
+        'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+        'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+        'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
+        'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
+        'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
+        }
     )
 mctuple_B2psiomega = mc_selection.algorithm()
 
@@ -216,16 +219,16 @@ rd_selection = SimpleSelection (
     Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )' ,
     ToolList = tupletools ,
     Branches = {
-    #
-    'B'       : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    'Jpsi'    : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    'muplus'  : "[B0]cc -> (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    'muminus' : "[B0]cc -> (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    'omega'   : "[B0]cc -> (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
-    'piplus'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
-    'piminus' : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
-    'pizero'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
-    }
+        #
+        'B'       : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+        'Jpsi'    : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+        'muplus'  : "[B0]cc -> (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+        'muminus' : "[B0]cc -> (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+        'omega'   : "[B0]cc -> (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
+        'piplus'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
+        'piminus' : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
+        'pizero'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
+        }
     )
 
 tuple_B2psiomega = rd_selection.algorithm()
@@ -265,13 +268,21 @@ mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
 
 
 ###################### DAVINCI SETTINGS ############################################
+
+lum = True
+sim = False
+
+if MODE == 'MC':
+    lum = False
+    sim = True
+
 daVinci = DaVinci (
     EvtMax             = EVTMAX            ,
     TupleFile          = "DVTuples1.root"  ,
     HistogramFile      = 'DVHistos.root'   ,
     DataType           = "2011"            ,
-    Simulation         = True              ,
-    Lumi               = False             ,
+    Simulation         = sim               ,
+    Lumi               = lum               ,
     UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
     )
 
