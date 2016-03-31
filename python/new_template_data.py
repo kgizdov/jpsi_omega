@@ -284,13 +284,14 @@ if MODE == 'MC':
 daVinci = DaVinci (
     EvtMax             = EVTMAX            ,
     RootInTES          = rootInTES         ,
-    InputType          = "MDST"             ,
+    InputType          = "MDST"            ,
     TupleFile          = "DVTuples1.root"  ,
     HistogramFile      = 'DVHistos.root'   ,
     DataType           = "2011"            ,
     Simulation         = sim               ,
     Lumi               = lum               ,
-    UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
+    # UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
+    UserAlgorithms     =  [ rd_SEQ.sequence() ] ,
     )
 
 MessageSvc().Format = "% F%60W%S%7W%R%T %0W%M"
