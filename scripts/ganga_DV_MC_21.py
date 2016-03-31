@@ -23,7 +23,8 @@ if magnet not in ['MagDown', 'MagUp']: sys.exit()
 if mode == 'norm':
     script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_Lb2chicpK_norm_' + year + '_MC_21.py'
 else:
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC_21.py'
+    # script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC_21.py'
+    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/new_template.py'
 
 # job_name = 'MC' + str(year) + mode + magnet
 job_name = 'MC' + str(year) + mode
@@ -160,7 +161,7 @@ import sys
 if len(data.files) < 1:
     sys.exit()
 
-debug = 1
+debug = 0
 
 max_files = -1
 if debug:
@@ -174,7 +175,7 @@ j = Job(
     inputdata      = data,
     outputfiles     = [LocalFile("*.root")],
     do_auto_resubmit = True,
-    backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
+    backend        = Dirac()  # Local() for quick debugging, Dirac() for online
     # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
     )
 j.submit()
