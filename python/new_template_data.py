@@ -282,6 +282,7 @@ if MODE == 'MC':
 daVinci = DaVinci (
     EvtMax             = EVTMAX            ,
     RootInTES          = rootInTES         ,
+    InputType          = "MDST"             ,
     TupleFile          = "DVTuples1.root"  ,
     HistogramFile      = 'DVHistos.root'   ,
     DataType           = "2011"            ,
