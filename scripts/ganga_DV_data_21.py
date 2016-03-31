@@ -35,8 +35,8 @@ if year == '2011':
     ]
 if year == '2012':
     BK_locations = [
-        '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/WGBandQSelection11/90000000/PSIX0.MDST'
-        ,'/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/WGBandQSelection11/90000000/PSIX0.MDST'
+        '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/WGBandQSelection11/Merge/90000000/PSIX0.MDST'
+        ,'/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/WGBandQSelection11/Merge/90000000/PSIX0.MDST'
     ]
 
 data = LHCbDataset()
@@ -51,7 +51,7 @@ for path in BK_locations:
 
 print data
 
-debug = 1
+debug = 0
 max_files = -1
 if debug == 1:
     max_files = 2
@@ -64,7 +64,7 @@ if len(data.files) < 1:
 j = Job(
     name           = job_name,
     application    = DV,
-    splitter       = SplitByFiles(filesPerJob = 2, maxFiles = max_files), # set maxFiles = 1 when debugging and -1 otherwise
+    splitter       = SplitByFiles(filesPerJob = 4, maxFiles = max_files), # set maxFiles = 1 when debugging and -1 otherwise
     inputdata      = data,
     outputfiles     = [LocalFile("*.root")],
     do_auto_resubmit = True,
