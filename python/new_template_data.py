@@ -39,8 +39,10 @@ OUTPUTLEVEL = ERROR
 
 rootInTES = '/Event/PSIX0'
 location  = 'Phys/SelB2PsiOmegaForPsiX0/Particles'
+location1 = '/Event/PSIX0/Phys/SelB2PsiOmegaForPsiX0/Particles'
 from PhysSelPython.Wrappers import AutomaticData
-b2omega_selection = AutomaticData( location )
+# b2omega_selection = AutomaticData( location )
+b2omega_selection = AutomaticData( location1 )
 
 
 # ## # =============================================================================
