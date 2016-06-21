@@ -73,67 +73,67 @@ b2omega_selection = AutomaticData( location )
 # Set up the MCDecayTreeTuples for each of the decays that we are interested in.
 # We want to save all of the generated events for each mode.
 #########################################################################################################
-from Configurables import MCDecayTreeTuple, MCTupleToolKinematic, MCTupleToolHierarchy, LoKi__Hybrid__MCTupleTool
+# from Configurables import MCDecayTreeTuple, MCTupleToolKinematic, MCTupleToolHierarchy, LoKi__Hybrid__MCTupleTool
 
-# LoKi variables
-LoKi_Photos = LoKi__Hybrid__MCTupleTool("LoKi_Photos")
-LoKi_Photos.Variables = {
-    "nPhotons" : "MCNINTREE ( ('gamma'==MCABSID) )",
-    "MC_PT"    : "MCPT",
-    "MC_THETA" : "MCTHETA",
-    "MC_ETA"   : "MCETA",
-    "MC_PHI"   : "MCPHI",
-    "MC_ABSID" : "MCABSID"
-	}
+# # LoKi variables
+# LoKi_Photos = LoKi__Hybrid__MCTupleTool("LoKi_Photos")
+# LoKi_Photos.Variables = {
+#     "nPhotons" : "MCNINTREE ( ('gamma'==MCABSID) )",
+#     "MC_PT"    : "MCPT",
+#     "MC_THETA" : "MCTHETA",
+#     "MC_ETA"   : "MCETA",
+#     "MC_PHI"   : "MCPHI",
+#     "MC_ABSID" : "MCABSID"
+# 	}
 
-from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
-from PhysSelPython.Wrappers                import SimpleSelection
+# from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
+# from PhysSelPython.Wrappers                import SimpleSelection
 
-mc_selection = SimpleSelection (
-    'MCTuple'  ,
-    MCTUPLE    ,
-    [ b2omega_selection ] ,
-    ## properties
-    Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
-    Branches = {
-        'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
-        'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
-        'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
-        'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
-        }
-    )
-mctuple_B2psiomega = mc_selection.algorithm()
+# mc_selection = SimpleSelection (
+#     'MCTuple'  ,
+#     MCTUPLE    ,
+#     [ b2omega_selection ] ,
+#     ## properties
+#     Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
+#     Branches = {
+#         'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+#         'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+#         'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
+#         'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+#         'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
+#         'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
+#         'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
+#         'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
+#         }
+#     )
+# mctuple_B2psiomega = mc_selection.algorithm()
 
 
-# List of the mc tuples
-mctuples = [
-        mctuple_B2psiomega
-	]
+# # List of the mc tuples
+# mctuples = [
+#         mctuple_B2psiomega
+# 	]
 
-for tup in mctuples:
-    tup.addTool(MCTupleToolKinematic())
-    tup.MCTupleToolKinematic.Verbose=True
-    tup.addTool(LoKi_Photos)
-    tup.ToolList  = [ "MCTupleToolHierarchy"
-            , "MCTupleToolKinematic"
-            , "LoKi::Hybrid::MCTupleTool/LoKi_Photos" # doesn't work with DaVinci v36r6
-            ]
-    tup.addTool(TupleToolMCTruth, name = "TruthTool")
-    tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
-    tup.ToolList += ["TupleToolMCTruth/TruthTool"]
-    tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
+# for tup in mctuples:
+#     tup.addTool(MCTupleToolKinematic())
+#     tup.MCTupleToolKinematic.Verbose=True
+#     tup.addTool(LoKi_Photos)
+#     tup.ToolList  = [ "MCTupleToolHierarchy"
+#             , "MCTupleToolKinematic"
+#             , "LoKi::Hybrid::MCTupleTool/LoKi_Photos" # doesn't work with DaVinci v36r6
+#             ]
+#     tup.addTool(TupleToolMCTruth, name = "TruthTool")
+#     tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
+#     tup.ToolList += ["TupleToolMCTruth/TruthTool"]
+#     tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
 
-if OUTPUTLEVEL == DEBUG:
-	from Configurables import PrintMCTree, PrintMCDecayTreeTool
-	mctree = PrintMCTree("PrintTrue")
-	mctree.addTool( PrintMCDecayTreeTool )
-	mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
-	mctree.ParticleNames = [ "B+", "B-" ]
-	mctree.Depth = 3  # down to the K and mu
+# if OUTPUTLEVEL == DEBUG:
+# 	from Configurables import PrintMCTree, PrintMCDecayTreeTool
+# 	mctree = PrintMCTree("PrintTrue")
+# 	mctree.addTool( PrintMCDecayTreeTool )
+# 	mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
+# 	mctree.ParticleNames = [ "B+", "B-" ]
+# 	mctree.Depth = 3  # down to the K and mu
 
 #########################################################################################################
 # Now set up the DecayTreeTuples for the reconstructed particles
@@ -217,23 +217,23 @@ LoKi_Mu.Variables =  {
 from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 rd_selection = SimpleSelection (
-    'Tuple'               ,
-    TUPLE                 ,
-    [ b2omega_selection ] ,
+      'Tuple'
+    , TUPLE
+    , [ b2omega_selection ]
     ## Properties:
-    Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )' ,
-    ToolList = tupletools ,
-    Branches = {
-        #
-        'B'       : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'Jpsi'    : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muplus'  : "[B0]cc -> (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muminus' : "[B0]cc -> (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'omega'   : "[B0]cc -> (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
-        'piplus'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
-        'piminus' : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
-        'pizero'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
-        }
+    , Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )'
+    , ToolList = tupletools
+    # , Branches = {
+    #     #
+    #     'B'       : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'Jpsi'    : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muplus'  : "[B0]cc -> (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muminus' : "[B0]cc -> (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'omega'   : "[B0]cc -> (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
+    #     'piplus'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
+    #     'piminus' : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
+    #     'pizero'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
+    #     }
     )
 
 tuple_B2psiomega = rd_selection.algorithm()
@@ -267,7 +267,7 @@ for tup in tuples:
 
 from PhysSelPython.Wrappers import SelectionSequence
 rd_SEQ = SelectionSequence  ( 'DATA'  , rd_selection )
-mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
+# mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
 
 
 
