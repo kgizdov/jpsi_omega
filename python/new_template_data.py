@@ -32,6 +32,13 @@ from Configurables import TupleToolTISTOS, TriggerTisTos
 EVTMAX      = -1
 MODE        = "DATA"
 OUTPUTLEVEL = ERROR
+LOC         = True
+
+# # Use the local input data
+if LOC == True:
+    IOHelper().inputFiles([
+        '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
+    ], clear=True)
 
 ## # =============================================================================
 ## ## read PSIX0.MDST
@@ -225,14 +232,14 @@ rd_selection = SimpleSelection (
     , ToolList = tupletools
     # , Branches = {
     #     #
-    #     'B'       : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    #     'Jpsi'    : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    #     'muplus'  : "[B0]cc -> (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    #     'muminus' : "[B0]cc -> (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-    #     'omega'   : "[B0]cc -> (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
-    #     'piplus'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
-    #     'piminus' : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
-    #     'pizero'  : "[B0]cc -> (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
+    #     'B'       : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
+    #     'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
+    #     'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
+    #     'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
     #     }
     )
 
