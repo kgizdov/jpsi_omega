@@ -53,8 +53,10 @@ print data
 
 debug = 0
 max_files = -1
+files_per_job = 4
 if debug == 1:
     max_files = 2
+    files_per_job = 2
 print ('Max Files =' + str(max_files))
 
 import sys
@@ -64,7 +66,7 @@ if len(data.files) < 1:
 j = Job(
     name           = job_name,
     application    = DV,
-    splitter       = SplitByFiles(filesPerJob = 4, maxFiles = max_files), # set maxFiles = 1 when debugging and -1 otherwise
+    splitter       = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files), # set maxFiles = 1 when debugging and -1 otherwise
     inputdata      = data,
     outputfiles     = [LocalFile("*.root")],
     do_auto_resubmit = True,
