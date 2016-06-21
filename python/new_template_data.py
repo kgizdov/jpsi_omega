@@ -35,10 +35,10 @@ OUTPUTLEVEL = ERROR
 LOC         = True
 
 # # Use the local input data
-if LOC == True:
-    IOHelper().inputFiles([
-        '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
-    ], clear=True)
+# if LOC == True:
+#     IOHelper().inputFiles([
+#         '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
+#     ], clear=True)
 
 ## # =============================================================================
 ## ## read PSIX0.MDST

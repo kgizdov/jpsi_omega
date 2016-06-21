@@ -57,7 +57,8 @@ files_per_job = 4
 if debug == 1:
     max_files = 2
     files_per_job = 2
-print ('Max Files =' + str(max_files))
+print ('Max Files = ' + str(max_files))
+print ('Files Per Job = ' + str(files_per_job))
 
 import sys
 if len(data.files) < 1:
