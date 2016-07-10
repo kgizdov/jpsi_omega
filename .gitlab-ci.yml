@@ -1,0 +1,15 @@
+stages:
+        - build
+        # - test
+
+build:
+    script:
+        - source activate snake
+        # - snakemake all
+        - snakemake -np all  # just test for now
+    stage: build
+    only:
+        - master
+    # artifacts:
+        # paths:
+            # - build/src/RapidSim.exe
