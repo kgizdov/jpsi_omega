@@ -1,15 +1,30 @@
+# image: ana-root  # no need to specify explicitly
+
+# services:  # no specific services
+    # -
+
+before_script:
+    - source activate snake  # activate Snakemake
+    - kinit kgizdov -k -t /root/my.keytab  # login to kerberos
+
+# after_script:
+    # - echo 'ALL DONE'
+
 stages:
         - build
-        # - test
+        # - test  # not yet implemented
 
 build:
+    stage: build
     script:
-        - source activate snake
         # - snakemake all
         - snakemake -np all  # just test for now
-    stage: build
-    only:
+    only:  # run only on these
         - master
-    # artifacts:
+    # except:  # skip branches
+        # - /^.*-test$/  # all named *-test
+    # tags:  # specify CI runner by tags
+        # -
+    # artifacts:  # use this to retain files
         # paths:
             # - build/src/RapidSim.exe
