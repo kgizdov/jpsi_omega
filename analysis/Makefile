@@ -58,11 +58,11 @@ all : $(BINS) $(HDRS) Makefile
 libs : $(LIBS)
 # Build binaries
 # $(BINDIR)/% : $(OBJDIR)/$(BINSRCDIR)/%.$(OBJEXT) $(LIBS)
-$(BINDIR)/% : $(OBJDIR)/$(SRCDIR)/%.$(OBJEXT) $(LIBS)
+$(BINDIR)/% : $(OBJDIR)/%.$(OBJEXT) $(LIBS)
 	$(CC) $(LIBFLAGS) $^ $(LIBS) $(COMLIBS) -o $@
 # Build libraries
 # $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/$(LIBSRCDIR)/%.$(OBJEXT)
-$(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/$(SRCDIR)/%.$(OBJEXT)
+$(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/%.$(OBJEXT)
 	$(CC) -shared $< -o $@
 # Build objects
 $(OBJDIR)/%.$(OBJEXT) : $(SRCDIR)/%.$(SRCEXT)
