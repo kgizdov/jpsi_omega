@@ -34,12 +34,17 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
                     string xtitle, string unit, string plotname, string cuts,
                     string MCweight, string REweight, double xlow, double xup, int nbins) {
     // Open the files and get the trees
-    TFile* MCfile = new TFile(MCfilename.c_str());
-    TFile* REfile = new TFile(REfilename.c_str());
+    // TFile* MCfile = new TFile(MCfilename.c_str());
+    TFile* MCfile = TFile::Open(MCfilename.c_str());
+    // TFile* REfile = new TFile(REfilename.c_str());
+    TFile* REfile = TFile::Open(REfilename.c_str());
     TTree* MCtree = GetTree(MCfile, cuts);
-    TTree* MCtree_s = GetTree(MCfile, cuts+"&& B_BKGCAT == 0");
-    TTree* MCtree_b = GetTree(MCfile, cuts+"&& B_BKGCAT == 100");
     TTree* REtree = GetTree(REfile, cuts);
+    if (cuts != "") {
+      cuts+= " && ";
+    }
+    TTree* MCtree_s = GetTree(MCfile, cuts+"B_BKGCAT == 0");
+    TTree* MCtree_b = GetTree(MCfile, cuts+"B_BKGCAT == 100");
     // RooFit variables
     // using namespace RooFit;
     namespace rf = RooFit;
@@ -69,17 +74,11 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
         REdata = new RooDataSet("REdata", "", RooArgSet(*x), rf::Import(*REtree));
     }
     // Create a RooPlot and add the data points
-    RooPlot* frame = x->frame();
+    RooPlot * frame = x->frame();
     std::cout << "Plotting" << endl;
     MCdata->plotOn(frame, rf::Binning(nbins), rf::DrawOption("B1"), rf::FillColor(kOrange));
     MCdata_b->plotOn(frame, rf::Binning(nbins), rf::DrawOption("B1"), rf::FillColor(kRed-7), rf::FillStyle(3144));
     MCdata_s->plotOn(frame, rf::Binning(nbins), rf::DrawOption("B1"), rf::FillColor(kBlue-7), rf::FillStyle(3244));
-    // MCdata_b->plotOn(frame,Binning(nbins),DrawOption("B1"),FillColor(kBlue));
-    // MCdata_b->plotOn(frame,Binning(nbins),DrawOption("B1"),FillColor(kBlue),FillColorAlpha(0.35));
-    // MCdata_b->plotOn(frame,Binning(nbins),DrawOption("B1"));
-    // frame->getHist("h_MCdata_b")->SetFillColorAlpha(kBlue, 0.35);
-    // MCdata_b->SetFillColorAlpha(kBlue, 0.35);
-    // MCdata_b->plotOn(frame,Binning(nbins),DrawOption("B1"));
     REdata->plotOn(frame, rf::Binning(nbins));
 
     // Get the histograms out of the RooPlot
@@ -93,13 +92,11 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
     leg1 = new TLegend(0.2, 0.8, 0.4, 0.92);
     leg1->SetFillColor(kWhite);
     leg1->SetLineColor(kWhite);
-    // leg1->AddEntry(frame->getObject(3),"Data", "P");
-    // leg1->AddEntry(frame->findObject("h_REdata"),"Data", "P");
     leg1->AddEntry(frame->findObject("h_REdata"), "Data", "LP");
     leg1->AddEntry(frame->findObject("h_MCdata"), "MC Signal + background", "F");
     leg1->AddEntry(frame->findObject("h_MCdata_b"), "MC Background only", "F");
     leg1->AddEntry(frame->findObject("h_MCdata_s"), "MC Signal only", "F");
-    // leg1->Draw();
+
     // Integrate the histograms
     double MCint = integrate(h_MCdata);
     // double MCint_s = integrate(h_MCdata_s);
@@ -114,9 +111,6 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
         h_MCdata->SetPointError(i, 0, 0, 0, 0);
         h_MCdata_s->SetPointError(i, 0, 0, 0, 0);
         h_MCdata_b->SetPointError(i, 0, 0, 0, 0);
-        h_MCdata->GetX()[i]   /= 5.0;
-        h_MCdata_s->GetX()[i] /= 5.0;
-        h_MCdata_b->GetX()[i] /= 5.0;
         h_MCdata->GetY()[i]   /= MCint;
         h_MCdata_s->GetY()[i] /= MCint;
         h_MCdata_b->GetY()[i] /= MCint;
@@ -126,9 +120,6 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
     }
     // Normalise to unity
     for (int i = 0; i < h_REdata->GetN(); i++) {
-        h_REdata->GetX()[i]      /= 5.0;
-        h_REdata->GetEXhigh()[i] /= 5.0;
-        h_REdata->GetEXlow()[i]  /= 5.0;
         h_REdata->GetY()[i]      /= REint;
         h_REdata->GetEYhigh()[i] /= REint;
         h_REdata->GetEYlow()[i]  /= REint;
@@ -155,19 +146,19 @@ int main(int argc, char* argv[]) {
     double xlow = 0, xup = 0;
     int nbins = 0;
     desc.add_options()
-        ("help,H"    ,                                                                                        "produce help message"                      )
-        ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/DVTuples_mc.root"          ), "set Monte Carlo file"                      )
-        ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/DVTuples_data.root"        ), "set collision data file"                   )
-        ("branch,B"  , po::value<std::string>(&branch  )->default_value("Tuple/DecayTree/B_MM"                       ), "set branch to plot"                        )
-        ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                                     ), "set Monte Carlo weighting variable"        )
-        ("REweight,W", po::value<std::string>(&REweight)->default_value(""                                     ), "set collision data weighting variable"     )
-        ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                                     ), "set optional cuts (UNIMPLEMENTED)"         )
-        ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{#phi K^{#plus}K^{#minus}})"), "set x-axis title (takes ROOT LaTeX format)")
-        ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"                       ), "set unit (takes ROOT LaTeX format)"        )
-        ("plot,O"    , po::value<std::string>(&plot    )->default_value("comparison"                           ), "set output plot filename"                  )
-        ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                                   ), "set branch upper limit"                    )
-        ("lower,l"   , po::value<double     >(&xlow    )->default_value(5000                                   ), "set branch lower limit"                    )
-        ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                                     ), "set number of bins"                        )
+        ("help,H"    ,                                                                                 "produce help message"                      )
+        ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/DVTuples_mc.root"  ), "set Monte Carlo file"                      )
+        ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/DVTuples_data.root"), "set collision data file"                   )
+        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B_DTF_MASS_constr1"        ), "set branch to plot"                        )
+        ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                          ), "set Monte Carlo weighting variable"        )
+        ("REweight,W", po::value<std::string>(&REweight)->default_value(""                          ), "set collision data weighting variable"     )
+        ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                          ), "set optional cuts (UNIMPLEMENTED)"         )
+        ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{J/#psi #omega})"), "set x-axis title (takes ROOT LaTeX format)")
+        ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"            ), "set unit (takes ROOT LaTeX format)"        )
+        ("plot,O"    , po::value<std::string>(&plot    )->default_value("B_M_SB_comparison"         ), "set output plot filename"                  )
+        ("lower,l"   , po::value<double     >(&xlow    )->default_value(5100                        ), "set branch lower limit"                    )
+        ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                        ), "set branch upper limit"                    )
+        ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                          ), "set number of bins"                        )
     ;
     po::variables_map vmap;
     po::store(po::parse_command_line(argc, argv, desc), vmap);

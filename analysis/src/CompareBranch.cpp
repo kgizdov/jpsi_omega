@@ -33,8 +33,10 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
                     string xtitle, string unit, string plotname, string cuts,
                     string MCweight, string REweight, double xlow, double xup, int nbins) {
     // Open the files and get the trees
-    TFile* MCfile = new TFile(MCfilename.c_str());
-    TFile* REfile = new TFile(REfilename.c_str());
+    // TFile* MCfile = new TFile(MCfilename.c_str());
+    TFile* MCfile = TFile::Open(MCfilename.c_str());
+    // TFile* REfile = new TFile(REfilename.c_str());
+    TFile* REfile = TFile::Open(REfilename.c_str());
     TTree* MCtree = GetTree(MCfile, cuts);
     TTree* REtree = GetTree(REfile, cuts);
     // RooFit variables
@@ -108,19 +110,19 @@ int main(int argc, char* argv[]) {
     double xlow = 0, xup = 0;
     int nbins = 0;
     desc.add_options()
-        ("help,H"    ,                                                                                        "produce help message"                      )
-        ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/BsphiKK_MC_mva.root"          ), "set Monte Carlo file"                      )
-        ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/BsphiKK_data_mva.root"        ), "set collision data file"                   )
-        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B_s0_LOKI_Mass"                       ), "set branch to plot"                        )
-        ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                                     ), "set Monte Carlo weighting variable"        )
-        ("REweight,W", po::value<std::string>(&REweight)->default_value(""                                     ), "set collision data weighting variable"     )
-        ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                                     ), "set optional cuts (UNIMPLEMENTED)"         )
-        ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{#phi K^{#plus}K^{#minus}})"), "set x-axis title (takes ROOT LaTeX format)")
-        ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"                       ), "set unit (takes ROOT LaTeX format)"        )
-        ("plot,O"    , po::value<std::string>(&plot    )->default_value("comparison"                           ), "set output plot filename"                  )
-        ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                                   ), "set branch upper limit"                    )
-        ("lower,l"   , po::value<double     >(&xlow    )->default_value(5200                                   ), "set branch lower limit"                    )
-        ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                                     ), "set number of bins"                        )
+        ("help,H"    ,                                                                                 "produce help message"                      )
+        ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/DVTuples_mc.root"  ), "set Monte Carlo file"                      )
+        ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/DVTuples_data.root"), "set collision data file"                   )
+        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B_DTF_MASS_constr1"        ), "set branch to plot"                        )
+        ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                          ), "set Monte Carlo weighting variable"        )
+        ("REweight,W", po::value<std::string>(&REweight)->default_value(""                          ), "set collision data weighting variable"     )
+        ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                          ), "set optional cuts (UNIMPLEMENTED)"         )
+        ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{J/#psi #omega})"), "set x-axis title (takes ROOT LaTeX format)")
+        ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"            ), "set unit (takes ROOT LaTeX format)"        )
+        ("plot,O"    , po::value<std::string>(&plot    )->default_value("B_M_comparison"            ), "set output plot filename"                  )
+        ("lower,l"   , po::value<double     >(&xlow    )->default_value(5100                        ), "set branch lower limit"                    )
+        ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                        ), "set branch upper limit"                    )
+        ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                          ), "set number of bins"                        )
     ;
     po::variables_map vmap;
     po::store(po::parse_command_line(argc, argv, desc), vmap);
