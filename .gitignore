@@ -1,6 +1,10 @@
+analysis/bin/*
 datastore*
 debug/
+*.bin
+*.o
 *.pdf
-*.root
 *.ppt
 *.pptx
+*.root
+*.so
