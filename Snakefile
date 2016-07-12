@@ -95,15 +95,16 @@ rule bplots:
         #                     {range}""".split()
         #                     , zip
         #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        """./analysis/bin/CompareBranchSB \\
+        for i in xrange(len(B_VARS)):
+            """./analysis/bin/CompareBranchSB \\
                             -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
                             -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {B_VARS} \\
+                            -B {B_VARS}[i] \\
                             -C omega_PT>8000 \\
-                            -T {B_TITLE} \\
-                            -U {B_UNIT} \\
-                            -O {B_PLOTS} \\
-                            {B_NRANGE}"""
+                            -T {B_TITLE}[i] \\
+                            -U {B_UNIT}[i] \\
+                            -O {B_PLOTS}[i] \\
+                            {B_NRANGE}[i]"""
                             # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
@@ -150,15 +151,16 @@ rule bptplots:
         #                     {range}""".split()
         #                     , zip
         #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        """./analysis/bin/CompareBranchSB \\
+        for i in xrange(len(B_VARS)):
+            """./analysis/bin/CompareBranchSB \\
                             -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
                             -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {B_VARS} \\
+                            -B {B_VARS}[i] \\
                             -C omega_PT>8000 \\
-                            -T {B_TITLE} \\
-                            -U {B_UNIT} \\
-                            -O {B_PLOTS} \\
-                            {B_NRANGE}"""
+                            -T {B_TITLE}[i] \\
+                            -U {B_UNIT}[i] \\
+                            -O {B_PLOTS}[i] \\
+                            {B_NRANGE}[i]"""
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
 rule compbin:
