@@ -53,7 +53,7 @@ COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", 
 
 rule all:
     input:
-        SBMASSPLOTS, SBPTMASSPLOTS
+        B_PLOTS, B_PT_PLOTS
 
 rule bplots:
     input:
