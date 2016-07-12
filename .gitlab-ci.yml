@@ -25,6 +25,6 @@ build:
         # - /^.*-test$/  # all named *-test
     # tags:  # specify CI runner by tags
         # -
-    # artifacts:  # use this to retain files
-        # paths:
-            # - build/src/RapidSim.exe
+    artifacts:  # use this to retain files
+        paths:
+            - plots/comparison
