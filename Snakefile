@@ -51,6 +51,16 @@ PTNRANGE = ["%s" % (i) for i in ["-l 0 -u 10000", "-l 0 -u 6000", "-l 3000 -u 60
 COMPBIN = ["analysis/bin/%s" % (i) for i in ["CompareBranchSB"]]
 COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", "GetTree", "plotmaker", "progbar"]]
 
+"""./analysis/bin/CompareBranchSB \\
+                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+                            -B {B_VARS}[i] \\
+                            -C omega_PT>8000 \\
+                            -T {B_TITLE}[i] \\
+                            -U {B_UNIT}[i] \\
+                            -O {B_PLOTS}[i] \\
+                            {B_NRANGE}[i]""" %
+
 rule all:
     input:
         B_PLOTS, B_PT_PLOTS
@@ -85,26 +95,25 @@ rule bplots:
         #                     {range}""".format(
         #                     # , zip
         #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # expand("""./analysis/bin/CompareBranchSB
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-        #                     -B {br}
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".split()
-        #                     , zip
-        #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        for i in xrange(len(B_VARS)):
-            """./analysis/bin/CompareBranchSB \\
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {B_VARS}[i] \\
-                            -C omega_PT>8000 \\
-                            -T {B_TITLE}[i] \\
-                            -U {B_UNIT}[i] \\
-                            -O {B_PLOTS}[i] \\
-                            {B_NRANGE}[i]"""
+        "; ".join.(expand("""./analysis/bin/CompareBranchSB
+                                    -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                                    -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                                    -B {br}
+                                    -T {title}
+                                    -U {unit}
+                                    -O {pdf}
+                                    {range}""".split()
+                                    , zip
+                                    , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
+        # """./analysis/bin/CompareBranchSB \\
+        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+        #                     -B {B_VARS}[i] \\
+        #                     -C omega_PT>8000 \\
+        #                     -T {B_TITLE}[i] \\
+        #                     -U {B_UNIT}[i] \\
+        #                     -O {B_PLOTS}[i] \\
+        #                     {B_NRANGE}[i]"""
                             # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
@@ -140,27 +149,26 @@ rule bptplots:
         #                     {range}""".format(
         #                     # , zip
         #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # expand("""./analysis/bin/CompareBranchSB
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-        #                     -B {br}
-        #                     -C omega_PT>8000
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".split()
-        #                     , zip
-        #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        for i in xrange(len(B_VARS)):
-            """./analysis/bin/CompareBranchSB \\
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {B_VARS}[i] \\
-                            -C omega_PT>8000 \\
-                            -T {B_TITLE}[i] \\
-                            -U {B_UNIT}[i] \\
-                            -O {B_PLOTS}[i] \\
-                            {B_NRANGE}[i]"""
+        "; ".join(expand("""./analysis/bin/CompareBranchSB
+                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                            -B {br}
+                            -C omega_PT>8000
+                            -T {title}
+                            -U {unit}
+                            -O {pdf}
+                            {range}""".split()
+                            , zip
+                            , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
+        # """./analysis/bin/CompareBranchSB \\
+        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+        #                     -B {B_VARS}[i] \\
+        #                     -C omega_PT>8000 \\
+        #                     -T {B_TITLE}[i] \\
+        #                     -U {B_UNIT}[i] \\
+        #                     -O {B_PLOTS}[i] \\
+        #                     {B_NRANGE}[i]"""
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
 rule compbin:
