@@ -99,7 +99,7 @@ rule bplots:
                             -O {pdf}
                             {range}""".split()
                             , zip
-                            br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
+                            , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
                             # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
@@ -150,7 +150,7 @@ rule bptplots:
                             -O {pdf}
                             {range}""".split()
                             , zip
-                            br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
+                            , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
 rule compbin:
