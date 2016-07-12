@@ -14,6 +14,11 @@ ROOTCFLAGS = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --cflags | awk 
 ifeq ($(USER), gizdov)
 	ROOTCFLAGS = -L$(ROOTSYS)/lib/root $(shell $(ROOTSYS)/bin/root-config --cflags | awk -F "-I" '{print $$1" -isystem"$$2}' )
 endif
+ROOTLIBS   = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --libs)
+ifeq ($(USER), gizdov)
+	ROOTLIBS   = -L$(ROOTSYS)/lib/root $(shell $(ROOTSYS)/bin/root-config --libs)
+endif
+EXTRA_ROOTLIBS=-lRooFit -lRooStats -lRooFitCore
 
 # Extensions
 SRCEXT     = cpp
@@ -38,18 +43,22 @@ OUTPUT     = $(OBJDIR)/*.$(OBJEXT) $(LIBDIR)/*.$(LIBEXT)
 
 # Compiler flags
 CXXFLAGS   = -Wall -Werror -fPIC -std=c++11 -I$(HDRDIR) $(ROOTCFLAGS)
+LIBFLAGS   = -L$(LIBDIR) $(ROOTLIBS) $(EXTRA_ROOTLIBS)
 
 # Make the libraries
-all : $(LIBS)
+all : dir_struct $(LIBS)
 # Make object files
 objects : $(OBJS)
 # Build libraries
 $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/%.$(OBJEXT)
-	$(CC) -shared $< -o $@
+	$(CC) -shared $< -o $@ $(LIBFLAGS)
 # Build objects
 $(OBJDIR)/%.$(OBJEXT) : $(SRCDIR)/%.$(SRCEXT)
 	$(CC) $(CXXFLAGS) -c $< -o $@
+# make sure dirs exist
+dir_struct:
+	@mkdir -p build lib
 # Remove all the output
 clean :
 	$(RM) $(OUTPUT)
-.PHONY : all objects clean
+.PHONY : all objects dir_struct clean

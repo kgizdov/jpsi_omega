@@ -7,7 +7,7 @@ COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", 
 
 rule all:
     input:
-        SBCOMPPLOTS SBPTCOMPPLOTS
+        SBCOMPPLOTS, SBPTCOMPPLOTS
 
 rule sbplots:
     input:
@@ -16,7 +16,8 @@ rule sbplots:
         SBCOMPPLOTS
     threads: 4
     shell:
-        expand("./{bin} -O {sb}", bin=COMPBIN, sb=SBCOMPPLOTS)
+        # expand("./{bin} -O {sb}", bin=COMPBIN, sb=SBCOMPPLOTS)
+        shell("./{bin} -O {sb}".format(bin=COMPBIN, sb=SBCOMPPLOTS))
 
 rule sbptplots:
     input:
@@ -25,10 +26,11 @@ rule sbptplots:
         SBPTCOMPPLOTS
     threads: 4
     shell:
-        expand("./{bin} -O {sbpt}", bin=COMPBIN, sbpt=SBPTCOMPPLOTS)
+        # expand("./{bin} -O {sbpt}", bin=COMPBIN, sbpt=SBPTCOMPPLOTS)
+        shell("./{bin} -O {sbpt}".format(bin=COMPBIN, sbpt=SBPTCOMPPLOTS))
 
 rule compbin:
     output:
-        COMPBIN COMMONLIBS
+        COMPBIN, COMMONLIBS
     shell:
         "make -j$(nproc)"
