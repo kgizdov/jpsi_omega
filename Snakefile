@@ -1,6 +1,6 @@
-EOS = "root://eoslhcb.cern.ch/"
-EOSDIR = "/eos/lhcb/user/k/kgizdov/jpsi_omega/"
-FILE = "cut_tuples.root"
+EOS = """root://eoslhcb.cern.ch/"""
+EOSDIR = """/eos/lhcb/user/k/kgizdov/jpsi_omega/"""
+FILE = """cut_tuples.root"""
 
 
 SBMASSPLOTS = ["plots/comparison/%s_comparison.pdf" % (i) for i in ["B_M_SB", "JPsi_M_SB", "Omega_M_SB", "Pi0_M_SB"]]
