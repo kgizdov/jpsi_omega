@@ -13,9 +13,10 @@ B_NRANGE =   ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 5100 -u 5600", "-l 0 -
 # B_TITLE =    ["%s" % (i) for i in ["#it{{m}}(#it{{J#psi#omega}})", "#it{{m}}(#it{{J#psi#omega}})", "#it{{P_{{T}}}}(#it{{J#psi#omega}})", "#it{{c}}#tau(#it{{J#psi#omega}})"
 #                                   ,"#it{{#chi^{{2}}/ndf}}(#it{{J#psi#omega}})", "#it{{#eta}}(#it{{J#psi#omega}})", "#it{{IP#chi^{{2}}}}(#it{{J#psi#omega}})", "#it{{VX#chi^{{2}}/ndf}}(#it{{J#psi#omega}})"]]
 # B_UNIT =     ["%s" % (i) for i in ["MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}", "#it{{mm}}", " ", " ", " ", " "]]
-B_TITLE =    ["%s" % (i) for i in ["#it{m}(#it{J#psi#omega})", "#it{m}(#it{J#psi#omega})", "#it{P_{T}}(#it{J#psi#omega})", "#it{c}#tau(#it{J#psi#omega})"
-                                  ,"#it{#chi^{2}/ndf}(#it{J#psi#omega})", "#it{#eta}(#it{J#psi#omega})", "#it{IP#chi^{2}}(#it{J#psi#omega})", "#it{VX#chi^{2}/ndf}(#it{J#psi#omega})"]]
-B_UNIT =     ["%s" % (i) for i in ["MeV/#it{c}^{2}", "MeV/#it{c}^{2}", "MeV/#it{c}", "#it{mm}", " ", " ", " ", " "]]
+B_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J#psi#omega})" """, """ "#it{m}(#it{J#psi#omega})" """, """ "#it{P_{T}}(#it{J#psi#omega})" """, """ "#it{c}#tau(#it{J#psi#omega})" """
+                                  ,""" "#it{#chi^{2}/ndf}(#it{J#psi#omega})" """, """ "#it{#eta}(#it{J#psi#omega})" """, """ "#it{IP#chi^{2}}(#it{J#psi#omega})" """
+                                  ,""" "#it{VX#chi^{2}/ndf}(#it{J#psi#omega})" """]]
+B_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ "#it{mm}" """, " ", " ", " ", " "]]
 B_PLOTS =    ["plots/comparison/B/%s_comparison.pdf" % (i) for i in B_VARS]
 B_PT_PLOTS = ["plots/comparison/B/%s_HighPTcut_comparison.pdf" % (i) for i in B_VARS]
 
