@@ -71,13 +71,7 @@ rule bplots:
     #                         {range}""".split()
     #                         , zip
     #                         , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
-        shell("""./{bin}   -M {e}{dir}/mc/{file} '\\'
-                            -R {e}{dir}/data/{file} '\\'
-                            -B {br} '\\'
-                            -T {title} '\\'
-                            -U {unit} '\\'
-                            -O {pdf} '\\'
-                            {range}""".format(
+        shell("""./{bin}   -M {e}{dir}/mc/{file} -R {e}{dir}/data/{file} -B {br} -T {title} -U {unit} -O {pdf} {range}""".format(
                             # , zip
                             bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("""./analysis/bin/CompareBranchSB
@@ -129,14 +123,7 @@ rule bptplots:
         #                     {range}""".split()
         #                     , zip
         #                     , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
-        shell("""./{bin}   -M {e}{dir}/mc/{file} '\\'
-                            -R {e}{dir}/data/{file} '\\'
-                            -B {br} '\\'
-                            -C omega_PT>8000 '\\'
-                            -T {title} '\\'
-                            -U {unit} '\\'
-                            -O {pdf} '\\'
-                            {range}""".format(
+        shell("""./{bin}   -M {e}{dir}/mc/{file} -R {e}{dir}/data/{file} -B {br} -C omega_PT>8000 -T {title} -U {unit} -O {pdf} {range}""".format(
                             # , zip
                             bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("""./analysis/bin/CompareBranchSB
