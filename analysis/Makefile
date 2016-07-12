@@ -54,12 +54,13 @@ LIBFLAGS   = -L$(LIBDIR) -L$(COMLIBDIR) $(ROOTLIBS) -lboost_program_options $(EX
 ## THIS WORKS
 # g++ -I../common/include -L../common/lib `root-config --cflags` `root-config --libs` src/compareBranch.cpp -o test -lRooFit -lRooStats -lRooFitCore -lboost_program_options -lplotmaker -lGetTree
 
-all : $(BINS) $(HDRS) Makefile
+all : dir_struct $(BINS) $(HDRS) Makefile
 libs : $(LIBS)
 # Build binaries
 # $(BINDIR)/% : $(OBJDIR)/$(BINSRCDIR)/%.$(OBJEXT) $(LIBS)
 $(BINDIR)/% : $(OBJDIR)/%.$(OBJEXT) $(LIBS)
-	$(CC) $(LIBFLAGS) $^ $(LIBS) $(COMLIBS) -o $@
+	# $(CC) $(LIBFLAGS) $^ $(LIBS) $(COMLIBS) -o $@
+	$(CC) $(LIBFLAGS) $^ -o $@ $(COMLIBS) $(LIBS)
 # Build libraries
 # $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/$(LIBSRCDIR)/%.$(OBJEXT)
 $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/%.$(OBJEXT)
@@ -67,6 +68,9 @@ $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/%.$(OBJEXT)
 # Build objects
 $(OBJDIR)/%.$(OBJEXT) : $(SRCDIR)/%.$(SRCEXT)
 	$(CC) $(CXXFLAGS) -c $< -o $@
+# make sure dirs exist
+dir_struct:
+	@mkdir bin build lib include
 # Remove all the output
 clean :
 	$(RM) $(OUTPUT)
