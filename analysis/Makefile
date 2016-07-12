@@ -60,7 +60,7 @@ libs : $(LIBS)
 # $(BINDIR)/% : $(OBJDIR)/$(BINSRCDIR)/%.$(OBJEXT) $(LIBS)
 $(BINDIR)/% : $(OBJDIR)/%.$(OBJEXT) $(LIBS)
 	# $(CC) $(LIBFLAGS) $^ $(LIBS) $(COMLIBS) -o $@
-	$(CC) $(LIBFLAGS) $^ -o $@ $(COMLIBS) $(LIBS)
+	$(CC) $^ -o $@ $(LIBFLAGS) $(COMLIBS) $(LIBS)
 # Build libraries
 # $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/$(LIBSRCDIR)/%.$(OBJEXT)
 $(LIBDIR)/lib%.$(LIBEXT) : $(OBJDIR)/%.$(OBJEXT)
