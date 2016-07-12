@@ -51,6 +51,31 @@ PTNRANGE = ["%s" % (i) for i in ["-l 0 -u 10000", "-l 0 -u 6000", "-l 3000 -u 60
 COMPBIN = ["analysis/bin/%s" % (i) for i in ["CompareBranchSB"]]
 COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", "GetTree", "plotmaker", "progbar"]]
 
+temp = []
+for i in range(len(B_VARS)):
+    temp.append("""./analysis/bin/CompareBranchSB
+                        -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                        -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                        -B {B_VARS}[i]
+                        -T {B_TITLE}[i]
+                        -U {B_UNIT}[i]
+                        -O {B_PLOTS}[i]
+                           {B_NRANGE}[i]""")
+b_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(B_VARS)):
+    temp.append("""./analysis/bin/CompareBranchSB
+                        -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                        -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                        -B {B_VARS}[i]
+                        -C omega_PT>8000
+                        -T {B_TITLE}[i]
+                        -U {B_UNIT}[i]
+                        -O {B_PLOTS}[i]
+                           {B_NRANGE}[i]""")
+b_pt_job_shell = "; ".join(temp)
+
 rule all:
     input:
         B_PLOTS, B_PT_PLOTS
@@ -62,19 +87,19 @@ rule bplots:
         B_PLOTS
     threads: 4
     # shell:
-    run:
-        temp = []
-        for i in range(len(B_VARS)):
-            temp.append("""./analysis/bin/CompareBranchSB
-                                -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-                                -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                                -B {B_VARS}[i]
-                                -T {B_TITLE}[i]
-                                -U {B_UNIT}[i]
-                                -O {B_PLOTS}[i]
-                                   {B_NRANGE}[i]""")
-        job_shell = "; ".join(temp)
-    shell: job_shell
+    # run:
+        # temp = []
+        # for i in range(len(B_VARS)):
+        #     temp.append("""./analysis/bin/CompareBranchSB
+        #                         -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+        #                         -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+        #                         -B {B_VARS}[i]
+        #                         -T {B_TITLE}[i]
+        #                         -U {B_UNIT}[i]
+        #                         -O {B_PLOTS}[i]
+        #                            {B_NRANGE}[i]""")
+        # job_shell = "; ".join(temp)
+    shell: "{b_job_shell}"
     #     expand("""./{bin}   -M {e}{dir}/mc/{file} \
     #                         -R {e}{dir}/data/{file} \
     #                         -B {br} \
@@ -127,20 +152,20 @@ rule bptplots:
         B_PT_PLOTS
     threads: 4
     # shell:
-    run:
-        temp = []
-        for i in range(len(B_VARS)):
-            temp.append("""./analysis/bin/CompareBranchSB
-                                -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-                                -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                                -B {B_VARS}[i]
-                                -C omega_PT>8000
-                                -T {B_TITLE}[i]
-                                -U {B_UNIT}[i]
-                                -O {B_PLOTS}[i]
-                                   {B_NRANGE}[i]""")
-        job_shell = "; ".join(temp)
-    shell: job_shell
+    # run:
+    #     temp = []
+    #     for i in range(len(B_VARS)):
+    #         temp.append("""./analysis/bin/CompareBranchSB
+    #                             -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+    #                             -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+    #                             -B {B_VARS}[i]
+    #                             -C omega_PT>8000
+    #                             -T {B_TITLE}[i]
+    #                             -U {B_UNIT}[i]
+    #                             -O {B_PLOTS}[i]
+    #                                {B_NRANGE}[i]""")
+        # job_shell = "; ".join(temp)
+    shell: "{b_pt_job_shell}"
         # expand("""./{bin}   -M {e}{dir}/mc/{file} \
         #                     -R {e}{dir}/data/{file} \
         #                     -B {br} \
