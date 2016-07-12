@@ -51,16 +51,6 @@ PTNRANGE = ["%s" % (i) for i in ["-l 0 -u 10000", "-l 0 -u 6000", "-l 3000 -u 60
 COMPBIN = ["analysis/bin/%s" % (i) for i in ["CompareBranchSB"]]
 COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", "GetTree", "plotmaker", "progbar"]]
 
-"""./analysis/bin/CompareBranchSB \\
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {B_VARS}[i] \\
-                            -C omega_PT>8000 \\
-                            -T {B_TITLE}[i] \\
-                            -U {B_UNIT}[i] \\
-                            -O {B_PLOTS}[i] \\
-                            {B_NRANGE}[i]""" %
-
 rule all:
     input:
         B_PLOTS, B_PT_PLOTS
@@ -71,7 +61,18 @@ rule bplots:
     output:
         B_PLOTS
     threads: 4
-    shell:
+    # shell:
+    run:
+        temp = []
+        for i in range(len(B_VARS)):
+            temp.append("""./analysis/bin/CompareBranchSB
+                                -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                                -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                                -B {B_VARS}[i]
+                                -T {B_TITLE}[i]
+                                -U {B_UNIT}[i]
+                                -O {B_PLOTS}[i]
+            #                     {B_NRANGE}[i]""")
     #     expand("""./{bin}   -M {e}{dir}/mc/{file} \
     #                         -R {e}{dir}/data/{file} \
     #                         -B {br} \
@@ -124,6 +125,18 @@ rule bptplots:
         B_PT_PLOTS
     threads: 4
     shell:
+    run:
+        temp = []
+        for i in range(len(B_VARS)):
+            temp.append("""./analysis/bin/CompareBranchSB
+                                -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
+                                -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
+                                -B {B_VARS}[i]
+                                -C omega_PT>8000
+                                -T {B_TITLE}[i]
+                                -U {B_UNIT}[i]
+                                -O {B_PLOTS}[i]
+            #                     {B_NRANGE}[i]""")
         # expand("""./{bin}   -M {e}{dir}/mc/{file} \
         #                     -R {e}{dir}/data/{file} \
         #                     -B {br} \
@@ -149,17 +162,17 @@ rule bptplots:
         #                     {range}""".format(
         #                     # , zip
         #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        "; ".join(expand("""./analysis/bin/CompareBranchSB \\
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-                            -B {br} \\
-                            -C omega_PT>8000 \\
-                            -T {title} \\
-                            -U {unit} \\
-                            -O {pdf}
-                            {range}""".split()
-                            , zip
-                            , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
+        # "; ".join(expand("""./analysis/bin/CompareBranchSB \\
+        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+        #                     -B {br} \\
+        #                     -C omega_PT>8000 \\
+        #                     -T {title} \\
+        #                     -U {unit} \\
+        #                     -O {pdf}
+        #                     {range}""".split()
+        #                     , zip
+        #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
         # """./analysis/bin/CompareBranchSB \\
         #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
         #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
