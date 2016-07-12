@@ -56,11 +56,11 @@ for i in range(len(B_VARS)):
     temp.append("""./analysis/bin/CompareBranchSB
                         -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
                         -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                        -B {B_VARS}[i]
-                        -T {B_TITLE}[i]
-                        -U {B_UNIT}[i]
-                        -O {B_PLOTS}[i]
-                           {B_NRANGE}[i]""")
+                        -B """ + B_VARS[i] +
+                        " -T " + B_TITLE[i] +
+                        " -U " + B_UNIT[i] +
+                        " -O " + B_PLOTS[i] +
+                        " "    + B_NRANGE[i])
 b_job_shell = "; ".join(temp)
 
 temp = []
@@ -68,12 +68,12 @@ for i in range(len(B_VARS)):
     temp.append("""./analysis/bin/CompareBranchSB
                         -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
                         -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                        -B {B_VARS}[i]
-                        -C omega_PT>8000
-                        -T {B_TITLE}[i]
-                        -U {B_UNIT}[i]
-                        -O {B_PLOTS}[i]
-                           {B_NRANGE}[i]""")
+                        -B """ + B_VARS[i] +
+                        " -C omega_PT>8000" +
+                        " -T " + B_TITLE[i] +
+                        " -U " + B_UNIT[i] +
+                        " -O " + B_PLOTS[i] +
+                        " "    + B_NRANGE[i])
 b_pt_job_shell = "; ".join(temp)
 
 rule all:
