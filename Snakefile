@@ -95,13 +95,13 @@ rule bplots:
         #                     {range}""".format(
         #                     # , zip
         #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        "; ".join.(expand("""./analysis/bin/CompareBranchSB
-                                    -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-                                    -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                                    -B {br}
-                                    -T {title}
-                                    -U {unit}
-                                    -O {pdf}
+        "; ".join.(expand("""./analysis/bin/CompareBranchSB \\
+                                    -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+                                    -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+                                    -B {br} \\
+                                    -T {title} \\
+                                    -U {unit} \\
+                                    -O {pdf} \\
                                     {range}""".split()
                                     , zip
                                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
@@ -149,13 +149,13 @@ rule bptplots:
         #                     {range}""".format(
         #                     # , zip
         #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        "; ".join(expand("""./analysis/bin/CompareBranchSB
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-                            -B {br}
-                            -C omega_PT>8000
-                            -T {title}
-                            -U {unit}
+        "; ".join(expand("""./analysis/bin/CompareBranchSB \\
+                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
+                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
+                            -B {br} \\
+                            -C omega_PT>8000 \\
+                            -T {title} \\
+                            -U {unit} \\
                             -O {pdf}
                             {range}""".split()
                             , zip
