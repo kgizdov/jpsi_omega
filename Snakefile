@@ -71,7 +71,7 @@ rule bplots:
     #                         {range}""".split()
     #                         , zip
     #                         , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
-        shell("./analysis/bin/CompareBranchSB -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -T {title} -U {unit} -O {pdf} {range}".format(br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
+        # shell("./analysis/bin/CompareBranchSB -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -T {title} -U {unit} -O {pdf} {range}".format(br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
         # expand("./{bin}   -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -T {title} -U {unit} -O {pdf} {range}".split(), zip, bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
                             # , zip
                             # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
