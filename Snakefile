@@ -62,15 +62,15 @@ rule bplots:
         B_PLOTS
     threads: 4
     shell:
-        # expand("""./{bin}   -M {e}{dir}/mc/{file}
-        #                     -R {e}{dir}/data/{file}
-        #                     -B {br}
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".split()
-        #                     , zip
-        #                     , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
+        expand("""./{bin}   -M {e}{dir}/mc/{file} \
+                            -R {e}{dir}/data/{file} \
+                            -B {br} \
+                            -T {title} \
+                            -U {unit} \
+                            -O {pdf} \
+                            {range}""".split()
+                            , zip
+                            , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
         # shell("""./{bin}   -M {e}{dir}/mc/{file}
         #                     -R {e}{dir}/data/{file}
         #                     -B {br}
@@ -100,15 +100,15 @@ rule bplots:
         #                     {range}""".split()
         #                     , zip
         #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        """./analysis/bin/CompareBranchSB \
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \
-                            -B {B_VARS} \
-                            -C omega_PT>8000 \
-                            -T {B_TITLE} \
-                            -U {B_UNIT} \
-                            -O {B_PLOTS} \
-                            {B_NRANGE}"""
+        # """./analysis/bin/CompareBranchSB \
+        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \
+        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \
+        #                     -B {B_VARS} \
+        #                     -C omega_PT>8000 \
+        #                     -T {B_TITLE} \
+        #                     -U {B_UNIT} \
+        #                     -O {B_PLOTS} \
+        #                     {B_NRANGE}"""
                             # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
@@ -119,16 +119,16 @@ rule bptplots:
         B_PT_PLOTS
     threads: 4
     shell:
-        # expand("""./{bin}   -M {e}{dir}/mc/{file}
-        #                     -R {e}{dir}/data/{file}
-        #                     -B {br}
-        #                     -C omega_PT>8000
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".split()
-        #                     , zip
-        #                     , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
+        expand("""./{bin}   -M {e}{dir}/mc/{file} \
+                            -R {e}{dir}/data/{file} \
+                            -B {br} \
+                            -C omega_PT>8000 \
+                            -T {title} \
+                            -U {unit} \
+                            -O {pdf} \
+                            {range}""".split()
+                            , zip
+                            , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
         # shell("""./{bin}   -M {e}{dir}/mc/{file}
         #                     -R {e}{dir}/data/{file}
         #                     -B {br}
@@ -160,15 +160,15 @@ rule bptplots:
         #                     {range}""".split()
         #                     , zip
         #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        """./analysis/bin/CompareBranchSB \
-                            -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \
-                            -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \
-                            -B {B_VARS} \
-                            -C omega_PT>8000 \
-                            -T {B_TITLE} \
-                            -U {B_UNIT} \
-                            -O {B_PLOTS} \
-                            {B_NRANGE}"""
+        # """./analysis/bin/CompareBranchSB \
+        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \
+        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \
+        #                     -B {B_VARS} \
+        #                     -C omega_PT>8000 \
+        #                     -T {B_TITLE} \
+        #                     -U {B_UNIT} \
+        #                     -O {B_PLOTS} \
+        #                     {B_NRANGE}"""
         # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
 
 rule compbin:
