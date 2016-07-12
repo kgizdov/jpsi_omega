@@ -124,7 +124,7 @@ rule bptplots:
     output:
         B_PT_PLOTS
     threads: 4
-    shell:
+    # shell:
     run:
         temp = []
         for i in range(len(B_VARS)):
