@@ -1,4 +1,5 @@
 // Copyright 2016 Adam Morris
+// Copyright 2016 Konstantin Gizdov
 // Standard headers
 #include <string>
 #include <iostream>
@@ -17,8 +18,8 @@
 #include "RooPlot.h"
 #include "RooRealVar.h"
 // Custom headers
-#include "plotmaker.h"
-#include "GetTree.h"
+#include "../../common/include/plotmaker.h"
+#include "../../common/include/GetTree.h"
 
 // Just sum bin contents for a RooHist
 inline double integrate(RooHist* hist) {
@@ -32,37 +33,41 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
                     string xtitle, string unit, string plotname, string cuts,
                     string MCweight, string REweight, double xlow, double xup, int nbins) {
     // Open the files and get the trees
-    TFile* MCfile = new TFile(MCfilename.c_str());
-    TFile* REfile = new TFile(REfilename.c_str());
+    // TFile* MCfile = new TFile(MCfilename.c_str());
+    TFile* MCfile = TFile::Open(MCfilename.c_str());
+    // TFile* REfile = new TFile(REfilename.c_str());
+    TFile* REfile = TFile::Open(REfilename.c_str());
     TTree* MCtree = GetTree(MCfile, cuts);
     TTree* REtree = GetTree(REfile, cuts);
     // RooFit variables
-    using namespace RooFit;
+    // using namespace RooFit;
+    namespace rf = RooFit;
     RooRealVar* x = new RooRealVar(branchname.c_str(), xtitle.c_str(), xlow, xup);
-    RooRealVar* MCw, * REw;
     RooDataSet* MCdata, * REdata;
     // Store the values of each bin because the GetMaximum() method isn't implemented properly in RooHist
     vector<double> bincontent;
     // Get the data out of the file and optionally weight it
     std::cout << "Importing first tree" << endl;
     if (MCweight != "") {
+        RooRealVar * MCw;
         MCw = new RooRealVar(MCweight.c_str(), "", -0.5, 1.5);
-        MCdata = new RooDataSet("MCdata", "", RooArgSet(*x, *MCw), WeightVar(*MCw), Import(*MCtree));
+        MCdata = new RooDataSet("MCdata", "", RooArgSet(*x, *MCw), rf::WeightVar(*MCw), rf::Import(*MCtree));
     } else {
-        MCdata = new RooDataSet("MCdata", "", RooArgSet(*x), Import(*MCtree));
+        MCdata = new RooDataSet("MCdata", "", RooArgSet(*x), rf::Import(*MCtree));
     }
     std::cout << "Importing second tree" << endl;
     if (REweight != "") {
+        RooRealVar * REw;
         REw = new RooRealVar(REweight.c_str(), "", -0.5, 1.5);
-        REdata = new RooDataSet("REdata", "", RooArgSet(*x, *REw), WeightVar(*REw), Import(*REtree));
+        REdata = new RooDataSet("REdata", "", RooArgSet(*x, *REw), rf::WeightVar(*REw), rf::Import(*REtree));
     } else {
-        REdata = new RooDataSet("REdata", "", RooArgSet(*x), Import(*REtree));
+        REdata = new RooDataSet("REdata", "", RooArgSet(*x), rf::Import(*REtree));
     }
     // Create a RooPlot and add the data points
     RooPlot* frame = x->frame();
     std::cout << "Plotting" << endl;
-    MCdata->plotOn(frame, Binning(nbins), DrawOption("B1"), FillColor(kOrange));
-    REdata->plotOn(frame, Binning(nbins));
+    MCdata->plotOn(frame, rf::Binning(nbins), rf::DrawOption("B1"), rf::FillColor(kOrange));
+    REdata->plotOn(frame, rf::Binning(nbins));
     // Get the histograms out of the RooPlot
     RooHist* h_MCdata = frame->getHist("h_MCdata");
     RooHist* h_REdata = frame->getHist("h_REdata");
@@ -98,29 +103,30 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
 }
 
 int main(int argc, char* argv[]) {
-    using namespace boost::program_options;
-    options_description desc("Allowed options", (unsigned)120);
+    // using namespace boost::program_options;
+    namespace po = boost::program_options;
+    po::options_description desc("Allowed options", (unsigned)120);
     std::string MCfile, REfile, branch, cuts, xtitle, unit, plot, MCweight, REweight;
-    double xlow, xup;
-    int nbins;
+    double xlow = 0, xup = 0;
+    int nbins = 0;
     desc.add_options()
-        ("help,H"    ,                                                                                        "produce help message"                      )
-        ("MCfile,M"  , value<std::string>(&MCfile  )->default_value("ntuples/BsphiKK_MC_mva.root"          ), "set Monte Carlo file"                      )
-        ("REfile,R"  , value<std::string>(&REfile  )->default_value("ntuples/BsphiKK_data_mva.root"        ), "set collision data file"                   )
-        ("branch,B"  , value<std::string>(&branch  )->default_value("B_s0_LOKI_Mass"                       ), "set branch to plot"                        )
-        ("MCweight,w", value<std::string>(&MCweight)->default_value(""                                     ), "set Monte Carlo weighting variable"        )
-        ("REweight,W", value<std::string>(&REweight)->default_value(""                                     ), "set collision data weighting variable"     )
-        ("cuts,C"    , value<std::string>(&cuts    )->default_value(""                                     ), "set optional cuts (UNIMPLEMENTED)"         )
-        ("title,T"   , value<std::string>(&xtitle  )->default_value("#it{m}(#it{#phi K^{#plus}K^{#minus}})"), "set x-axis title (takes ROOT LaTeX format)")
-        ("unit,U"    , value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"                       ), "set unit (takes ROOT LaTeX format)"        )
-        ("plot,O"    , value<std::string>(&plot    )->default_value("comparison"                           ), "set output plot filename"                  )
-        ("upper,u"   , value<double     >(&xup     )->default_value(5600                                   ), "set branch upper limit"                    )
-        ("lower,l"   , value<double     >(&xlow    )->default_value(5200                                   ), "set branch lower limit"                    )
-        ("bins,b"    , value<int        >(&nbins   )->default_value(20                                     ), "set number of bins"                        )
+        ("help,H"    ,                                                                                 "produce help message"                      )
+        ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/DVTuples_mc.root"  ), "set Monte Carlo file"                      )
+        ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/DVTuples_data.root"), "set collision data file"                   )
+        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B_DTF_MASS_constr1"        ), "set branch to plot"                        )
+        ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                          ), "set Monte Carlo weighting variable"        )
+        ("REweight,W", po::value<std::string>(&REweight)->default_value(""                          ), "set collision data weighting variable"     )
+        ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                          ), "set optional cuts (UNIMPLEMENTED)"         )
+        ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{J/#psi #omega})"), "set x-axis title (takes ROOT LaTeX format)")
+        ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"            ), "set unit (takes ROOT LaTeX format)"        )
+        ("plot,O"    , po::value<std::string>(&plot    )->default_value("B_M_comparison"            ), "set output plot filename"                  )
+        ("lower,l"   , po::value<double     >(&xlow    )->default_value(5100                        ), "set branch lower limit"                    )
+        ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                        ), "set branch upper limit"                    )
+        ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                          ), "set number of bins"                        )
     ;
-    variables_map vmap;
-    store(parse_command_line(argc, argv, desc), vmap);
-    notify(vmap);
+    po::variables_map vmap;
+    po::store(po::parse_command_line(argc, argv, desc), vmap);
+    po::notify(vmap);
     if (vmap.count("help")) {
         std::cout << desc << endl;
         return 1;
