@@ -61,7 +61,7 @@ rule bplots:
     output:
         B_PLOTS
     threads: 4
-    # shell:
+    shell:
     #     expand("""./{bin}   -M {e}{dir}/mc/{file} \
     #                         -R {e}{dir}/data/{file} \
     #                         -B {br} \
