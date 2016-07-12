@@ -70,7 +70,7 @@ $(OBJDIR)/%.$(OBJEXT) : $(SRCDIR)/%.$(SRCEXT)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 # make sure dirs exist
 dir_struct:
-	@mkdir bin build lib include
+	@mkdir -p bin build lib include
 # Remove all the output
 clean :
 	$(RM) $(OUTPUT)
