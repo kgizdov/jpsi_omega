@@ -16,35 +16,43 @@ B_NRANGE =   ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 5100 -u 5600", "-l 0 -
 B_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J#psi#omega})" """, """ "#it{m}(#it{J#psi#omega})" """, """ "#it{P_{T}}(#it{J#psi#omega})" """, """ "#it{c}#tau(#it{J#psi#omega})" """
                                   ,""" "#it{#chi^{2}/ndf}(#it{J#psi#omega})" """, """ "#it{#eta}(#it{J#psi#omega})" """, """ "#it{IP#chi^{2}}(#it{J#psi#omega})" """
                                   ,""" "#it{VX#chi^{2}/ndf}(#it{J#psi#omega})" """]]
-B_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ "#it{mm}" """, " ", " ", " ", " "]]
+B_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ "#it{mm}" """, """ " " """, """ " " """, """ " " """, """ " " """]]
+B_PLOTN =    ["plots/comparison/B/%s_comparison" % (i) for i in B_VARS]
 B_PLOTS =    ["plots/comparison/B/%s_comparison.pdf" % (i) for i in B_VARS]
+B_PT_PLOTN = ["plots/comparison/B/%s_HighPTcut_comparison" % (i) for i in B_VARS]
 B_PT_PLOTS = ["plots/comparison/B/%s_HighPTcut_comparison.pdf" % (i) for i in B_VARS]
 
 # J/psi comparison plots params
 JP_VARS =     ["%s" % (i) for i in ["Jpsi_M", "Jpsi_PT", "Jpsi_OWNPV_CHI2", "Jpsi_IPCHI2_OWNPV"]]
 JP_WRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 0 -u 10000", "-l 0 -u 100", "-l 0 -u 1000"]]
 JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 0 -u 6000", "-l 0 -u 60" "-l 0 -u 300"]]
-JP_TITLE =    ["%s" % (i) for i in ["#it{m}(#it{J#psi})", "#it{P_{T}}(#it{J#psi})","#it{PV#chi^{2}}(#it{J#psi})", "#it{IP#chi^{2}}(#it{J#psi})"]]
-JP_UNIT =     ["%s" % (i) for i in ["MeV/#it{c}^{2}", "MeV/#it{c}", " ", " "]]
+JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J#psi})" """, """ "#it{P_{T}}(#it{J#psi})" """, """ "#it{PV#chi^{2}}(#it{J#psi})" """, """ "#it{IP#chi^{2}}(#it{J#psi})" """]]
+JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ " " """, """ " " """]]
+JP_PLOTN =    ["plots/comparison/JP/%s_comparison" % (i) for i in JP_VARS]
 JP_PLOTS =    ["plots/comparison/JP/%s_comparison.pdf" % (i) for i in JP_VARS]
+JP_PT_PLOTN = ["plots/comparison/JP/%s_HighPTcut_comparison" % (i) for i in JP_VARS]
 JP_PT_PLOTS = ["plots/comparison/JP/%s_HighPTcut_comparison.pdf" % (i) for i in JP_VARS]
 
 # Omega comparison plots params
 OM_VARS =     ["%s" % (i) for i in ["omega_M", "omega_PT", "omega_OWNPV_CHI2", "omega_IPCHI2_OWNPV"]]
 OM_WRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 10000", "-l 0 -u 100", "-l 0 -u 1000"]]
 OM_NRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 6000", "-l 0 -u 60" "-l 0 -u 300"]]
-OM_TITLE =    ["%s" % (i) for i in ["#it{m}(#it{#omega})", "#it{P_{T}}(#it{#omega})","#it{PV#chi^{2}}(#it{#omega})", "#it{IP#chi^{2}}(#it{#omega})"]]
-OM_UNIT =     ["%s" % (i) for i in ["MeV/#it{c}^{2}", "MeV/#it{c}", " ", " "]]
+OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#omega})" """, """ "#it{P_{T}}(#it{#omega})" """, """ "#it{PV#chi^{2}}(#it{#omega})" """, """ "#it{IP#chi^{2}}(#it{#omega})" """]]
+OM_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ " " """, """ " " """]]
+OM_PLOTN =    ["plots/comparison/OM/%s_comparison" % (i) for i in OM_VARS]
 OM_PLOTS =    ["plots/comparison/OM/%s_comparison.pdf" % (i) for i in OM_VARS]
+OM_PT_PLOTN = ["plots/comparison/OM/%s_HighPTcut_comparison" % (i) for i in OM_VARS]
 OM_PT_PLOTS = ["plots/comparison/OM/%s_HighPTcut_comparison.pdf" % (i) for i in OM_VARS]
 
 # PiZero comparison plots params
 PZ_VARS =     ["%s" % (i) for i in ["pizero_M", "pizero_PT"]]
 PZ_WRANGE =   ["%s" % (i) for i in ["-l 109 -u 159", "-l 500 -u 4000"]]
 PZ_NRANGE =   ["%s" % (i) for i in ["-l 109 -u 159", "-l 500 -u 1500"]]
-OM_TITLE =    ["%s" % (i) for i in ["#it{m}(#it{#pi^{0}})", "#it{P_{T}}(#it{#pi^{0}})"]]
-OM_UNIT =     ["%s" % (i) for i in ["MeV/#it{c}^{2}", "MeV/#it{c}"]]
+OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#pi^{0}})" """, """ "#it{P_{T}}(#it{#pi^{0}})" """]]
+OM_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """]]
+PZ_PLOTN =    ["plots/comparison/PZ/%s_comparison" % (i) for i in PZ_VARS]
 PZ_PLOTS =    ["plots/comparison/PZ/%s_comparison.pdf" % (i) for i in PZ_VARS]
+PZ_PT_PLOTN = ["plots/comparison/PZ/%s_HighPTcut_comparison" % (i) for i in PZ_VARS]
 PZ_PT_PLOTS = ["plots/comparison/PZ/%s_HighPTcut_comparison.pdf" % (i) for i in PZ_VARS]
 
 MASSRANGE = ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 3050 -u 3150", "-l 732 -u 832", "-l 109 -u 159"]]
@@ -58,25 +66,25 @@ COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", 
 temp = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
-                        "-M root://eoslhcb.cern.ch//eos/lhcb/user/k/kgizdov/jpsi_omega/mc/cut_tuples.root " +
-                        "-R root://eoslhcb.cern.ch//eos/lhcb/user/k/kgizdov/jpsi_omega/data/cut_tuples.root " +
+                        "-M " + EOS + EOSDIR + "mc/" + FILE +
+                        "-R " + EOS + EOSDIR + "data/" + FILE +
                         "-B " + B_VARS[i] +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
-                        " -O " + B_PLOTS[i] +
+                        " -O " + B_PLOTN[i] +
                         " "    + B_NRANGE[i])
 b_job_shell = "; ".join(temp)
 
 temp = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
-                        "-M root://eoslhcb.cern.ch//eos/lhcb/user/k/kgizdov/jpsi_omega/mc/cut_tuples.root " +
-                        "-R root://eoslhcb.cern.ch//eos/lhcb/user/k/kgizdov/jpsi_omega/data/cut_tuples.root " +
+                        "-M " + EOS + EOSDIR + "mc/" + FILE +
+                        "-R " + EOS + EOSDIR + "data/" + FILE +
                         "-B " + B_VARS[i] +
                         " -C omega_PT>8000" +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
-                        " -O " + B_PLOTS[i] +
+                        " -O " + B_PLOTN[i] +
                         " "    + B_NRANGE[i])
 b_pt_job_shell = "; ".join(temp)
 
