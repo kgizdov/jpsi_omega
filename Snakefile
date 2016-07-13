@@ -108,7 +108,7 @@ for i in range(len(B_VARS)):
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
                         " -B " + B_VARS[i] +
-                        " -C omega_PT>8000" +
+                        " -C " + """ "omega_PT > 10000" """ +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
                         " -O " + B_PT_PLOTN[i] +
@@ -133,7 +133,7 @@ for i in range(len(JP_VARS)):
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
                         " -B " + JP_VARS[i] +
-                        " -C omega_PT>8000" +
+                        " -C " + """ "omega_PT > 10000" """ +
                         " -T " + JP_TITLE[i] +
                         " -U " + JP_UNIT[i] +
                         " -O " + JP_PT_PLOTN[i] +
@@ -158,7 +158,7 @@ for i in range(len(OM_VARS)):
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
                         " -B " + OM_VARS[i] +
-                        " -C omega_PT>8000" +
+                        " -C " + """ "omega_PT > 10000" """ +
                         " -T " + OM_TITLE[i] +
                         " -U " + OM_UNIT[i] +
                         " -O " + OM_PT_PLOTN[i] +
@@ -183,7 +183,7 @@ for i in range(len(PZ_VARS)):
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
                         " -B " + PZ_VARS[i] +
-                        " -C omega_PT>8000" +
+                        " -C " + """ "omega_PT > 10000" """ +
                         " -T " + PZ_TITLE[i] +
                         " -U " + PZ_UNIT[i] +
                         " -O " + PZ_PT_PLOTN[i] +
