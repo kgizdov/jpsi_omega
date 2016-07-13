@@ -63,6 +63,30 @@ PTNRANGE = ["%s" % (i) for i in ["-l 0 -u 10000", "-l 0 -u 6000", "-l 3000 -u 60
 COMPBIN = ["analysis/bin/%s" % (i) for i in ["CompareBranchSB"]]
 COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", "GetTree", "plotmaker", "progbar"]]
 
+print(B_VARS)
+print(B_TITLE)
+print(B_UNIT)
+print(B_PLOTN)
+print(B_PLOTS)
+
+print(JP_VARS)
+print(JP_TITLE)
+print(JP_UNIT)
+print(JP_PLOTN)
+print(JP_PLOTS)
+
+print(OM_VARS)
+print(OM_TITLE)
+print(OM_UNIT)
+print(OM_PLOTN)
+print(OM_PLOTS)
+
+print(PZ_VARS)
+print(PZ_TITLE)
+print(PZ_UNIT)
+print(PZ_PLOTN)
+print(PZ_PLOTS)
+
 temp = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
@@ -115,6 +139,7 @@ jp_pt_job_shell = "; ".join(temp)
 
 temp[:] = []
 for i in range(len(OM_VARS)):
+    print(i)
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
