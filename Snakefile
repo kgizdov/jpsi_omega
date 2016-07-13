@@ -75,7 +75,7 @@ for i in range(len(B_VARS)):
                         " "    + B_NRANGE[i])
 b_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -88,7 +88,7 @@ for i in range(len(B_VARS)):
                         " "    + B_NRANGE[i])
 b_pt_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(JP_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -100,7 +100,7 @@ for i in range(len(JP_VARS)):
                         " "    + JP_NRANGE[i])
 jp_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(JP_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -113,7 +113,7 @@ for i in range(len(JP_VARS)):
                         " "    + JP_NRANGE[i])
 jp_pt_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(OM_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -125,7 +125,7 @@ for i in range(len(OM_VARS)):
                         " "    + OM_NRANGE[i])
 om_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(OM_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -138,7 +138,7 @@ for i in range(len(OM_VARS)):
                         " "    + OM_NRANGE[i])
 om_pt_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(PZ_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
@@ -150,7 +150,7 @@ for i in range(len(PZ_VARS)):
                         " "    + PZ_NRANGE[i])
 pz_job_shell = "; ".join(temp)
 
-temp = []
+temp[:] = []
 for i in range(len(PZ_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
