@@ -200,7 +200,7 @@ rule b_plots:
     output:
         B_PLOTS
     threads: 4
-    shell: "{b_job_shell} --threads {threads}"
+    shell: "{b_job_shell}"
 
 rule b_pt_plots:
     input:
@@ -258,7 +258,7 @@ rule pz_pt_plots:
     threads: 4
     shell: "{pz_pt_job_shell}"
 
-rule compbin:
+rule build:
     output:
         COMPBIN, COMMONLIBS
     shell:
