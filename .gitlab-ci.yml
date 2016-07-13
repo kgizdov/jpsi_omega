@@ -23,7 +23,7 @@ stages:
 build:
     stage: build
     script:
-        - snakemake build # just test for now
+        - snakemake --cores build
     cache:
         paths:
             - analysis/bin
@@ -41,7 +41,7 @@ build:
 plot_b:
     stage: plot
     script:
-        - snakemake b_plots
+        - snakemake --cores b_plots
     cache:
         paths:
             - analysis/bin
@@ -55,7 +55,7 @@ plot_b:
 plot_b_pt:
     stage: plot
     script:
-        - snakemake b_pt_plots
+        - snakemake --cores b_pt_plots
     cache:
         paths:
             - analysis/bin
@@ -69,7 +69,7 @@ plot_b_pt:
 plot_jp:
     stage: plot
     script:
-        - snakemake jp_plots
+        - snakemake --cores jp_plots
     cache:
         paths:
             - analysis/bin
@@ -83,7 +83,7 @@ plot_jp:
 plot_jp_pt:
     stage: plot
     script:
-        - snakemake jp_pt_plots
+        - snakemake --cores jp_pt_plots
     cache:
         paths:
             - analysis/bin
@@ -97,7 +97,7 @@ plot_jp_pt:
 plot_om:
     stage: plot
     script:
-        - snakemake om_plots
+        - snakemake --cores om_plots
     cache:
         paths:
             - analysis/bin
@@ -111,7 +111,7 @@ plot_om:
 plot_om_pt:
     stage: plot
     script:
-        - snakemake om_pt_plots
+        - snakemake --cores om_pt_plots
     cache:
         paths:
             - analysis/bin
@@ -125,7 +125,7 @@ plot_om_pt:
 plot_pz:
     stage: plot
     script:
-        - snakemake pz_plots
+        - snakemake --cores pz_plots
     cache:
         paths:
             - analysis/bin
@@ -139,7 +139,7 @@ plot_pz:
 plot_pz_pt:
     stage: plot
     script:
-        - snakemake pz_pt_plots
+        - snakemake --cores pz_pt_plots
     cache:
         paths:
             - analysis/bin
