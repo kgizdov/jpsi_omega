@@ -38,6 +38,8 @@ plot_b:
     stage: plot
     script:
         - snakemake b_plots
+    # only:
+        # - master
     artifacts:
         paths:
             - plots/comparison/B
@@ -46,6 +48,8 @@ plot_b_pt:
     stage: plot
     script:
         - snakemake b_pt_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/B
@@ -54,6 +58,8 @@ plot_jp:
     stage: plot
     script:
         - snakemake jp_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/JP
@@ -62,6 +68,8 @@ plot_jp_pt:
     stage: plot
     script:
         - snakemake jp_pt_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/JP
@@ -70,6 +78,8 @@ plot_om:
     stage: plot
     script:
         - snakemake om_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/OM
@@ -78,6 +88,8 @@ plot_om_pt:
     stage: plot
     script:
         - snakemake om_pt_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/OM
@@ -86,6 +98,8 @@ plot_pz:
     stage: plot
     script:
         - snakemake pz_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/PZ
@@ -94,6 +108,8 @@ plot_pz_pt:
     stage: plot
     script:
         - snakemake pz_pt_plots
+    only:
+        - master
     artifacts:
         paths:
             - plots/comparison/PZ
