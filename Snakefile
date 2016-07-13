@@ -192,7 +192,8 @@ pz_pt_job_shell = "; ".join(temp)
 
 rule all:
     input:
-        B_PLOTS, B_PT_PLOTS
+        B_PLOTS, B_PT_PLOTS, JP_PLOTS, JP_PT_PLOTS
+        , OM_PLOTS, OM_PT_PLOTS, PZ_PLOTS, PZ_PT_PLOTS
 
 rule b_plots:
     input:
