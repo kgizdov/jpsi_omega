@@ -142,7 +142,6 @@ jp_pt_job_shell = "; ".join(temp)
 
 temp[:] = []
 for i in range(len(OM_VARS)):
-    print(i)
     temp.append("./analysis/bin/CompareBranchSB " +
                         " -M " + EOS + EOSDIR + "mc/" + FILE +
                         " -R " + EOS + EOSDIR + "data/" + FILE +
@@ -264,3 +263,7 @@ rule compbin:
         COMPBIN, COMMONLIBS
     shell:
         "make -j$(nproc)"
+
+rule clean:
+    shell:
+        "make clean && rm {B_PLOTS} {B_PT_PLOTS} {JP_PLOTS} {JP_PT_PLOTS} {OM_PLOTS} {OM_PT_PLOTS} {PZ_PLOTS} {PZ_PT_PLOTS}"
