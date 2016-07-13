@@ -48,8 +48,8 @@ OM_PT_PLOTS = ["plots/comparison/OM/%s_HighPTcut_comparison.pdf" % (i) for i in 
 PZ_VARS =     ["%s" % (i) for i in ["pizero_M", "pizero_PT"]]
 PZ_WRANGE =   ["%s" % (i) for i in ["-l 109 -u 159", "-l 500 -u 4000"]]
 PZ_NRANGE =   ["%s" % (i) for i in ["-l 109 -u 159", "-l 500 -u 1500"]]
-OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#pi^{0}})" """, """ "#it{P_{T}}(#it{#pi^{0}})" """]]
-OM_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """]]
+PZ_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#pi^{0}})" """, """ "#it{P_{T}}(#it{#pi^{0}})" """]]
+PZ_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """]]
 PZ_PLOTN =    ["plots/comparison/PZ/%s_comparison" % (i) for i in PZ_VARS]
 PZ_PLOTS =    ["plots/comparison/PZ/%s_comparison.pdf" % (i) for i in PZ_VARS]
 PZ_PT_PLOTN = ["plots/comparison/PZ/%s_HighPTcut_comparison" % (i) for i in PZ_VARS]
@@ -63,29 +63,32 @@ PTNRANGE = ["%s" % (i) for i in ["-l 0 -u 10000", "-l 0 -u 6000", "-l 3000 -u 60
 COMPBIN = ["analysis/bin/%s" % (i) for i in ["CompareBranchSB"]]
 COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", "GetTree", "plotmaker", "progbar"]]
 
-print(B_VARS)
-print(B_TITLE)
-print(B_UNIT)
-print(B_PLOTN)
-print(B_PLOTS)
+debug = False
+if debug:
+    print(B_VARS)
+    print(B_TITLE)
+    print(B_UNIT)
+    print(B_PLOTN)
+    print(B_PLOTS)
 
-print(JP_VARS)
-print(JP_TITLE)
-print(JP_UNIT)
-print(JP_PLOTN)
-print(JP_PLOTS)
+    print(JP_VARS)
+    print(JP_TITLE)
+    print(JP_UNIT)
+    print(JP_PLOTN)
+    print(JP_PLOTS)
 
-print(OM_VARS)
-print(OM_TITLE)
-print(OM_UNIT)
-print(OM_PLOTN)
-print(OM_PLOTS)
+    print(OM_VARS)
+    print(OM_TITLE)
+    print(OM_NRANGE)
+    print(OM_UNIT)
+    print(OM_PLOTN)
+    print(OM_PLOTS)
 
-print(PZ_VARS)
-print(PZ_TITLE)
-print(PZ_UNIT)
-print(PZ_PLOTN)
-print(PZ_PLOTS)
+    print(PZ_VARS)
+    print(PZ_TITLE)
+    print(PZ_UNIT)
+    print(PZ_PLOTN)
+    print(PZ_PLOTS)
 
 temp = []
 for i in range(len(B_VARS)):
