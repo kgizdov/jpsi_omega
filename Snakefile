@@ -25,7 +25,7 @@ B_PT_PLOTS = ["plots/comparison/B/%s_HighPTcut_comparison.pdf" % (i) for i in B_
 # J/psi comparison plots params
 JP_VARS =     ["%s" % (i) for i in ["Jpsi_M", "Jpsi_PT", "Jpsi_OWNPV_CHI2", "Jpsi_IPCHI2_OWNPV"]]
 JP_WRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 0 -u 10000", "-l 0 -u 100", "-l 0 -u 1000"]]
-JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 0 -u 6000", "-l 0 -u 60" "-l 0 -u 300"]]
+JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 0 -u 6000", "-l 0 -u 60", "-l 0 -u 300"]]
 JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J#psi})" """, """ "#it{P_{T}}(#it{J#psi})" """, """ "#it{PV#chi^{2}}(#it{J#psi})" """, """ "#it{IP#chi^{2}}(#it{J#psi})" """]]
 JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ " " """, """ " " """]]
 JP_PLOTN =    ["plots/comparison/JP/%s_comparison" % (i) for i in JP_VARS]
