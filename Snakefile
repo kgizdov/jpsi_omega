@@ -36,7 +36,7 @@ JP_PT_PLOTS = ["plots/comparison/JP/%s_HighPTcut_comparison.pdf" % (i) for i in 
 # Omega comparison plots params
 OM_VARS =     ["%s" % (i) for i in ["omega_M", "omega_PT", "omega_OWNPV_CHI2", "omega_IPCHI2_OWNPV"]]
 OM_WRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 10000", "-l 0 -u 100", "-l 0 -u 1000"]]
-OM_NRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 6000", "-l 0 -u 60" "-l 0 -u 300"]]
+OM_NRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 6000", "-l 0 -u 60", "-l 0 -u 300"]]
 OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#omega})" """, """ "#it{P_{T}}(#it{#omega})" """, """ "#it{PV#chi^{2}}(#it{#omega})" """, """ "#it{IP#chi^{2}}(#it{#omega})" """]]
 OM_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """, """ " " """, """ " " """]]
 OM_PLOTN =    ["plots/comparison/OM/%s_comparison" % (i) for i in OM_VARS]
