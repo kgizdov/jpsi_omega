@@ -66,9 +66,9 @@ COMMONLIBS = ["common/lib/lib%s.so" % (i) for i in ["CloneInfo", "CloneTagger", 
 temp = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
-                        "-M " + EOS + EOSDIR + "mc/" + FILE +
-                        "-R " + EOS + EOSDIR + "data/" + FILE +
-                        "-B " + B_VARS[i] +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + B_VARS[i] +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
                         " -O " + B_PLOTN[i] +
@@ -78,9 +78,9 @@ b_job_shell = "; ".join(temp)
 temp = []
 for i in range(len(B_VARS)):
     temp.append("./analysis/bin/CompareBranchSB " +
-                        "-M " + EOS + EOSDIR + "mc/" + FILE +
-                        "-R " + EOS + EOSDIR + "data/" + FILE +
-                        "-B " + B_VARS[i] +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + B_VARS[i] +
                         " -C omega_PT>8000" +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
