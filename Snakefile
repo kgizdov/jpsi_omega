@@ -84,146 +84,152 @@ for i in range(len(B_VARS)):
                         " -C omega_PT>8000" +
                         " -T " + B_TITLE[i] +
                         " -U " + B_UNIT[i] +
-                        " -O " + B_PLOTN[i] +
+                        " -O " + B_PT_PLOTN[i] +
                         " "    + B_NRANGE[i])
 b_pt_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(JP_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + JP_VARS[i] +
+                        " -T " + JP_TITLE[i] +
+                        " -U " + JP_UNIT[i] +
+                        " -O " + JP_PLOTN[i] +
+                        " "    + JP_NRANGE[i])
+jp_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(JP_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + JP_VARS[i] +
+                        " -C omega_PT>8000" +
+                        " -T " + JP_TITLE[i] +
+                        " -U " + JP_UNIT[i] +
+                        " -O " + JP_PT_PLOTN[i] +
+                        " "    + JP_NRANGE[i])
+jp_pt_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(OM_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + OM_VARS[i] +
+                        " -T " + OM_TITLE[i] +
+                        " -U " + OM_UNIT[i] +
+                        " -O " + OM_PLOTN[i] +
+                        " "    + OM_NRANGE[i])
+om_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(OM_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + OM_VARS[i] +
+                        " -C omega_PT>8000" +
+                        " -T " + OM_TITLE[i] +
+                        " -U " + OM_UNIT[i] +
+                        " -O " + OM_PT_PLOTN[i] +
+                        " "    + OM_NRANGE[i])
+om_pt_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(PZ_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + PZ_VARS[i] +
+                        " -T " + PZ_TITLE[i] +
+                        " -U " + PZ_UNIT[i] +
+                        " -O " + PZ_PLOTN[i] +
+                        " "    + PZ_NRANGE[i])
+pz_job_shell = "; ".join(temp)
+
+temp = []
+for i in range(len(PZ_VARS)):
+    temp.append("./analysis/bin/CompareBranchSB " +
+                        " -M " + EOS + EOSDIR + "mc/" + FILE +
+                        " -R " + EOS + EOSDIR + "data/" + FILE +
+                        " -B " + PZ_VARS[i] +
+                        " -C omega_PT>8000" +
+                        " -T " + PZ_TITLE[i] +
+                        " -U " + PZ_UNIT[i] +
+                        " -O " + PZ_PT_PLOTN[i] +
+                        " "    + PZ_NRANGE[i])
+pz_pt_job_shell = "; ".join(temp)
 
 rule all:
     input:
         B_PLOTS, B_PT_PLOTS
 
-rule bplots:
+rule b_plots:
     input:
         COMPBIN
     output:
         B_PLOTS
     threads: 4
-    # shell:
-    # run:
-        # temp = []
-        # for i in range(len(B_VARS)):
-        #     temp.append("""./analysis/bin/CompareBranchSB
-        #                         -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-        #                         -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-        #                         -B {B_VARS}[i]
-        #                         -T {B_TITLE}[i]
-        #                         -U {B_UNIT}[i]
-        #                         -O {B_PLOTS}[i]
-        #                            {B_NRANGE}[i]""")
-        # job_shell = "; ".join(temp)
-    shell: "{b_job_shell}"
-    #     expand("""./{bin}   -M {e}{dir}/mc/{file} \
-    #                         -R {e}{dir}/data/{file} \
-    #                         -B {br} \
-    #                         -T {title} \
-    #                         -U {unit} \
-    #                         -O {pdf} \
-    #                         {range}""".split()
-    #                         , zip
-    #                         , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
-        # shell("./analysis/bin/CompareBranchSB -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -T {title} -U {unit} -O {pdf} {range}".format(br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # expand("./{bin}   -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -T {title} -U {unit} -O {pdf} {range}".split(), zip, bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-                            # , zip
-                            # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # shell("""./analysis/bin/CompareBranchSB
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-        #                     -B {br}
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".format(
-        #                     # , zip
-        #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # "; ".join.(expand("""./analysis/bin/CompareBranchSB \\
-        #                             -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-        #                             -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-        #                             -B {br} \\
-        #                             -T {title} \\
-        #                             -U {unit} \\
-        #                             -O {pdf} \\
-        #                             {range}""".split()
-        #                             , zip
-        #                             , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # """./analysis/bin/CompareBranchSB \\
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-        #                     -B {B_VARS}[i] \\
-        #                     -C omega_PT>8000 \\
-        #                     -T {B_TITLE}[i] \\
-        #                     -U {B_UNIT}[i] \\
-        #                     -O {B_PLOTS}[i] \\
-        #                     {B_NRANGE}[i]"""
-                            # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
-        # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
+    shell: "{b_job_shell} --threads {threads}"
 
-rule bptplots:
+rule b_pt_plots:
     input:
         COMPBIN
     output:
         B_PT_PLOTS
     threads: 4
-    # shell:
-    # run:
-    #     temp = []
-    #     for i in range(len(B_VARS)):
-    #         temp.append("""./analysis/bin/CompareBranchSB
-    #                             -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-    #                             -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-    #                             -B {B_VARS}[i]
-    #                             -C omega_PT>8000
-    #                             -T {B_TITLE}[i]
-    #                             -U {B_UNIT}[i]
-    #                             -O {B_PLOTS}[i]
-    #                                {B_NRANGE}[i]""")
-        # job_shell = "; ".join(temp)
     shell: "{b_pt_job_shell}"
-        # expand("""./{bin}   -M {e}{dir}/mc/{file} \
-        #                     -R {e}{dir}/data/{file} \
-        #                     -B {br} \
-        #                     -C omega_PT>8000 \
-        #                     -T {title} \
-        #                     -U {unit} \
-        #                     -O {pdf} \
-        #                     {range}""".split()
-        #                     , zip
-        #                     , bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE)
-        # shell("""./analysis/bin/CompareBranchSB   -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -C omega_PT>8000 -T {title} -U {unit} -O {pdf} {range}""".format(br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # expand("./{bin}   -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root -B {br} -C omega_PT>8000 -T {title} -U {unit} -O {pdf} {range}".split(), zip, bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS)
-        # shell("""./{bin}   -M {e}{dir}/mc/{file} -R {e}{dir}/data/{file} -B {br} -C omega_PT>8000 -T {title} -U {unit} -O {pdf} {range}""".format(
-                            # , zip
-                            # bin=COMPBIN, br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PT_PLOTS, e=EOS, dir=EOSDIR, file=FILE))
-        # shell("""./analysis/bin/CompareBranchSB
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root
-        #                     -B {br}
-        #                     -T {title}
-        #                     -U {unit}
-        #                     -O {pdf}
-        #                     {range}""".format(
-        #                     # , zip
-        #                     br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # "; ".join(expand("""./analysis/bin/CompareBranchSB \\
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-        #                     -B {br} \\
-        #                     -C omega_PT>8000 \\
-        #                     -T {title} \\
-        #                     -U {unit} \\
-        #                     -O {pdf}
-        #                     {range}""".split()
-        #                     , zip
-        #                     , br=B_VARS, title=B_TITLE, unit=B_UNIT, range=B_NRANGE, pdf=B_PLOTS))
-        # """./analysis/bin/CompareBranchSB \\
-        #                     -M root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/mc/cut_tuples.root \\
-        #                     -R root://eoslhcb.cern.ch/root://eoslhcb.cern.ch/data/cut_tuples.root \\
-        #                     -B {B_VARS}[i] \\
-        #                     -C omega_PT>8000 \\
-        #                     -T {B_TITLE}[i] \\
-        #                     -U {B_UNIT}[i] \\
-        #                     -O {B_PLOTS}[i] \\
-        #                     {B_NRANGE}[i]"""
-        # shell("./{bin} -R {e}{dir}/data/{file} -O {sb}".format(bin=COMPBIN, sb=SBMASSPLOTS, e=EOS, dir=EOSDIR, file=FILE))
+
+rule jp_plots:
+    input:
+        COMPBIN
+    output:
+        JP_PLOTS
+    threads: 4
+    shell: "{jp_job_shell}"
+
+rule jp_pt_plots:
+    input:
+        COMPBIN
+    output:
+        JP_PT_PLOTS
+    threads: 4
+    shell: "{jp_pt_job_shell}"
+
+rule om_plots:
+    input:
+        COMPBIN
+    output:
+        OM_PLOTS
+    threads: 4
+    shell: "{om_job_shell}"
+
+rule om_pt_plots:
+    input:
+        COMPBIN
+    output:
+        OM_PT_PLOTS
+    threads: 4
+    shell: "{om_pt_job_shell}"
+
+rule pz_plots:
+    input:
+        COMPBIN
+    output:
+        PZ_PLOTS
+    threads: 4
+    shell: "{pz_job_shell}"
+
+rule pz_pt_plots:
+    input:
+        COMPBIN
+    output:
+        PZ_PT_PLOTS
+    threads: 4
+    shell: "{pz_pt_job_shell}"
 
 rule compbin:
     output:
