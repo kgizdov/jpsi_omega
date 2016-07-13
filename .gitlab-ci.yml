@@ -10,6 +10,11 @@ before_script:
 # after_script:
     # - echo 'ALL DONE'
 
+cache:
+    paths:
+        - analysis/bin
+        - common/lib
+
 stages:
         - build
         - plot
