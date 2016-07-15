@@ -202,17 +202,18 @@ TISTOSTool.addTool( TriggerTisTos, name="TriggerTisTos")
 
 LoKi_B = LoKi__Hybrid__TupleTool("LoKi_B")
 LoKi_B.Variables =  {
-    "ETA"               : "ETA",
-    "PHI"               : "PHI",
-    "FDCHI2"            : "BPVVDCHI2",
-    "FDS"               : "BPVDLS",
-    "DIRA"              : "BPVDIRA",
-    "DTF_CTAU"          : "DTF_CTAU( 0, True )",
-    "DTF_CTAUS"         : "DTF_CTAUSIGNIFICANCE( 0, True )",
-    "DTF_CHI2NDOF"      : "DTF_CHI2NDOF( True )",
-    "DTF_CTAUERR"       : "DTF_CTAUERR( 0, True )",
-    "DTF_MASS_constr1"  : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )" ,
-    "DTF_VCHI2NDOF"     : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )",
+      "ETA"                    : "ETA"
+    , "PHI"                    : "PHI"
+    , "FDCHI2"                 : "BPVVDCHI2"
+    , "FDS"                    : "BPVDLS"
+    , "DIRA"                   : "BPVDIRA"
+    , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
+    , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
+    , "DTF_CHI2NDOF"           : "DTF_CHI2NDOF( True )"
+    , "DTF_CTAUERR"            : "DTF_CTAUERR( 0, True )"
+    , "DTF_MASS_constr_Jpsi"   : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )"
+    , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
+    , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
