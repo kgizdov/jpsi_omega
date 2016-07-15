@@ -85,21 +85,21 @@ from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 
 mc_selection = SimpleSelection (
-    'MCTuple'  ,
-    MCTUPLE    ,
-    [ b2omega_selection ] ,
+    'MCTuple'
+    , MCTUPLE
+    , [ b2omega_selection ]
     ## properties
-    Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
-    Branches = {
-        'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
-        'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-        'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
-        'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
-        'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
-        }
+    , Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^(pi0 => ^gamma ^gamma) ) "
+    # , Branches = {
+        # 'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  (pi0 => ^gamma ^gamma) )",
+        # 'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  (pi0 => ^gamma ^gamma) )",
+        # 'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^(pi0 => ^gamma ^gamma) )",
+        # }
     )
 mctuple_B2psiomega = mc_selection.algorithm()
 
@@ -212,23 +212,23 @@ LoKi_Mu.Variables =  {
 from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 rd_selection = SimpleSelection (
-    'Tuple'               ,
-    TUPLE                 ,
-    [ b2omega_selection ] ,
+    'Tuple'
+    , TUPLE
+    , [ b2omega_selection ]
     ## Properties:
-    Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )' ,
-    ToolList = tupletools ,
-    Branches = {
-        #
-        'B'       : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
-        'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
-        'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
-        'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
-        }
+    , Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^(pi0 -> ^gamma ^gamma) )' ,
+    , ToolList = tupletools
+    # , Branches = {
+    #     #
+    #     'B'       : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
+    #     'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
+    #     'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
+    #     'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
+    #     'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
+    #     }
     )
 
 tuple_B2psiomega = rd_selection.algorithm()

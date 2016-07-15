@@ -97,12 +97,12 @@ b2omega_selection = AutomaticData( location )
 # from PhysSelPython.Wrappers                import SimpleSelection
 
 # mc_selection = SimpleSelection (
-#     'MCTuple'  ,
-#     MCTUPLE    ,
-#     [ b2omega_selection ] ,
+#     'MCTuple'
+#     , MCTUPLE
+#     , [ b2omega_selection ]
 #     ## properties
-#     Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) " ,
-#     Branches = {
+#     , Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) "
+#     , Branches = {
 #         'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
 #         'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
 #         'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
@@ -228,19 +228,21 @@ rd_selection = SimpleSelection (
     , TUPLE
     , [ b2omega_selection ]
     ## Properties:
-    , Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^pi0 )'
+    , Decay    = '[B0]cc -> ^(J/psi(1S) -> ^mu+ ^mu-) ^(omega(782) -> ^pi+ ^pi- ^(pi0 -> ^gamma ^gamma) )'
     , ToolList = tupletools
-    , Branches = {
-        #
-        'B'       : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  pi0 )",
-        'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  pi0 )",
-        'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  pi0 )",
-        'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  pi0 )",
-        'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^pi0 )",
-        }
+    # , Branches = {
+    #     #
+    #     'B'       : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma) )",
+    #     'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma) )",
+    #     'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma) )",
+    #     'gamma1'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma) )",
+    #     'gamma2'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma) )",
+    #     }
     )
 
 tuple_B2psiomega = rd_selection.algorithm()
