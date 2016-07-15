@@ -200,8 +200,8 @@ TISTOSTool.VerboseHlt2 = True
 TISTOSTool.TriggerList = triglist[:]
 TISTOSTool.addTool( TriggerTisTos, name="TriggerTisTos")
 
-LoKi_B = LoKi__Hybrid__TupleTool("LoKi_B")
-LoKi_B.Variables =  {
+LoKi_B0 = LoKi__Hybrid__TupleTool("LoKi_B0")
+LoKi_B0.Variables =  {
       "ETA"                    : "ETA"
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
@@ -248,7 +248,7 @@ rd_selection = SimpleSelection (
 
 tuple_B2psiomega = rd_selection.algorithm()
 
-for particle in ["B", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
+for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
     tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
@@ -263,13 +263,13 @@ for tup in tuples:
         tup.ToolList += ["TupleToolMCTruth/TruthTool"]
         tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
 
-    tup.B.addTool( LoKi_B )
-    tup.B.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B"]
+    tup.B0.addTool( LoKi_B0 )
+    tup.B0.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B0"]
     tup.muplus.addTool( LoKi_Mu )
     tup.muplus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
     tup.muminus.addTool( LoKi_Mu )
     tup.muminus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
-    for particle in [ tup.B ]:
+    for particle in [ tup.B0 ]:
         particle.addTool(TISTOSTool, name = "TISTOSTool")
         particle.ToolList += [ "TupleToolTISTOS/TISTOSTool" ]
 
