@@ -44,12 +44,11 @@ OUTPUTLEVEL = ERROR
 
 
 # =============================================================================
-## run PSIX0 WG-selections over ALLSTREAM.DST MC
+## run PSIX0 WG-selections over ALLSTREAMS.DST MC
 # =============================================================================
 jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
-# jpsi_name  = 'SelB2PsiOmegaForPsiX0'
-# jpsi_line  = '/Event/AllStream/Dimuon/Phys/%s/Particles' % jpsi_name
-jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
+# jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
+jpsi_line  = '/Event/AllStreams/Dimuon/Phys/%s/Particles' % jpsi_name
 
 import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
@@ -79,7 +78,7 @@ LoKi_Photos.Variables = {
     "MC_ETA"   : "MCETA",
     "MC_PHI"   : "MCPHI",
     "MC_ABSID" : "MCABSID"
-	}
+    }
 
 from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
@@ -109,7 +108,7 @@ mctuple_B2psiomega = mc_selection.algorithm()
 # List of the mc tuples
 mctuples = [
         mctuple_B2psiomega
-	]
+    ]
 
 for tup in mctuples:
     tup.addTool(MCTupleToolKinematic())
@@ -125,12 +124,12 @@ for tup in mctuples:
     tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
 
 if OUTPUTLEVEL == DEBUG:
-	from Configurables import PrintMCTree, PrintMCDecayTreeTool
-	mctree = PrintMCTree("PrintTrue")
-	mctree.addTool( PrintMCDecayTreeTool )
-	mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
-	mctree.ParticleNames = [ "B+", "B-" ]
-	mctree.Depth = 3  # down to the K and mu
+    from Configurables import PrintMCTree, PrintMCDecayTreeTool
+    mctree = PrintMCTree("PrintTrue")
+    mctree.addTool( PrintMCDecayTreeTool )
+    mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
+    mctree.ParticleNames = [ "B+", "B-" ]
+    mctree.Depth = 3  # down to the K and mu
 
 #########################################################################################################
 # Now set up the DecayTreeTuples for the reconstructed particles
@@ -143,45 +142,45 @@ tupletools.append("TupleToolPid")
 tupletools.append("TupleToolRecoStats")
 tupletools.append("TupleToolEventInfo")
 triglist = [
-	 "L0PhysicsDecision"
-	,"L0MuonDecision"
-	,"L0DiMuonDecision"
-	,"L0MuonHighDecision"
-	,"L0HadronDecision"
-	,"L0ElectronDecision"
-	,"L0PhotonDecision"
-	,"Hlt1DiMuonHighMassDecision"
-	,"Hlt1DiMuonLowMassDecision"
-	,"Hlt1SingleMuonNoIPDecision"
-	,"Hlt1SingleMuonHighPTDecision"
-	,"Hlt1TrackAllL0Decision"
-	,"Hlt1TrackMuonDecision"
-	,"Hlt1TrackPhotonDecision"
-	,"Hlt1L0AnyDecision"
-	,"Hlt2SingleElectronTFLowPtDecision"
-	,"Hlt2SingleElectronTFHighPtDecision"
-	,"Hlt2DiElectronHighMassDecision"
-	,"Hlt2DiElectronBDecision"
-	,"Hlt2B2HHLTUnbiasedDecision"
-	,"Hlt2Topo2BodySimpleDecision"
-	,"Hlt2Topo3BodySimpleDecision"
-	,"Hlt2Topo4BodySimpleDecision"
-	,"Hlt2Topo2BodyBBDTDecision"
-	,"Hlt2Topo3BodyBBDTDecision"
-	,"Hlt2Topo4BodyBBDTDecision"
-	,"Hlt2TopoMu2BodyBBDTDecision"
-	,"Hlt2TopoMu3BodyBBDTDecision"
-	,"Hlt2TopoMu4BodyBBDTDecision"
-	,"Hlt2TopoE2BodyBBDTDecision"
-	,"Hlt2TopoE3BodyBBDTDecision"
-	,"Hlt2TopoE4BodyBBDTDecision"
-	,"Hlt2MuonFromHLT1Decision"
-	,"Hlt2DiMuonDecision"
-	,"Hlt2DiMuonLowMassDecision"
-	,"Hlt2DiMuonJPsiDecision"
-	,"Hlt2DiMuonJPsiHighPTDecision"
-	,"Hlt2DiMuonPsi2SDecision"
-	,"Hlt2DiMuonBDecision"
+     "L0PhysicsDecision"
+    ,"L0MuonDecision"
+    ,"L0DiMuonDecision"
+    ,"L0MuonHighDecision"
+    ,"L0HadronDecision"
+    ,"L0ElectronDecision"
+    ,"L0PhotonDecision"
+    ,"Hlt1DiMuonHighMassDecision"
+    ,"Hlt1DiMuonLowMassDecision"
+    ,"Hlt1SingleMuonNoIPDecision"
+    ,"Hlt1SingleMuonHighPTDecision"
+    ,"Hlt1TrackAllL0Decision"
+    ,"Hlt1TrackMuonDecision"
+    ,"Hlt1TrackPhotonDecision"
+    ,"Hlt1L0AnyDecision"
+    ,"Hlt2SingleElectronTFLowPtDecision"
+    ,"Hlt2SingleElectronTFHighPtDecision"
+    ,"Hlt2DiElectronHighMassDecision"
+    ,"Hlt2DiElectronBDecision"
+    ,"Hlt2B2HHLTUnbiasedDecision"
+    ,"Hlt2Topo2BodySimpleDecision"
+    ,"Hlt2Topo3BodySimpleDecision"
+    ,"Hlt2Topo4BodySimpleDecision"
+    ,"Hlt2Topo2BodyBBDTDecision"
+    ,"Hlt2Topo3BodyBBDTDecision"
+    ,"Hlt2Topo4BodyBBDTDecision"
+    ,"Hlt2TopoMu2BodyBBDTDecision"
+    ,"Hlt2TopoMu3BodyBBDTDecision"
+    ,"Hlt2TopoMu4BodyBBDTDecision"
+    ,"Hlt2TopoE2BodyBBDTDecision"
+    ,"Hlt2TopoE3BodyBBDTDecision"
+    ,"Hlt2TopoE4BodyBBDTDecision"
+    ,"Hlt2MuonFromHLT1Decision"
+    ,"Hlt2DiMuonDecision"
+    ,"Hlt2DiMuonLowMassDecision"
+    ,"Hlt2DiMuonJPsiDecision"
+    ,"Hlt2DiMuonJPsiHighPTDecision"
+    ,"Hlt2DiMuonPsi2SDecision"
+    ,"Hlt2DiMuonBDecision"
 ]
 TISTOSTool = TupleToolTISTOS('TISTOSTool')
 TISTOSTool.VerboseL0   = True
@@ -195,7 +194,8 @@ LoKi_B0.Variables =  {
       "ETA"                    : "ETA"
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
-    , "FDS"                    : "BPVDLS"
+    , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
+    , "DLS"                    : "DLS"  # decay length significance
     , "DIRA"                   : "BPVDIRA"
     , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
@@ -204,6 +204,12 @@ LoKi_B0.Variables =  {
     , "DTF_MASS_constr_Jpsi"   : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )"
     , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
     , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
+    }
+
+LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
+LoKi_Jpsi.Variables =  {
+      "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
+    , "DLS"                    : "DLS"  # decay length significance
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
@@ -255,6 +261,8 @@ for tup in tuples:
 
     tup.B0.addTool( LoKi_B0 )
     tup.B0.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B0"]
+    tup.Jpsi.addTool( LoKi_Jpsi )
+    tup.Jpsi.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Jpsi"]
     tup.muplus.addTool( LoKi_Mu )
     tup.muplus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
     tup.muminus.addTool( LoKi_Mu )
@@ -282,13 +290,13 @@ if MODE == 'MC':
     sim = True
 
 daVinci = DaVinci (
-    EvtMax             = EVTMAX            ,
-    TupleFile          = "DVTuples1.root"  ,
-    HistogramFile      = 'DVHistos.root'   ,
-    DataType           = "2011"            ,
-    Simulation         = sim               ,
-    Lumi               = lum               ,
-    UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
+      EvtMax             = EVTMAX
+    , TupleFile          = "DVTuples1.root"
+    , HistogramFile      = 'DVHistos.root'
+    , DataType           = "2012"
+    , Simulation         = sim
+    , Lumi               = lum
+    , UserAlgorithms     = [ rd_SEQ.sequence() , mc_SEQ.sequence() ]
     )
 
 MessageSvc().Format = "% F%60W%S%7W%R%T %0W%M"

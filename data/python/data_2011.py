@@ -101,16 +101,18 @@ b2omega_selection = AutomaticData( location )
 #     , MCTUPLE
 #     , [ b2omega_selection ]
 #     ## properties
-#     , Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^pi0 ) "
+#     , Decay = " [B0]cc => ^(J/psi(1S) => ^mu+ ^mu- ) ^(omega(782) ==> ^pi+ ^pi- ^(pi0 => ^gamma ^gamma) ) "
 #     , Branches = {
-#         'B'       : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-#         'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-#         'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  pi0 )",
-#         'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-#         'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  pi0 )",
-#         'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  pi0 )",
-#         'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  pi0 )",
-#         'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^pi0 )",
+#           'B0'      : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'Jpsi'    : "[B0]cc => ^(J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'muplus'  : "[B0]cc =>  (J/psi(1S) => ^mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'muminus' : "[B0]cc =>  (J/psi(1S) =>  mu+ ^mu- )  (omega(782) ==>  pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'omega'   : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- ) ^(omega(782) ==>  pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'piplus'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==> ^pi+  pi-  (pi0 =>  gamma  gamma) )"
+#         , 'piminus' : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+ ^pi-  (pi0 =>  gamma  gamma) )"
+#         , 'pizero'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi- ^(pi0 =>  gamma  gamma) )"
+#         , 'gamma1'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 => ^gamma  gamma) )"
+#         , 'gamma2'  : "[B0]cc =>  (J/psi(1S) =>  mu+  mu- )  (omega(782) ==>  pi+  pi-  (pi0 =>  gamma ^gamma) )"
 #         }
 #     )
 # mctuple_B2psiomega = mc_selection.algorithm()
@@ -205,7 +207,8 @@ LoKi_B0.Variables =  {
       "ETA"                    : "ETA"
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
-    , "FDS"                    : "BPVDLS"
+    , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
+    , "DLS"                    : "DLS"  # decay length significance
     , "DIRA"                   : "BPVDIRA"
     , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
@@ -214,6 +217,12 @@ LoKi_B0.Variables =  {
     , "DTF_MASS_constr_Jpsi"   : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )"
     , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
     , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
+    }
+
+LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
+LoKi_Jpsi.Variables =  {
+      "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
+    , "DLS"                    : "DLS"  # decay length significance
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
@@ -225,7 +234,7 @@ LoKi_Mu.Variables =  {
 from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE
 from PhysSelPython.Wrappers                import SimpleSelection
 rd_selection = SimpleSelection (
-      'Tuple'
+    'Tuple'
     , TUPLE
     , [ b2omega_selection ]
     ## Properties:
@@ -240,7 +249,7 @@ rd_selection = SimpleSelection (
         , 'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
         , 'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma) )"
         , 'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma) )"
-        , 'pi0'     : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma) )"
+        , 'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma) )"
         , 'gamma1'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma) )"
         , 'gamma2'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma) )"
         }
@@ -256,7 +265,7 @@ tuples = [ tuple_B2psiomega
            ]
 
 for tup in tuples:
-    # tup.ReFitPVs = True
+    tup.ReFitPVs = True
     if MODE == "MC":
         tup.addTool(TupleToolMCTruth, name = "TruthTool")
         tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
@@ -265,6 +274,8 @@ for tup in tuples:
 
     tup.B0.addTool( LoKi_B0 )
     tup.B0.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B0"]
+    tup.Jpsi.addTool( LoKi_Jpsi )
+    tup.Jpsi.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Jpsi"]
     tup.muplus.addTool( LoKi_Mu )
     tup.muplus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
     tup.muminus.addTool( LoKi_Mu )
