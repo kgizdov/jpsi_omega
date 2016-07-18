@@ -13,18 +13,23 @@ mode = sys.argv[2]
 magnet = sys.argv[3]
 
 if mode not in ['Bd_JpsiOm', 'norm', 'signal', 'background_Bd', 'Bu_JpsiX', 'Bd_JpsiX', 'Bs_JpsiX', 'Lb_JpsiX', 'b2']: sys.exit()
-
-if mode != 'Bd_JpsiOm':
-    print "##\nTHIS SCRIPT IS FOR SIGNAL ONLY\n##"
+if year not in ['2011', '2012']:
+    print "\n## THIS SCRIPT IS FOR 2011 & 2012 ONLY ##\n"
     sys.exit()
 
-if magnet not in ['MagDown', 'MagUp']: sys.exit()
+if mode != 'Bd_JpsiOm':
+    print "\n## THIS SCRIPT IS FOR SIGNAL ONLY ##\n"
+    sys.exit()
+
+if magnet not in ['MagDown', 'MagUp']:
+    print "\n## WRONG OPTION FOR MAGNET ##\n"
+    sys.exit()
 
 if mode == 'norm':
     script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/DV_Lb2chicpK_norm_' + year + '_MC_21.py'
 else:
     # script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC_21.py'
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/new_template.py'
+    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/mc_' + year + '.py'
 
 # job_name = 'MC' + str(year) + mode + magnet
 job_name = 'MC' + str(year) + mode

@@ -8,13 +8,20 @@ year = sys.argv[1]
 mode = sys.argv[2]
 
 end = '.py'
+if mode not in ['norm', 'b2']: sys.exit()
+if year not in ['2011', '2012']:
+    print "\n## THIS SCRIPT IS FOR 2011 & 2012 ONLY ##\n"
+    sys.exit()
+if mode != 'b2':
+    print "\n## THIS SCRIPT IS FOR SIGNAL ONLY ##\n"
+    sys.exit()
 if mode == 'norm': middle = '_norm_'
 if mode == 'b2': middle = '_B2psiomega_'
 
 # script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV' + middle + year + end  # fix path to script
-script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/new_template_data.py'  # fix path to script
+script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/data_' + year + '.py'  # fix path to script
 
-job_name = 'B2psiomega_data' + str(year)
+job_name = 'B2JPOm_data' + str(year)
 print ('Job Name: ' + str(job_name))
 print ('Script: ' + script)
 
