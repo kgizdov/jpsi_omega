@@ -91,7 +91,7 @@ b2omega_selection = AutomaticData( location )
 #     "MC_ETA"   : "MCETA",
 #     "MC_PHI"   : "MCPHI",
 #     "MC_ABSID" : "MCABSID"
-# 	}
+#   }
 
 # from GaudiConfUtils.ConfigurableGenerators import MCDecayTreeTuple as MCTUPLE
 # from PhysSelPython.Wrappers                import SimpleSelection
@@ -121,7 +121,7 @@ b2omega_selection = AutomaticData( location )
 # # List of the mc tuples
 # mctuples = [
 #         mctuple_B2psiomega
-# 	]
+#   ]
 
 # for tup in mctuples:
 #     tup.addTool(MCTupleToolKinematic())
@@ -137,12 +137,12 @@ b2omega_selection = AutomaticData( location )
 #     tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
 
 # if OUTPUTLEVEL == DEBUG:
-# 	from Configurables import PrintMCTree, PrintMCDecayTreeTool
-# 	mctree = PrintMCTree("PrintTrue")
-# 	mctree.addTool( PrintMCDecayTreeTool )
-# 	mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
-# 	mctree.ParticleNames = [ "B+", "B-" ]
-# 	mctree.Depth = 3  # down to the K and mu
+#   from Configurables import PrintMCTree, PrintMCDecayTreeTool
+#   mctree = PrintMCTree("PrintTrue")
+#   mctree.addTool( PrintMCDecayTreeTool )
+#   mctree.PrintMCDecayTreeTool.Information = "Name M P Px Py Pz Pt Vx Vy Vz"
+#   mctree.ParticleNames = [ "B+", "B-" ]
+#   mctree.Depth = 3  # down to the K and mu
 
 #########################################################################################################
 # Now set up the DecayTreeTuples for the reconstructed particles
@@ -155,45 +155,45 @@ tupletools.append("TupleToolPid")
 tupletools.append("TupleToolRecoStats")
 tupletools.append("TupleToolEventInfo")
 triglist = [
-	 "L0PhysicsDecision"
-	,"L0MuonDecision"
-	,"L0DiMuonDecision"
-	,"L0MuonHighDecision"
-	,"L0HadronDecision"
-	,"L0ElectronDecision"
-	,"L0PhotonDecision"
-	,"Hlt1DiMuonHighMassDecision"
-	,"Hlt1DiMuonLowMassDecision"
-	,"Hlt1SingleMuonNoIPDecision"
-	,"Hlt1SingleMuonHighPTDecision"
-	,"Hlt1TrackAllL0Decision"
-	,"Hlt1TrackMuonDecision"
-	,"Hlt1TrackPhotonDecision"
-	,"Hlt1L0AnyDecision"
-	,"Hlt2SingleElectronTFLowPtDecision"
-	,"Hlt2SingleElectronTFHighPtDecision"
-	,"Hlt2DiElectronHighMassDecision"
-	,"Hlt2DiElectronBDecision"
-	,"Hlt2B2HHLTUnbiasedDecision"
-	,"Hlt2Topo2BodySimpleDecision"
-	,"Hlt2Topo3BodySimpleDecision"
-	,"Hlt2Topo4BodySimpleDecision"
-	,"Hlt2Topo2BodyBBDTDecision"
-	,"Hlt2Topo3BodyBBDTDecision"
-	,"Hlt2Topo4BodyBBDTDecision"
-	,"Hlt2TopoMu2BodyBBDTDecision"
-	,"Hlt2TopoMu3BodyBBDTDecision"
-	,"Hlt2TopoMu4BodyBBDTDecision"
-	,"Hlt2TopoE2BodyBBDTDecision"
-	,"Hlt2TopoE3BodyBBDTDecision"
-	,"Hlt2TopoE4BodyBBDTDecision"
-	,"Hlt2MuonFromHLT1Decision"
-	,"Hlt2DiMuonDecision"
-	,"Hlt2DiMuonLowMassDecision"
-	,"Hlt2DiMuonJPsiDecision"
-	,"Hlt2DiMuonJPsiHighPTDecision"
-	,"Hlt2DiMuonPsi2SDecision"
-	,"Hlt2DiMuonBDecision"
+     "L0PhysicsDecision"
+    ,"L0MuonDecision"
+    ,"L0DiMuonDecision"
+    ,"L0MuonHighDecision"
+    ,"L0HadronDecision"
+    ,"L0ElectronDecision"
+    ,"L0PhotonDecision"
+    ,"Hlt1DiMuonHighMassDecision"
+    ,"Hlt1DiMuonLowMassDecision"
+    ,"Hlt1SingleMuonNoIPDecision"
+    ,"Hlt1SingleMuonHighPTDecision"
+    ,"Hlt1TrackAllL0Decision"
+    ,"Hlt1TrackMuonDecision"
+    ,"Hlt1TrackPhotonDecision"
+    ,"Hlt1L0AnyDecision"
+    ,"Hlt2SingleElectronTFLowPtDecision"
+    ,"Hlt2SingleElectronTFHighPtDecision"
+    ,"Hlt2DiElectronHighMassDecision"
+    ,"Hlt2DiElectronBDecision"
+    ,"Hlt2B2HHLTUnbiasedDecision"
+    ,"Hlt2Topo2BodySimpleDecision"
+    ,"Hlt2Topo3BodySimpleDecision"
+    ,"Hlt2Topo4BodySimpleDecision"
+    ,"Hlt2Topo2BodyBBDTDecision"
+    ,"Hlt2Topo3BodyBBDTDecision"
+    ,"Hlt2Topo4BodyBBDTDecision"
+    ,"Hlt2TopoMu2BodyBBDTDecision"
+    ,"Hlt2TopoMu3BodyBBDTDecision"
+    ,"Hlt2TopoMu4BodyBBDTDecision"
+    ,"Hlt2TopoE2BodyBBDTDecision"
+    ,"Hlt2TopoE3BodyBBDTDecision"
+    ,"Hlt2TopoE4BodyBBDTDecision"
+    ,"Hlt2MuonFromHLT1Decision"
+    ,"Hlt2DiMuonDecision"
+    ,"Hlt2DiMuonLowMassDecision"
+    ,"Hlt2DiMuonJPsiDecision"
+    ,"Hlt2DiMuonJPsiHighPTDecision"
+    ,"Hlt2DiMuonPsi2SDecision"
+    ,"Hlt2DiMuonBDecision"
 ]
 TISTOSTool = TupleToolTISTOS('TISTOSTool')
 TISTOSTool.VerboseL0   = True
