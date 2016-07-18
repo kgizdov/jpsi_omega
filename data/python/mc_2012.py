@@ -47,8 +47,8 @@ OUTPUTLEVEL = ERROR
 ## run PSIX0 WG-selections over ALLSTREAMS.DST MC
 # =============================================================================
 jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
-# jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
-jpsi_line  = '/Event/AllStreams/Dimuon/Phys/%s/Particles' % jpsi_name
+# jpsi_line  = '/Event/AllStreams/Dimuon/Phys/%s/Particles' % jpsi_name
+jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
 
 import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
 psix0  = PSIX0.PsiX0Conf  (
