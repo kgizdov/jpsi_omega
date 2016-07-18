@@ -35,6 +35,7 @@ OUTPUTLEVEL = ERROR
 LOC         = True
 
 # # Use the local input data
+# from GaudiConf import IOHelper
 # if LOC == True:
 #     IOHelper().inputFiles([
 #         '/afs/cern.ch/work/k/kgizdov/00041162_00000046_1.psix0.mdst'
@@ -208,7 +209,7 @@ LoKi_B0.Variables =  {
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
     , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    , "DLS"                    : "DLS"  # decay length significance
+    # , "DLS"                    : "DLS"  # decay length significance
     , "DIRA"                   : "BPVDIRA"
     , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
@@ -222,7 +223,7 @@ LoKi_B0.Variables =  {
 LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
 LoKi_Jpsi.Variables =  {
       "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    , "DLS"                    : "DLS"  # decay length significance
+    # , "DLS"                    : "DLS"  # decay length significance
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
