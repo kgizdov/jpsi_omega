@@ -265,7 +265,7 @@ tuples = [ tuple_B2psiomega
            ]
 
 for tup in tuples:
-    tup.ReFitPVs = True
+    # tup.ReFitPVs = True
     if MODE == "MC":
         tup.addTool(TupleToolMCTruth, name = "TruthTool")
         tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
