@@ -43,8 +43,8 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
     if (cuts != "") {
       cuts+= " && ";
     }
-    TTree* MCtree_s = GetTree(MCfile, cuts+"B_BKGCAT == 0");
-    TTree* MCtree_b = GetTree(MCfile, cuts+"B_BKGCAT == 100");
+    TTree* MCtree_s = GetTree(MCfile, cuts+"B0_BKGCAT == 0");
+    TTree* MCtree_b = GetTree(MCfile, cuts+"B0_BKGCAT == 100");
     // RooFit variables
     // using namespace RooFit;
     namespace rf = RooFit;
@@ -149,13 +149,13 @@ int main(int argc, char* argv[]) {
         ("help,H"    ,                                                                                 "produce help message"                      )
         ("MCfile,M"  , po::value<std::string>(&MCfile  )->default_value("ntuples/DVTuples_mc.root"  ), "set Monte Carlo file"                      )
         ("REfile,R"  , po::value<std::string>(&REfile  )->default_value("ntuples/DVTuples_data.root"), "set collision data file"                   )
-        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B_DTF_MASS_constr1"        ), "set branch to plot"                        )
+        ("branch,B"  , po::value<std::string>(&branch  )->default_value("B0_DTF_MASS_constr1"       ), "set branch to plot"                        )
         ("MCweight,w", po::value<std::string>(&MCweight)->default_value(""                          ), "set Monte Carlo weighting variable"        )
         ("REweight,W", po::value<std::string>(&REweight)->default_value(""                          ), "set collision data weighting variable"     )
         ("cuts,C"    , po::value<std::string>(&cuts    )->default_value(""                          ), "set optional cuts (UNIMPLEMENTED)"         )
         ("title,T"   , po::value<std::string>(&xtitle  )->default_value("#it{m}(#it{J/#psi #omega})"), "set x-axis title (takes ROOT LaTeX format)")
         ("unit,U"    , po::value<std::string>(&unit    )->default_value("MeV/#it{c}^{2}"            ), "set unit (takes ROOT LaTeX format)"        )
-        ("plot,O"    , po::value<std::string>(&plot    )->default_value("B_M_SB_comparison"         ), "set output plot filename"                  )
+        ("plot,O"    , po::value<std::string>(&plot    )->default_value("B0_M_SB_comparison"        ), "set output plot filename"                  )
         ("lower,l"   , po::value<double     >(&xlow    )->default_value(5100                        ), "set branch lower limit"                    )
         ("upper,u"   , po::value<double     >(&xup     )->default_value(5600                        ), "set branch upper limit"                    )
         ("bins,b"    , po::value<int        >(&nbins   )->default_value(20                          ), "set number of bins"                        )
