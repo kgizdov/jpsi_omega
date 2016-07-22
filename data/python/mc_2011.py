@@ -201,8 +201,8 @@ LoKi_B0.Variables =  {
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
     , "DTF_CHI2NDOF"           : "DTF_CHI2NDOF( True )"
     , "DTF_CTAUERR"            : "DTF_CTAUERR( 0, True )"
-    , "DTF_MASS_constr_Jpsi"   : "DTF_FUN ( M , True , strings(['J/psi(1S)']) )"
-    , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
+    , "DTF_MASS_constr"   : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
+    # , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
     , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
     }
 
