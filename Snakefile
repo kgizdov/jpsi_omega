@@ -54,7 +54,7 @@ MU_PT_PLOTS = ["plots/comparison/MU/%s_HighPTcut_comparison.pdf" % (i) for i in 
 # Omega comparison plots params
 OM_VARS =     ["%s" % (i) for i in ["omega_M", "omega_InvMass", "omega_InvMass_ERR", "omega_PT", "omega_OWNPV_CHI2", "omega_IPCHI2_OWNPV"]]
 OM_WRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 720 -u 840", "-l -15 -u 15", "-l 10000 -u 20000", "-l 0 -u 100", "-l 0 -u 1000"]]
-OM_NRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 3000 -u 6000", "-l 0 -u 60", "-l 0 -u 300"]]
+OM_NRANGE =   ["%s" % (i) for i in ["-l 732 -u 832", "-l 720 -u 840", "-l -15 -u 15", "-l 3000 -u 6000", "-l 0 -u 60", "-l 0 -u 300"]]
 OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#omega})" """, """ "#it{m}(#it{#pi^{+}#pi^{-}#pi^{0}})" """
                                    ,""" "#it{Error m}(#it{#pi^{+}#pi^{-}#pi^{0}})" """, """ "#it{P_{T}}(#it{#omega})" """
                                    ,""" "#it{PV#chi^{2}}(#it{#omega})" """, """ "#it{IP#chi^{2}}(#it{#omega})" """]]
@@ -73,10 +73,10 @@ PI_TITLE =    ["%s" % (i) for i in [""" "#it{P_{T}}(#it{#pi^{+}})" """, """ "#it
                                    ,""" "#it{PIDK}(#it{#pi^{+}})" """, """ "#it{P_{T}}(#it{#pi^{-}})" """
                                    ,""" "#it{TRACK#chi^{2}}(#it{#pi^{-}})" """, """ "#it{PIDK}(#it{#pi^{-}})" """]]
 PI_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ " " """, """ " " """, """ "MeV/#it{c}" """, """ " " """, """ " " """]]
-PI_PLOTN =    ["plots/comparison/MU/%s_comparison" % (i) for i in PI_VARS]
-PI_PLOTS =    ["plots/comparison/MU/%s_comparison.pdf" % (i) for i in PI_VARS]
-PI_PT_PLOTN = ["plots/comparison/MU/%s_HighPTcut_comparison" % (i) for i in PI_VARS]
-PI_PT_PLOTS = ["plots/comparison/MU/%s_HighPTcut_comparison.pdf" % (i) for i in PI_VARS]
+PI_PLOTN =    ["plots/comparison/PI/%s_comparison" % (i) for i in PI_VARS]
+PI_PLOTS =    ["plots/comparison/PI/%s_comparison.pdf" % (i) for i in PI_VARS]
+PI_PT_PLOTN = ["plots/comparison/PI/%s_HighPTcut_comparison" % (i) for i in PI_VARS]
+PI_PT_PLOTS = ["plots/comparison/PI/%s_HighPTcut_comparison.pdf" % (i) for i in PI_VARS]
 
 # PiZero comparison plots params
 PZ_VARS =     ["%s" % (i) for i in ["pizero_M", "pizero_InvMass", "pizero_PT"]]
