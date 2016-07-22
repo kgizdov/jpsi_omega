@@ -10,10 +10,10 @@ before_script:
 # after_script:
     # - echo 'ALL DONE'
 
-cache:
-    paths:
-        - analysis/bin
-        - common/lib
+# cache:
+#     paths:
+#         - analysis/bin
+#         - common/lib
 
 stages:
         - build
@@ -24,19 +24,16 @@ build:
     stage: build
     script:
         - snakemake build --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
     # only:  # run only on these
         # - master
     # except:  # skip branches
         # - /^.*-test$/  # all named *-test
     # tags:  # specify CI runner by tags
         # -
-    # artifacts:  # use this to retain files
-    #     paths:
-    #         - plots/comparison
+    artifacts:  # use this to retain files
+        paths:
+            - analysis/bin
+            - common/lib
 
 plot_b:
     stage: plot
@@ -94,6 +91,34 @@ plot_jp_pt:
         paths:
             - plots/comparison/JP
 
+plot_mu:
+    stage: plot
+    script:
+        - snakemake mu_plots --cores
+    cache:
+        paths:
+            - analysis/bin
+            - common/lib
+    only:
+        - master
+    artifacts:
+        paths:
+            - plots/comparison/MU
+
+plot_mu_pt:
+    stage: plot
+    script:
+        - snakemake mu_pt_plots --cores
+    cache:
+        paths:
+            - analysis/bin
+            - common/lib
+    only:
+        - master
+    artifacts:
+        paths:
+            - plots/comparison/MU
+
 plot_om:
     stage: plot
     script:
@@ -121,6 +146,34 @@ plot_om_pt:
     artifacts:
         paths:
             - plots/comparison/OM
+
+plot_pi:
+    stage: plot
+    script:
+        - snakemake pi_plots --cores
+    cache:
+        paths:
+            - analysis/bin
+            - common/lib
+    only:
+        - master
+    artifacts:
+        paths:
+            - plots/comparison/PI
+
+plot_pi_pt:
+    stage: plot
+    script:
+        - snakemake pi_pt_plots --cores
+    cache:
+        paths:
+            - analysis/bin
+            - common/lib
+    only:
+        - master
+    artifacts:
+        paths:
+            - plots/comparison/PI
 
 plot_pz:
     stage: plot
