@@ -47,7 +47,6 @@ OUTPUTLEVEL = ERROR
 ## run PSIX0 WG-selections over ALLSTREAMS.DST MC
 # =============================================================================
 jpsi_name  = 'FullDSTDiMuonJpsi2MuMuDetachedLine'
-# jpsi_line  = '/Event/AllStreams/Dimuon/Phys/%s/Particles' % jpsi_name
 jpsi_line  = '/Event/AllStreams/Phys/%s/Particles' % jpsi_name
 
 import StrippingSelections.StrippingBandQ.StrippingPsiX0          as PSIX0
@@ -56,7 +55,6 @@ psix0  = PSIX0.PsiX0Conf  (
     config = {
         'NOPIDHADRONS' : True          ,  ## important here!!!
         'DIMUONLINES'  : [ jpsi_line ]
-        # 'PsiX0Lines'  : [ jpsi_line ]
         }
     )
 
@@ -195,21 +193,18 @@ LoKi_B0.Variables =  {
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
     , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    # , "DLS"                    : "DLS"  # decay length significance
     , "DIRA"                   : "BPVDIRA"
     , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
     , "DTF_CHI2NDOF"           : "DTF_CHI2NDOF( True )"
     , "DTF_CTAUERR"            : "DTF_CTAUERR( 0, True )"
-    , "DTF_MASS_constr"   : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
-    # , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
+    , "DTF_MASS_constr"        : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
     , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
     }
 
 LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
 LoKi_Jpsi.Variables =  {
       "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    # , "DLS"                    : "DLS"  # decay length significance
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
@@ -244,7 +239,7 @@ rd_selection = SimpleSelection (
 
 tuple_B2psiomega = rd_selection.algorithm()
 
-for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
+for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero", "gamma1", "gamma2"]:
     tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
@@ -252,7 +247,7 @@ tuples = [ tuple_B2psiomega
            ]
 
 for tup in tuples:
-    tup.ReFitPVs = True
+    # tup.ReFitPVs = True
     if MODE == "MC":
         tup.addTool(TupleToolMCTruth, name = "TruthTool")
         tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
@@ -296,7 +291,7 @@ daVinci = DaVinci (
     , DataType           = "2011"
     , Simulation         = sim
     , Lumi               = lum
-    , UserAlgorithms     = [ rd_SEQ.sequence() , mc_SEQ.sequence() ]
+    , UserAlgorithms     = [rd_SEQ.sequence(), mc_SEQ.sequence()]
     )
 
 MessageSvc().Format = "% F%60W%S%7W%R%T %0W%M"

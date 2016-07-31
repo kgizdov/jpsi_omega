@@ -47,10 +47,8 @@ LOC         = True
 
 rootInTES = '/Event/PSIX0'
 location  = 'Phys/SelB2PsiOmegaForPsiX0/Particles'
-location1 = '/Event/PSIX0/Phys/SelB2PsiOmegaForPsiX0/Particles'
 from PhysSelPython.Wrappers import AutomaticData
 b2omega_selection = AutomaticData( location )
-# b2omega_selection = AutomaticData( location1 )
 
 
 # ## # =============================================================================
@@ -209,21 +207,18 @@ LoKi_B0.Variables =  {
     , "PHI"                    : "PHI"
     , "FDCHI2"                 : "BPVVDCHI2"
     , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    # , "DLS"                    : "DLS"  # decay length significance
     , "DIRA"                   : "BPVDIRA"
     , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
     , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
     , "DTF_CHI2NDOF"           : "DTF_CHI2NDOF( True )"
     , "DTF_CTAUERR"            : "DTF_CTAUERR( 0, True )"
-    , "DTF_MASS_constr"   : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
-    # , "DTF_MASS_constr_pizero" : "DTF_FUN ( M , True , strings(['pi0']) )"
+    , "DTF_MASS_constr"        : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
     , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
     }
 
 LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
 LoKi_Jpsi.Variables =  {
       "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    # , "DLS"                    : "DLS"  # decay length significance
     }
 
 LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
@@ -258,7 +253,7 @@ rd_selection = SimpleSelection (
 
 tuple_B2psiomega = rd_selection.algorithm()
 
-for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero"]:
+for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero", "gamma1", "gamma2"]:
     tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
@@ -289,9 +284,6 @@ for tup in tuples:
 
 from PhysSelPython.Wrappers import SelectionSequence
 rd_SEQ = SelectionSequence  ( 'DATA'  , rd_selection )
-# mc_SEQ = SelectionSequence  ( 'MC'    , mc_selection )
-
-
 
 
 ###################### DAVINCI SETTINGS ############################################
@@ -304,16 +296,15 @@ if MODE == 'MC':
     sim = True
 
 daVinci = DaVinci (
-    EvtMax             = EVTMAX            ,
-    RootInTES          = rootInTES         ,
-    InputType          = "MDST"            ,
-    TupleFile          = "DVTuples1.root"  ,
-    HistogramFile      = 'DVHistos.root'   ,
-    DataType           = "2011"            ,
-    Simulation         = sim               ,
-    Lumi               = lum               ,
-    # UserAlgorithms     =  [ rd_SEQ.sequence() , mc_SEQ.sequence() ] ,
-    UserAlgorithms     =  [ rd_SEQ.sequence() ] ,
+      EvtMax             = EVTMAX
+    , RootInTES          = rootInTES
+    , InputType          = "MDST"
+    , TupleFile          = "DVTuples1.root"
+    , HistogramFile      = 'DVHistos.root'
+    , DataType           = "2011"
+    , Simulation         = sim
+    , Lumi               = lum
+    , UserAlgorithms     =  [rd_SEQ.sequence()]
     )
 
 MessageSvc().Format = "% F%60W%S%7W%R%T %0W%M"
