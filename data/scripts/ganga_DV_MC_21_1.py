@@ -169,7 +169,7 @@ if len(data.files) < 1:
 debug = 0
 
 max_files = -1
-files_per_job = 4
+files_per_job = 1
 if debug:
     max_files = 2
     files_per_job = 2
