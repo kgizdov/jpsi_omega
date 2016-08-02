@@ -2,7 +2,7 @@
 
 ### Setup Ganga
 LbLogin.sh
-SetupProject.sh Ganga
+source SetupProject.sh Ganga
 
 ### Check if proxy is setup
 lhcb-proxy-info | grep -i timeleft
