@@ -7,6 +7,12 @@
 # TFile * file = TFile::Open("root://eoslhcb.cern.ch//eos/lhcb/user/k/kgizdov/jpsi_omega/data/2011/DVTuples_new.root")
 
 # # MC with cuts stats
+# total:          366588      +/- 605.465
+# accepted:       16555       +/- 128.666
+# rejected:       350033      +/- 591.636
+# efficiency:     0.0451597   +/- 0.000342967
+# reject. rate:   0.95484     +/- 0.000342967
+# OLD
 # total:          366588      +/-   605.465
 # accepted:       30171       +/-   173.698
 # rejected:       336417      +/-   580.015
@@ -20,6 +26,12 @@
 # reject. rate:   0.910332    +/- 0.000475479
 
 # # Data with cuts stats
+# total:          1.60327e+07 +/- 4004.09
+# accepted:       7720        +/- 87.8635
+# rejected:       1.6025e+07  +/- 4003.13
+# efficiency:     0.000481515 +/- 5.47894e-06
+# reject. rate:   0.999518    +/- 5.47894e-06
+# OLD
 # total:          1.60327e+07 +/- 4004.09
 # accepted:       38122       +/- 195.249
 # rejected:       1.59946e+07 +/- 3999.33
