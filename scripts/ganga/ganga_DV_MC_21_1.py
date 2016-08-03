@@ -3,6 +3,8 @@
 # Konstantin Gizdov
 
 import sys
+import os
+curr_dir = os.getcwd()
 
 # sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/stripping_lib')
 # sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python')
@@ -26,10 +28,11 @@ if magnet not in ['MagDown', 'MagUp']:
     sys.exit()
 
 if mode == 'norm':
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/DV_Lb2chicpK_norm_' + year + '_MC_21.py'
+    script = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts/davinci/DV_Lb2chicpK_norm_' + year + '_MC_21.py'
 else:
-    # script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV_B2psiomega_' + year + '_MC_21.py'
-    script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/mc_' + year + '.py'
+    # script = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts/davinci/DV_B2psiomega_' + year + '_MC_21.py'
+    # script = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts/davinci/mc_' + year + '.py'
+    script = str(curr_dir) + '/davinci/mc_' + year + '.py'
 
 # job_name = 'MC' + str(year) + mode + magnet
 job_name = 'MC' + str(year)[2:] + mode

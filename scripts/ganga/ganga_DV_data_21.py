@@ -3,6 +3,8 @@
 # Konstantin Gizdov
 
 import sys
+import os
+curr_dir = os.getcwd()
 
 year = sys.argv[1]
 mode = sys.argv[2]
@@ -18,8 +20,9 @@ if mode != 'b2':
 if mode == 'norm': middle = '_norm_'
 if mode == 'b2': middle = '_B2psiomega_'
 
-# script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python/DV' + middle + year + end  # fix path to script
-script='/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/data/python/data_' + year + '.py'  # fix path to script
+# script = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts/davinci/DV' + middle + year + end  # fix path to script
+# script = '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts/davinci/data_' + year + '.py'  # fix path to script
+script = str(curr_dir) + '/davinci/data_' + year + '.py'  # fix path to script
 
 job_name = 'B2JpOm' + str(year)[2:] + 'data'
 print ('Job Name: ' + str(job_name))
