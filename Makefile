@@ -1,7 +1,9 @@
 SUBDIRS = common analysis
-SUBDIRSCLEAN=$(addsuffix .clean,$(SUBDIRS))
+SUBDIRSCLEAN = $(addsuffix .clean,$(SUBDIRS))
 
-.PHONY: subdirs $(SUBDIRS) $(SUBDIRSCLEAN) clean
+.PHONY: all subdirs $(SUBDIRS) $(SUBDIRSCLEAN) message clean
+
+all: subdirs message
 
 subdirs: $(SUBDIRS)
 
@@ -9,6 +11,11 @@ $(SUBDIRS):
 	$(MAKE) -C $@
 
 analysis: common
+
+message:
+	@echo '#########################################'
+	@echo '############### COMPLETED ###############'
+	@echo '#########################################'
 
 clean: $(SUBDIRSCLEAN)
 
