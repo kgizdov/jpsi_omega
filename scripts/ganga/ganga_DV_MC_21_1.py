@@ -8,9 +8,9 @@ import sys
 # sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/python')
 # sys.path.insert(1, '/afs/cern.ch/work/k/kgizdov/Git/jpsi_omega/scripts')
 
-year = sys.argv[1]
-mode = sys.argv[2]
-magnet = sys.argv[3]
+year    = sys.argv[1]
+mode    = sys.argv[2]
+magnet  = sys.argv[3]
 
 if mode not in ['BdJpOm', 'norm', 'signal', 'background_Bd', 'Bu_JpsiX', 'Bd_JpsiX', 'Bs_JpsiX', 'Lb_JpsiX', 'b2']: sys.exit()
 if year not in ['2011', '2012']:
@@ -169,21 +169,22 @@ if len(data.files) < 1:
 debug = 0
 
 max_files = -1
-files_per_job = 4
+files_per_job = 1
 if debug:
     max_files = 2
-    files_per_job = 2
+    files_per_job = 1
 print ('Max Files =' + str(max_files))
+print ('Files Per Job = ' + str(files_per_job))
 
 j = Job(
-    name           = job_name,
-    application    = DV,
-    splitter       = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files), #set to 1 for debugging, was 20
-    inputdata      = data,
-    outputfiles     = [LocalFile("*.root")],
-    do_auto_resubmit = True,
-    backend        = Dirac()  # Local() for quick debugging, Dirac() for online
-    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+      name              = job_name
+    , application       = DV
+    , splitter          = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files)
+    , inputdata         = data
+    , outputfiles       = [LocalFile("*.root")]
+    , do_auto_resubmit  = True
+    , backend           = Dirac()  # Local() for quick debugging, Dirac() for online
+    , postprocessors    = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
     )
 j.submit()
 

@@ -61,9 +61,9 @@ print data
 debug = 0
 max_files = -1
 files_per_job = 4
-if debug == 1:
+if debug:
     max_files = 2
-    files_per_job = 2
+    files_per_job = 1
 print ('Max Files = ' + str(max_files))
 print ('Files Per Job = ' + str(files_per_job))
 
@@ -72,16 +72,16 @@ if len(data.files) < 1:
     sys.exit()
 
 j = Job(
-    name           = job_name,
-    application    = DV,
-    splitter       = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files), # set maxFiles = 1 when debugging and -1 otherwise
-    inputdata      = data,
-    outputfiles     = [LocalFile("*.root")],
-    do_auto_resubmit = True,
-    backend        = Dirac(),  # Local() for quick debugging, Dirac() for online
-    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True )]
-    # postprocessors = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
-    # postprocessors = [SmartMerger( files = ['DVTuples1.root'], ignorefailed = True )]
+      name              = job_name
+    , application       = DV
+    , splitter          = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files)
+    , inputdata         = data
+    , outputfiles       = [LocalFile("*.root")]
+    , do_auto_resubmit  = True
+    , backend           = Dirac()  # Local() for quick debugging, Dirac() for online
+    # , postprocessors    = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True )]
+    # , postprocessors    = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
+    # , postprocessors    = [SmartMerger( files = ['DVTuples1.root'], ignorefailed = True )]
     )
 j.submit()
 
