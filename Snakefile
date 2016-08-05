@@ -10,13 +10,13 @@ SBPTMASSPLOTS = ["plots/comparison/%s_HighPTcut_comparison.pdf" % (i) for i in [
 B_VARS =     ["%s" % (i) for i in ["B0_M", "B0_DTF_MASS_constr", "B0_PT", "B0_DTF_CTAU", "B0_DTF_CHI2NDOF", "B0_ETA", "B0_IPCHI2_OWNPV", "B0_VCHI2NDOF"]]
 B_WRANGE =   ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 5100 -u 5600", "-l 14500 -u 25000", "-l 0.150 -u 1", "-l 0 -u 5", "-l 2 -u 6", "-l 0 -u 10", "-l 0 -u 5"]]
 B_NRANGE =   ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 5100 -u 5600", "-l 0 -u 10000", "-l 0.150 -u 1", "-l 0 -u 5", "-l 2 -u 6", "-l 0 -u 10", "-l 0 -u 5"]]
-# B_TITLE =    ["%s" % (i) for i in ["#it{{m}}(#it{{J#psi#omega}})", "#it{{m}}(#it{{J#psi#omega}})", "#it{{P_{{T}}}}(#it{{J#psi#omega}})", "#it{{c}}#tau(#it{{J#psi#omega}})"
-#                                   ,"#it{{#chi^{{2}}/ndf}}(#it{{J#psi#omega}})", "#it{{#eta}}(#it{{J#psi#omega}})", "#it{{IP#chi^{{2}}}}(#it{{J#psi#omega}})", "#it{{VX#chi^{{2}}/ndf}}(#it{{J#psi#omega}})"]]
+# B_TITLE =    ["%s" % (i) for i in ["#it{{m}}(#it{{J{#psi}#omega}})", "#it{{m}}(#it{{J{#psi}#omega}})", "#it{{P_{{T}}}}(#it{{J{#psi}#omega}})", "#it{{c}}#tau(#it{{J{#psi}#omega}})"
+#                                   ,"#it{{#chi^{{2}}/ndf}}(#it{{J{#psi}#omega}})", "#it{{#eta}}(#it{{J{#psi}#omega}})", "#it{{IP#chi^{{2}}}}(#it{{J{#psi}#omega}})", "#it{{VX#chi^{{2}}/ndf}}(#it{{J{#psi}#omega}})"]]
 # B_UNIT =     ["%s" % (i) for i in ["MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}", "#it{{mm}}", " ", " ", " ", " "]]
-B_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{B^{0}})" """, """ "#it{m}(#it{J#psi#pi^{+}#pi^{-}#pi^{0}})" """
-                                  ,""" "#it{P_{T}}(#it{J#psi#omega})" """, """ "#it{c}#tau(#it{J#psi#omega})" """
-                                  ,""" "#it{#chi^{2}/ndf}(#it{J#psi#omega})" """, """ "#it{#eta}(#it{J#psi#omega})" """
-                                  ,""" "#it{IP#chi^{2}}(#it{J#psi#omega})" """, """ "#it{VX#chi^{2}/ndf}(#it{J#psi#omega})" """]]
+B_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{B^{0}})" """, """ "#it{m}(#it{J{#psi}#pi^{+}#pi^{-}#pi^{0}})" """
+                                  ,""" "#it{P_{T}}(#it{J{#psi}#omega})" """, """ "#it{c}#tau(#it{J{#psi}#omega})" """
+                                  ,""" "#it{#chi^{2}/ndf}(#it{J{#psi}#omega})" """, """ "#it{#eta}(#it{J{#psi}#omega})" """
+                                  ,""" "#it{IP#chi^{2}}(#it{J{#psi}#omega})" """, """ "#it{VX#chi^{2}/ndf}(#it{J{#psi}#omega})" """]]
 B_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """
                                   ,""" "MeV/#it{c}" """, """ "#it{mm}" """, """ " " """, """ " " """, """ " " """, """ " " """]]
 B_PLOTN =    ["plots/comparison/B/%s_comparison" % (i) for i in B_VARS]
@@ -28,9 +28,9 @@ B_PT_PLOTS = ["plots/comparison/B/%s_HighPTcut_comparison.pdf" % (i) for i in B_
 JP_VARS =     ["%s" % (i) for i in ["Jpsi_M", "Jpsi_InvMass", "Jpsi_BPVDLS", "Jpsi_PT", "Jpsi_OWNPV_CHI2", "Jpsi_IPCHI2_OWNPV", "Jpsi_ENDVERTEX_CHI2"]]
 JP_WRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 3050 -u 3150", "-l 3 -u 200", "-l 4500 -u 15000", "-l 0 -u 100", "-l 0 -u 1000", "-l 0 -u 20"]]
 JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 3050 -u 3150", "-l 3 -u 200", "-l 0 -u 6000", "-l 0 -u 60", "-l 0 -u 300", " -l 0 -u 20"]]
-JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J#psi})" """, """ "#it{m}(#it{#mu^{+}#mu^{-}})" """, """ "#it{DLS}(#it{#mu^{+}#mu^{-}})" """
-                                   ,""" "#it{P_{T}}(#it{J#psi})" """, """ "#it{OWNPV#chi^{2}}(#it{J#psi})" """, """ "#it{IP#chi^{2}}(#it{J#psi})" """
-                                   ,""" "#it{VX#chi^{2}}(#it{J#psi})" """]]
+JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J{#psi}})" """, """ "#it{m}(#it{#mu^{+}#mu^{-}})" """, """ "#it{DLS}(#it{#mu^{+}#mu^{-}})" """
+                                   ,""" "#it{P_{T}}(#it{J{#psi}})" """, """ "#it{OWNPV#chi^{2}}(#it{J{#psi}})" """, """ "#it{IP#chi^{2}}(#it{J{#psi}})" """
+                                   ,""" "#it{VX#chi^{2}}(#it{J{#psi}})" """]]
 JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ " " """, """ "MeV/#it{c}" """, """ " " """
                                    ,""" " " """, """ " " """]]
 JP_PLOTN =    ["plots/comparison/JP/%s_comparison" % (i) for i in JP_VARS]
