@@ -15,10 +15,10 @@ B_NRANGE =   ["%s" % (i) for i in ["-l 5100 -u 5600", "-l 5100 -u 5600", "-l 0 -
 # B_UNIT =     ["%s" % (i) for i in ["MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}^{{2}}", "MeV/#it{{c}}", "#it{{mm}}", " ", " ", " ", " "]]
 B_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{B^{0}})" """, """ "#it{m}(#it{J/^{}#psi#pi^{+}#pi^{-}#pi^{0}})" """
                                   ,""" "#it{P_{T}^{}}(#it{J/^{}#psi#omega})" """, """ "#it{c#tau}(#it{J/^{}#psi#omega})" """
-                                  ,""" "#it{#chi^{2}/^{}ndf}(#it{J^{}#psi#omega})" """, """ "#it{#eta}(#it{J/^{}#psi#omega})" """
+                                  ,""" "#it{#chi^{2}/^{}ndf}(#it{J/^{}#psi#omega})" """, """ "#it{#eta}(#it{J/^{}#psi#omega})" """
                                   ,""" "#it{IP #chi^{2}}(#it{J/^{}#psi#omega})" """, """ "#it{VX #chi^{2}/^{}ndf}(#it{J/^{}#psi#omega})" """]]
 B_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """
-                                  ,""" "MeV/#it{c}" """, """ "#it{mm}" """, """ "-" """, """ "-" """, """ "-" """, """ "-" """]]
+                                  ,""" "MeV/#it{c}" """, """ "#it{mm}" """, """ "none" """, """ "none" """, """ "none" """, """ "none" """]]
 B_PLOTN =    ["plots/comparison/B/%s" % (i) for i in B_VARS]
 B_PLOTS =    ["plots/comparison/B/%s.pdf" % (i) for i in B_VARS]
 B_PT_PLOTN = ["plots/comparison/B/%s_HighPTcut" % (i) for i in B_VARS]
@@ -31,8 +31,8 @@ JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 3050 -u 3150", "-l 3 
 JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J/^{}#psi})" """, """ "#it{m}(#it{#mu^{+}#mu^{-}})" """, """ "#it{DLS}(#it{{#mu}^{+}{#mu}^{-}})" """
                                    ,""" "#it{P_{T}}(#it{J/^{}#psi})" """, """ "#it{OWNPV #chi^{2}}(#it{J/^{}#psi})" """, """ "#it{IP #chi^{2}}(#it{J/^{}#psi})" """
                                    ,""" "#it{VX #chi^{2}}(#it{J/^{}#psi})" """]]
-JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "-" """, """ "MeV/#it{c}" """, """ "-" """
-                                   ,""" "-" """, """ "-" """]]
+JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "none" """, """ "MeV/#it{c}" """, """ "none" """
+                                   ,""" "none" """, """ "none" """]]
 JP_PLOTN =    ["plots/comparison/JP/%s" % (i) for i in JP_VARS]
 JP_PLOTS =    ["plots/comparison/JP/%s.pdf" % (i) for i in JP_VARS]
 JP_PT_PLOTN = ["plots/comparison/JP/%s_HighPTcut" % (i) for i in JP_VARS]
@@ -45,7 +45,7 @@ MU_NRANGE =   ["%s" % (i) for i in ["-l 550 -u 10000", "-l 0 -u 3.5", "-l 0 -u 1
 MU_TITLE =    ["%s" % (i) for i in [""" "#it{P_{T}}(#it{#mu^{+}})" """, """ "#it{TRACK #chi^{2}}(#it{#mu^{+}})" """
                                    ,""" "#it{PIDmu}(#it{#mu^{+}})" """, """ "#it{P_{T}}(#it{#mu^{-}})" """
                                    ,""" "#it{TRACK #chi^{2}}(#it{#mu^{-}})" """, """ "#it{PIDmu}(#it{#mu^{-}})" """]]
-MU_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ "-" """, """ "-" """, """ "MeV/#it{c}" """, """ "-" """, """ "-" """]]
+MU_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ "none" """, """ "none" """, """ "MeV/#it{c}" """, """ "none" """, """ "none" """]]
 MU_PLOTN =    ["plots/comparison/MU/%s" % (i) for i in MU_VARS]
 MU_PLOTS =    ["plots/comparison/MU/%s.pdf" % (i) for i in MU_VARS]
 MU_PT_PLOTN = ["plots/comparison/MU/%s_HighPTcut" % (i) for i in MU_VARS]
@@ -59,7 +59,7 @@ OM_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{#omega})" """, """ "#it{m}(#
                                    ,""" "#it{Error m}(#it{#pi^{+}#pi^{-}#pi^{0}})" """, """ "#it{P_{T}}(#it{#omega})" """
                                    ,""" "#it{PV #chi^{2}}(#it{#omega})" """, """ "#it{IP #chi^{2}}(#it{#omega})" """]]
 OM_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "MeV/#it{c}" """
-                                   ,""" "-" """, """ "-" """]]
+                                   ,""" "none" """, """ "none" """]]
 OM_PLOTN =    ["plots/comparison/OM/%s" % (i) for i in OM_VARS]
 OM_PLOTS =    ["plots/comparison/OM/%s.pdf" % (i) for i in OM_VARS]
 OM_PT_PLOTN = ["plots/comparison/OM/%s_HighPTcut" % (i) for i in OM_VARS]
@@ -72,7 +72,7 @@ PI_NRANGE =   ["%s" % (i) for i in ["-l 250 -u 6000", "-l 0 -u 3.5", "-l -100 -u
 PI_TITLE =    ["%s" % (i) for i in [""" "#it{P_{T}}(#it{#pi^{+}})" """, """ "#it{TRACK{#chi}^{2}}(#it{#pi^{+}})" """
                                    ,""" "#it{PIDK}(#it{#pi^{+}})" """, """ "#it{P_{T}}(#it{#pi^{-}})" """
                                    ,""" "#it{TRACK{#chi}^{2}}(#it{#pi^{-}})" """, """ "#it{PIDK}(#it{#pi^{-}})" """]]
-PI_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ "-" """, """ "-" """, """ "MeV/#it{c}" """, """ "-" """, """ "-" """]]
+PI_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ "none" """, """ "none" """, """ "MeV/#it{c}" """, """ "none" """, """ "none" """]]
 PI_PLOTN =    ["plots/comparison/PI/%s" % (i) for i in PI_VARS]
 PI_PLOTS =    ["plots/comparison/PI/%s.pdf" % (i) for i in PI_VARS]
 PI_PT_PLOTN = ["plots/comparison/PI/%s_HighPTcut" % (i) for i in PI_VARS]
@@ -395,4 +395,8 @@ rule build:
 
 rule clean:
     shell:
-        "make clean && rm {B_PLOTS} {B_PT_PLOTS} {JP_PLOTS} {JP_PT_PLOTS} {MU_PLOTS} {MU_PT_PLOTS} {OM_PLOTS} {OM_PT_PLOTS} {PI_PLOTS} {PI_PT_PLOTS} {PZ_PLOTS} {PZ_PT_PLOTS}"
+        "make clean && rm {B_PLOTS} {JP_PLOTS} {MU_PLOTS} {OM_PLOTS} {PI_PLOTS} {PZ_PLOTS}"
+
+rule clean-pt:
+    shell:
+        "rm {B_PT_PLOTS} {JP_PT_PLOTS} {MU_PT_PLOTS} {OM_PT_PLOTS} {PI_PT_PLOTS} {PZ_PT_PLOTS}"
