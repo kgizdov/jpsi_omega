@@ -23,7 +23,7 @@ stages:
 build:
     stage: build
     script:
-        - snakemake build --cores
+        - snakemake build -p --cores
     # only:  # run only on these
         # - master
     # except:  # skip branches
@@ -38,7 +38,7 @@ build:
 plot_b:
     stage: plot
     script:
-        - snakemake b_plots --cores
+        - snakemake b_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -49,24 +49,24 @@ plot_b:
         paths:
             - plots/comparison/B
 
-plot_b_pt:
-    stage: plot
-    script:
-        - snakemake b_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/B
+# plot_b_pt:
+#     stage: plot
+#     script:
+#         - snakemake b_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/B
 
 plot_jp:
     stage: plot
     script:
-        - snakemake jp_plots --cores
+        - snakemake jp_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -77,24 +77,24 @@ plot_jp:
         paths:
             - plots/comparison/JP
 
-plot_jp_pt:
-    stage: plot
-    script:
-        - snakemake jp_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/JP
+# plot_jp_pt:
+#     stage: plot
+#     script:
+#         - snakemake jp_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/JP
 
 plot_mu:
     stage: plot
     script:
-        - snakemake mu_plots --cores
+        - snakemake mu_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -105,24 +105,24 @@ plot_mu:
         paths:
             - plots/comparison/MU
 
-plot_mu_pt:
-    stage: plot
-    script:
-        - snakemake mu_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/MU
+# plot_mu_pt:
+#     stage: plot
+#     script:
+#         - snakemake mu_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/MU
 
 plot_om:
     stage: plot
     script:
-        - snakemake om_plots --cores
+        - snakemake om_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -133,24 +133,24 @@ plot_om:
         paths:
             - plots/comparison/OM
 
-plot_om_pt:
-    stage: plot
-    script:
-        - snakemake om_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/OM
+# plot_om_pt:
+#     stage: plot
+#     script:
+#         - snakemake om_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/OM
 
 plot_pi:
     stage: plot
     script:
-        - snakemake pi_plots --cores
+        - snakemake pi_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -161,24 +161,24 @@ plot_pi:
         paths:
             - plots/comparison/PI
 
-plot_pi_pt:
-    stage: plot
-    script:
-        - snakemake pi_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/PI
+# plot_pi_pt:
+#     stage: plot
+#     script:
+#         - snakemake pi_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/PI
 
 plot_pz:
     stage: plot
     script:
-        - snakemake pz_plots --cores
+        - snakemake pz_plots -p --cores
     cache:
         paths:
             - analysis/bin
@@ -189,16 +189,16 @@ plot_pz:
         paths:
             - plots/comparison/PZ
 
-plot_pz_pt:
-    stage: plot
-    script:
-        - snakemake pz_pt_plots --cores
-    cache:
-        paths:
-            - analysis/bin
-            - common/lib
-    only:
-        - master
-    artifacts:
-        paths:
-            - plots/comparison/PZ
+# plot_pz_pt:
+#     stage: plot
+#     script:
+#         - snakemake pz_pt_plots -p --cores
+#     cache:
+#         paths:
+#             - analysis/bin
+#             - common/lib
+#     only:
+#         - master
+#     artifacts:
+#         paths:
+#             - plots/comparison/PZ
