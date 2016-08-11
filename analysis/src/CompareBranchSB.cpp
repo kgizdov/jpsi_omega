@@ -114,15 +114,18 @@ void CompareBranch(string MCfilename, string REfilename, string branchname,
         h_MCdata->GetY()[i]   /= MCint;
         h_MCdata_s->GetY()[i] /= MCint;
         h_MCdata_b->GetY()[i] /= MCint;
+        h_MCdata->GetY()[i]   *= REint;
+        h_MCdata_s->GetY()[i] *= REint;
+        h_MCdata_b->GetY()[i] *= REint;
         bincontent.push_back(h_MCdata->GetY()[i]);
         bincontent.push_back(h_MCdata_b->GetY()[i]);
         bincontent.push_back(h_MCdata_s->GetY()[i]);
     }
     // Normalise to unity
     for (int i = 0; i < h_REdata->GetN(); i++) {
-        h_REdata->GetY()[i]      /= REint;
-        h_REdata->GetEYhigh()[i] /= REint;
-        h_REdata->GetEYlow()[i]  /= REint;
+        // h_REdata->GetY()[i]      /= REint;
+        // h_REdata->GetEYhigh()[i] /= REint;
+        // h_REdata->GetEYlow()[i]  /= REint;
         bincontent.push_back(h_REdata->GetY()[i]);
     }
     // Set a sensible maximum so the blurb doesn't sit on top of data points
