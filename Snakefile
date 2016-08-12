@@ -397,6 +397,6 @@ rule clean:
     shell:
         "make clean && rm {B_PLOTS} {JP_PLOTS} {MU_PLOTS} {OM_PLOTS} {PI_PLOTS} {PZ_PLOTS}"
 
-rule clean-pt:
+rule clean_pt:
     shell:
         "rm {B_PT_PLOTS} {JP_PT_PLOTS} {MU_PT_PLOTS} {OM_PT_PLOTS} {PI_PT_PLOTS} {PZ_PT_PLOTS}"
