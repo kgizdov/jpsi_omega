@@ -2,6 +2,7 @@ analysis/bin/*
 datastore*
 debug/
 *.bin
+*.log
 *.o
 *.pdf
 *.ppt

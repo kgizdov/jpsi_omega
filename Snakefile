@@ -28,7 +28,7 @@ B_PT_PLOTS = ["plots/comparison/B/%s_HighPTcut.pdf" % (i) for i in B_VARS]
 JP_VARS =     ["%s" % (i) for i in ["Jpsi_M", "Jpsi_InvMass", "Jpsi_BPVDLS", "Jpsi_PT", "Jpsi_OWNPV_CHI2", "Jpsi_IPCHI2_OWNPV", "Jpsi_ENDVERTEX_CHI2"]]
 JP_WRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 3050 -u 3150", "-l 3 -u 200", "-l 4500 -u 15000", "-l 0 -u 100", "-l 0 -u 1000", "-l 0 -u 20"]]
 JP_NRANGE =   ["%s" % (i) for i in ["-l 3050 -u 3150", "-l 3050 -u 3150", "-l 3 -u 200", "-l 0 -u 6000", "-l 0 -u 60", "-l 0 -u 300", " -l 0 -u 20"]]
-JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J/^{}#psi})" """, """ "#it{m}(#it{#mu^{+}#mu^{-}})" """, """ "#it{DLS}(#it{{#mu}^{+}{#mu}^{-}})" """
+JP_TITLE =    ["%s" % (i) for i in [""" "#it{m}(#it{J/^{}#psi})" """, """ "#it{m}(#it{#mu^{+}#mu^{-}})" """, """ "#it{DLS}(#it{#mu^{+}#mu^{-}})" """
                                    ,""" "#it{P_{T}}(#it{J/^{}#psi})" """, """ "#it{OWNPV #chi^{2}}(#it{J/^{}#psi})" """, """ "#it{IP #chi^{2}}(#it{J/^{}#psi})" """
                                    ,""" "#it{VX #chi^{2}}(#it{J/^{}#psi})" """]]
 JP_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}^{2}" """, """ "MeV/#it{c}^{2}" """, """ "none" """, """ "MeV/#it{c}" """, """ "none" """
@@ -69,9 +69,9 @@ OM_PT_PLOTS = ["plots/comparison/OM/%s_HighPTcut.pdf" % (i) for i in OM_VARS]
 PI_VARS =     ["%s" % (i) for i in ["piplus_PT", "piplus_TRACK_CHI2NDOF", "piplus_PIDK", "piminus_PT", "piminus_TRACK_CHI2NDOF", "piminus_PIDK"]]
 PI_WRANGE =   ["%s" % (i) for i in ["-l 250 -u 3000", "-l 0 -u 3.5", "-l -100 -u 0", "-l 250 -u 3000", "-l 0 -u 3.5", "-l -100 -u 0"]]
 PI_NRANGE =   ["%s" % (i) for i in ["-l 250 -u 6000", "-l 0 -u 3.5", "-l -100 -u 0", "-l 250 -u 6000", "-l 0 -u 3.5", "-l -100 -u 0"]]
-PI_TITLE =    ["%s" % (i) for i in [""" "#it{P_{T}}(#it{#pi^{+}})" """, """ "#it{TRACK{#chi}^{2}}(#it{#pi^{+}})" """
+PI_TITLE =    ["%s" % (i) for i in [""" "#it{P_{T}}(#it{#pi^{+}})" """, """ "#it{TRACK #chi^{2}}(#it{#pi^{+}})" """
                                    ,""" "#it{PIDK}(#it{#pi^{+}})" """, """ "#it{P_{T}}(#it{#pi^{-}})" """
-                                   ,""" "#it{TRACK{#chi}^{2}}(#it{#pi^{-}})" """, """ "#it{PIDK}(#it{#pi^{-}})" """]]
+                                   ,""" "#it{TRACK #chi^{2}}(#it{#pi^{-}})" """, """ "#it{PIDK}(#it{#pi^{-}})" """]]
 PI_UNIT =     ["%s" % (i) for i in [""" "MeV/#it{c}" """, """ "none" """, """ "none" """, """ "MeV/#it{c}" """, """ "none" """, """ "none" """]]
 PI_PLOTN =    ["plots/comparison/PI/%s" % (i) for i in PI_VARS]
 PI_PLOTS =    ["plots/comparison/PI/%s.pdf" % (i) for i in PI_VARS]
