@@ -3,21 +3,9 @@
 CC         = g++
 SHELL      = /bin/bash
 RM         = rm -f
-ROOTSYS    = /usr/local
-ifeq ($(USER), gizdov)
-	ROOTSYS = /usr
-endif
 
-# Include ROOT files as system headers as they're NOT standards complient and we do not want to waste time fixing them!
-# ROOT has some broken backwards compatability for OSX so won't claim to be a set of system headers
-ROOTCFLAGS = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --cflags | awk -F "-I" '{print $$1" -isystem"$$2}' )
-ifeq ($(USER), gizdov)
-	ROOTCFLAGS = -L$(ROOTSYS)/lib/root $(shell $(ROOTSYS)/bin/root-config --cflags | awk -F "-I" '{print $$1" -isystem"$$2}' )
-endif
-ROOTLIBS   = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --libs)
-ifeq ($(USER), gizdov)
-	ROOTLIBS   = -L$(ROOTSYS)/lib/root $(shell $(ROOTSYS)/bin/root-config --libs)
-endif
+ROOTCFLAGS = $(shell root-config --cflags)
+ROOTLIBS   = $(shell root-config --libs)
 EXTRA_ROOTLIBS=-lRooFit -lRooStats -lRooFitCore
 
 # Extensions
@@ -42,7 +30,7 @@ LIBS      := $(patsubst $(SRCDIR)/%.$(SRCEXT),$(LIBDIR)/lib%.$(LIBEXT),$(SRCS))
 OUTPUT     = $(OBJDIR)/*.$(OBJEXT) $(LIBDIR)/*.$(LIBEXT)
 
 # Compiler flags
-CXXFLAGS   = -Wall -Werror -fPIC -std=c++11 -I$(HDRDIR) $(ROOTCFLAGS)
+CXXFLAGS   = -Wall -Werror -fPIC -I$(HDRDIR) $(ROOTCFLAGS)
 LIBFLAGS   = -L$(LIBDIR) $(ROOTLIBS) $(EXTRA_ROOTLIBS)
 
 # Make the libraries

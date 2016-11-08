@@ -4,15 +4,9 @@ COMMONDIR  = $(PWD)/../common
 CC         = g++
 SHELL      = /bin/bash
 RM         = rm -f
-ROOTSYS    = /usr/local
-ifeq ($(USER), gizdov)
-	ROOTSYS = /usr
-endif
 
-# Include ROOT files as system headers as they're NOT standards complient and we do not want to waste time fixing them!
-# ROOT has some broken backwards compatability for OSX so won't claim to be a set of system headers
-ROOTCFLAGS = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --cflags | awk -F "-I" '{print $$1" -isystem"$$2}' )
-ROOTLIBS   = -L$(ROOTSYS)/lib $(shell $(ROOTSYS)/bin/root-config --libs)
+ROOTCFLAGS = $(shell root-config --cflags)
+ROOTLIBS   = $(shell root-config --libs)
 EXTRA_ROOTLIBS=-lRooFit -lRooStats -lRooFitCore
 
 # Extensions
@@ -48,7 +42,7 @@ COMLIBS   := $(shell find $(COMLIBDIR) -name '*.$(LIBEXT)')
 OUTPUT     = $(OBJDIR)/*/*.$(OBJEXT) $(OBJDIR)/*.$(OBJEXT) $(LIBDIR)/*.$(LIBEXT) $(BINDIR)/*
 
 # Compiler flags
-CXXFLAGS   = -Wall -fPIC -I$(HDRDIR) -I$(COMHDRDIR) $(ROOTCFLAGS) -std=c++11
+CXXFLAGS   = -Wall -fPIC -I$(HDRDIR) -I$(COMHDRDIR) $(ROOTCFLAGS)
 LIBFLAGS   = -L$(LIBDIR) -L$(COMLIBDIR) $(ROOTLIBS) -lboost_program_options $(EXTRA_ROOTLIBS)
 
 ## THIS WORKS
