@@ -298,10 +298,10 @@ if MODE == 'MC':
 daVinci = DaVinci (
       EvtMax             = EVTMAX
     , RootInTES          = rootInTES
-    , InputType          = "MDST"
-    , TupleFile          = "DVTuples1.root"
+    , InputType          = 'MDST'
+    , TupleFile          = 'BdJpsiOmega.root'
     , HistogramFile      = 'DVHistos.root'
-    , DataType           = "2011"
+    , DataType           = '2012'
     , Simulation         = sim
     , Lumi               = lum
     , UserAlgorithms     =  [rd_SEQ.sequence()]

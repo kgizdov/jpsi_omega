@@ -62,7 +62,7 @@ LbLogin -c x86_64-slc6-gcc48-opt
 /LHCb/Collision17/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco17/Stripping29r1/90000000/LEPTONIC.DST
 /LHCb/Collision17/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco17/Stripping29r1/90000000/LEPTONIC.DST
 
-## FOR WORK GROUP SELECTIONS USE WGBandQSelection11
+## FOR WORK GROUP SELECTIONS USE WGBandQSelection15, 11 is not available in Run2
 
 ## Cuts in PsiX0, SelB2PsiOmegaForPsiX0
 
@@ -82,7 +82,7 @@ Prescale: 1.0
 mb0_acut = in_range (4.50 * GeV, AM, 6.00 * GeV)
 
 # b2omega, B -> psi(') (omega -> 3pi)
-CombineParticles(self.psi(), self.omega ())
+CombineParticles(self.psi(), self.omega())
 DecayDescriptor: "B0 -> J/psi(1S) omega(782)"
 DaughtersCuts   = { 'omega(782)' : ' PT > %s ' % self['X0PT'] }
 CombinationCut  = "mb0_acut"

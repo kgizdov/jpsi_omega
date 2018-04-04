@@ -11,7 +11,7 @@ mode = sys.argv[2]
 
 end = '.py'
 if mode not in ['norm', 'b2']: sys.exit()
-if year not in ['2011', '2012']:
+if year not in ['2011', '2012', '2015', '2016', '2017']:
     print "\n## THIS SCRIPT IS FOR 2011 & 2012 ONLY ##\n"
     sys.exit()
 if mode != 'b2':
@@ -28,25 +28,47 @@ job_name = 'B2JpOm' + str(year)[2:] + 'data'
 print ('Job Name: ' + str(job_name))
 print ('Script: ' + script)
 
-DV = DaVinci()
-# DV.version = 'v36r7p7'  # latest is v38r1p1, was set to v36r3p1, working is v36r7p7
-DV.version = 'v39r1'  # latest is v38r1p1, was set to v36r3p1, working is v36r7p7
-# DV.version = 'v35r0'  # latest is v38r1p1, was v36r1, working now is v36r7p7
-# DV.platform = 'x86_64-slc6-gcc48-opt' # necessary for the older version of DaVinci
-DV.optsfile = [File(script)]
+# DV = DaVinci()
+# # DV.version = 'v36r7p7'  # latest is v38r1p1, was set to v36r3p1, working is v36r7p7
+# # DV.version = 'v35r0'  # latest is v38r1p1, was v36r1, working now is v36r7p7
+# # DV.platform = 'x86_64-slc6-gcc48-opt' # necessary for the older version of DaVinci
+# DV.version = 'v39r1'  # latest is v38r1p1, was set to v36r3p1, working is v36r7p7
+# DV.optsfile = [File(script)]
+
+## new style preferred
+DV = GaudiExec(directory = '/afs/cern.ch/work/k/kgizdov/Git/DaVinciDev_v42r5p1')  # run a patched version for now
+DV.options = [script]
 
 
 BK_locations = []
 
 if year == '2011':
     BK_locations = [
-        '/LHCb/Collision11/Beam3500GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21r1/WGBandQSelection11/90000000/PSIX0.MDST'
-        ,'/LHCb/Collision11/Beam3500GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21r1/WGBandQSelection11/90000000/PSIX0.MDST'
+        '/LHCb/Collision11/Beam3500GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21r1/WGBandQSelection15/90000000/PSIX0.MDST'
+        , '/LHCb/Collision11/Beam3500GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21r1/WGBandQSelection15/90000000/PSIX0.MDST'
     ]
 if year == '2012':
     BK_locations = [
-        '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/WGBandQSelection11/Merge/90000000/PSIX0.MDST'
-        ,'/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/WGBandQSelection11/Merge/90000000/PSIX0.MDST'
+        '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/WGBandQSelection15/Merge/90000000/PSIX0.MDST'
+        , '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/WGBandQSelection15/Merge/90000000/PSIX0.MDST'
+    ]
+
+if year == '2015':
+    BK_locations = [
+        '/LHCb/Collision15/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco15a/Stripping24r1/WGBandQSelection15/90000000/PSIX0.MDST'
+        , '/LHCb/Collision15/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco15a/Stripping24r1/WGBandQSelection15/90000000/PSIX0.MDST'
+    ]
+
+if year == '2016':
+    BK_locations = [
+        '/LHCb/Collision16/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco16/Stripping28r1/WGBandQSelection15/90000000/PSIX0.MDST'
+        , '/LHCb/Collision16/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco16/Stripping28r1/WGBandQSelection15/90000000/PSIX0.MDST'
+    ]
+
+if year == '2017':
+    BK_locations = [
+        '/LHCb/Collision17/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco17/Stripping29r2/WGBandQSelection15/90000000/PSIX0.MDST'
+        , '/LHCb/Collision17/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco17/Stripping29r2/WGBandQSelection15/90000000/PSIX0.MDST'
     ]
 
 data = LHCbDataset()
@@ -79,12 +101,13 @@ j = Job(
     , application       = DV
     , splitter          = SplitByFiles(filesPerJob = files_per_job, maxFiles = max_files)
     , inputdata         = data
-    , outputfiles       = [LocalFile("*.root")]
+    , outputfiles       = [ DiracFile(namePattern = "*.root", defaultSE = "CERN-USER")
+                          , LocalFile('summary.xml')
+                          ]
     , do_auto_resubmit  = True
     , backend           = Dirac()  # Local() for quick debugging, Dirac() for online
-    # , postprocessors    = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True )]
-    # , postprocessors    = [RootMerger( files = ['DVTuples1.root'], ignorefailed = True, overwrite = True )]
-    # , postprocessors    = [SmartMerger( files = ['DVTuples1.root'], ignorefailed = True )]
+    , MaxNumResubmits   = 4  # seems reasonable
     )
+j.backend.settings['CPUTime'] = 1500000
+j.parallel_submit = True
 j.submit()
-
