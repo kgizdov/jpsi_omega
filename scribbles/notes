@@ -1,0 +1,141 @@
+stripping v8r2
+Davinci v35r0
+
+LbLogin -c x86_64-slc6-gcc48-opt
+#test
+
+## MC
+# 2011
+/MC/2011/Beam3500GeV-2011-MagDown-Nu2-Pythia8/Sim08h/Digi13/Trig0x40760037/Reco14c/Stripping21r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST
+/MC/2011/Beam3500GeV-2011-MagUp-Nu2-Pythia8/Sim08h/Digi13/Trig0x40760037/Reco14c/Stripping21r1NoPrescalingFlagged/11140400/ALLSTREAMS.DST
+# 2012
+/MC/2012/Beam4000GeV-2012-MagDown-Nu2.5-Pythia8/Sim08h/Digi13/Trig0x409f0045/Reco14c/Stripping21NoPrescalingFlagged/11140400/ALLSTREAMS.DST
+/MC/2012/Beam4000GeV-2012-MagUp-Nu2.5-Pythia8/Sim08h/Digi13/Trig0x409f0045/Reco14c/Stripping21NoPrescalingFlagged/11140400/ALLSTREAMS.DST
+
+# 2015
+/MC/2015/Beam6500GeV-2015-MagDown-Nu1.6-25ns-Pythia8/Sim09b/Trig0x411400a2/Reco15a/Turbo02/11442012/DST  # JpsiLeptonicAcceptance
+/MC/2015/Beam6500GeV-2015-MagUp-Nu1.6-25ns-Pythia8/Sim09b/Trig0x411400a2/Reco15a/Turbo02/11442012/DST  # JpsiLeptonicAcceptance
+
+/MC/2015/Beam6500GeV-2015-MagDown-Nu1.6-25ns-Pythia8/Sim09c/Trig0x411400a2/Reco15a/Turbo02/Stripping24r1NoPrescalingFlagged/11144008/ALLSTREAMS.MDST  # rho0
+/MC/2015/Beam6500GeV-2015-MagUp-Nu1.6-25ns-Pythia8/Sim09c/Trig0x411400a2/Reco15a/Turbo02/Stripping24r1NoPrescalingFlagged/11144008/ALLSTREAMS.MDST  # rho0
+
+# 2016
+/MC/2016/Beam6500GeV-2016-MagDown-Nu1.6-25ns-Pythia8/Sim09b/Trig0x6138160F/Reco16/Turbo03/11442012/DST  # JpsiLeptonicAcceptance
+/MC/2016/Beam6500GeV-2016-MagUp-Nu1.6-25ns-Pythia8/Sim09b/Trig0x6138160F/Reco16/Turbo03/11442012/DST  # JpsiLeptonicAcceptance
+
+/MC/2016/Beam6500GeV-2016-MagDown-Nu1.6-25ns-Pythia8/Sim09b/Trig0x6138160F/Reco16/Turbo03/Stripping26NoPrescalingFlagged/11442001/ALLSTREAMS.DST  # JpsiInAcceptance
+/MC/2016/Beam6500GeV-2016-MagUp-Nu1.6-25ns-Pythia8/Sim09b/Trig0x6138160F/Reco16/Turbo03/Stripping26NoPrescalingFlagged/11442001/ALLSTREAMS.DST  # JpsiInAcceptance
+
+## DATA
+# 2011
+/LHCb/Collision11/Beam3500GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21r1/90000000/DIMUON.DST
+/LHCb/Collision11/Beam3500GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21r1/90000000/DIMUON.DST
+
+/LHCb/Collision11/Beam3500GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21r1/90000000/LEPTONIC.DST
+/LHCb/Collision11/Beam3500GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21r1/90000000/LEPTONIC.DST
+
+# 2012
+/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/90000000/DIMUON.DST
+/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/90000000/DIMUON.DST
+
+/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping21/90000000/LEPTONIC.DST
+/LHCb/Collision12/Beam4000GeV-VeloClosed-MagUp/Real Data/Reco14/Stripping21/90000000/LEPTONIC.DST
+
+# 2015
+/LHCb/Collision15/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco15a/Stripping24r1/90000000/DIMUON.DST
+/LHCb/Collision15/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco15a/Stripping24r1/90000000/DIMUON.DST
+
+/LHCb/Collision15/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco15a/Stripping24r1/90000000/LEPTONIC.DST
+/LHCb/Collision15/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco15a/Stripping24r1/90000000/LEPTONIC.DST
+
+# 2016
+/LHCb/Collision16/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco16/Stripping28r1/90000000/DIMUON.DST
+/LHCb/Collision16/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco16/Stripping28r1/90000000/DIMUON.DST
+
+/LHCb/Collision16/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco16/Stripping28r1/90000000/LEPTONIC.DST
+/LHCb/Collision16/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco16/Stripping28r1/90000000/LEPTONIC.DST
+
+# 2017
+/LHCb/Collision17/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco17/Stripping29r1/90000000/DIMUON.DST
+/LHCb/Collision17/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco17/Stripping29r1/90000000/DIMUON.DST
+
+/LHCb/Collision17/Beam6500GeV-VeloClosed-MagDown/Real Data/Reco17/Stripping29r1/90000000/LEPTONIC.DST
+/LHCb/Collision17/Beam6500GeV-VeloClosed-MagUp/Real Data/Reco17/Stripping29r1/90000000/LEPTONIC.DST
+
+## FOR WORK GROUP SELECTIONS USE WGBandQSelection11
+
+## Cuts in PsiX0, SelB2PsiOmegaForPsiX0
+
+# Default cuts
+
+CheckPV(): True
+X0: PT > 1.2 * GeV
+CTAU: > 100 * micrometres
+GammaCut: PT > 250 * MeV
+PionCut: (PT > 200 * MeV) && (CLONEDIST > 5000) && (TRGHOSTPROB < 0.5) && (TRCHI2DOF < 4) && in_range(2, ETA, 5) && in_range(3.2 * GeV, P, 150 * GeV) && HASRICH && (MIPCHI2DV()  > 4)
+PionPIDCut: PROBNNpi > 0.1
+Pi0Cut: 250 * MeV < MINTREE ('gamma' == ID, PT)  # min PT of gamma is 250 MeV
+MuonCut: ISMUON && (PT > 550 * MeV) && (PIDmu - PIDpi > 0) && (CLONEDIST > 5000)
+Prescale: 1.0
+
+# Combination mass-cut for beauty particles
+mb0_acut = in_range (4.50 * GeV, AM, 6.00 * GeV)
+
+# b2omega, B -> psi(') (omega -> 3pi)
+CombineParticles(self.psi(), self.omega ())
+DecayDescriptor: "B0 -> J/psi(1S) omega(782)"
+DaughtersCuts   = { 'omega(782)' : ' PT > %s ' % self['X0PT'] }
+CombinationCut  = "mb0_acut"
+MotherCut       = """mb0_cut && (chi2vxndf < 10) && (ctau > %s)""" % self['CTAU']
+
+# pions, Pion cut
+if self['NOPIDHADRONS']:  # for MC
+    from StandardParticles import StdAllNoPIDsPions as inpts
+    pioncut = self['PionCut']
+else:
+    from StandardParticles import StdAllLooseANNPions as inpts
+    pioncut = "(%s)&(%s)" % (self['PionCut'], self['PionPIDCut'])
+
+## muons
+StdLooseMuons
+
+## gamma
+StdLooseAllPhotons
+
+## define proper pi0
+StdLoosePi02gg
+Pi0Cut
+
+## omega -> 3 pi
+def omega ( self ) :
+DaVinci__N3BodyDecays
+pions
+pi0
+DecayDescriptor = " omega(782) -> pi+ pi- pi0" ,
+Combination12Cut  = (AM < 1 * GeV) && (ACHI2DOCA(1, 2) < 12)
+CombinationCut  = (APT > %s) && (ADAMASS('omega(782)') < 100 * MeV) % (0.9 * min(self['X0PT'], self['X0PTK']))
+MotherCut       = (PT > %s) && (chi2vx < 9) % min(self['X0PT'], self['X0PTK'])
+Pi0Veto__Tagger2g
+MassWindow = 25 * MeV
+MassChi2 = -1
+ExtraInfoIndex = 25019  ## unique !
+
+## psi(') -> mu+ mu-
+dimu_lines = self['DIMUONLINES']
+if not dimu_lines :
+    CombineParticles
+    self.muons()
+    DecayDescriptor = " J/psi(1S) -> mu+ mu- "
+    DaughtersCuts = { 'mu+'   :  self [ 'MuonCut' ] },
+    CombinationCut  = (ADAMASS ('J/psi(1S)') < 120 * MeV) || (ADAMASS('psi(2S)') < 120 * MeV)
+    MotherCut = chi2vx < 20
+
+if 1 < len( dimu_lines ) :
+    lines = [ AutomaticData ( l ) for l in dimu_lines ]
+    sel = MergedSelection(sel_name, RequiredSelections = lines)
+    return self._add_selection(sel_tag, sel)
+
+## single line
+dimu_line = dimu_lines[0]
+sel = AutomaticData (dimu_line)
+return self._add_selection(sel_tag, sel)
