@@ -30,7 +30,7 @@ from Configurables import TupleToolMCBackgroundInfo
 from Configurables import TupleToolTISTOS, TriggerTisTos
 
 EVTMAX      = -1
-MODE        = "DATA"
+MODE        = 'DATA'
 OUTPUTLEVEL = ERROR
 LOC         = True
 
@@ -147,84 +147,84 @@ b2omega_selection = AutomaticData( location )
 # Now set up the DecayTreeTuples for the reconstructed particles
 #########################################################################################################
 tupletools = []
-tupletools.append("TupleToolKinematic")
-tupletools.append("TupleToolGeometry")
-tupletools.append("TupleToolTrackInfo")
-tupletools.append("TupleToolPid")
-tupletools.append("TupleToolRecoStats")
-tupletools.append("TupleToolEventInfo")
+tupletools.append('TupleToolKinematic')
+tupletools.append('TupleToolGeometry')
+tupletools.append('TupleToolTrackInfo')
+tupletools.append('TupleToolPid')
+tupletools.append('TupleToolRecoStats')
+tupletools.append('TupleToolEventInfo')
 triglist = [
-     "L0PhysicsDecision"
-    ,"L0MuonDecision"
-    ,"L0DiMuonDecision"
-    ,"L0MuonHighDecision"
-    ,"L0HadronDecision"
-    ,"L0ElectronDecision"
-    ,"L0PhotonDecision"
-    ,"Hlt1DiMuonHighMassDecision"
-    ,"Hlt1DiMuonLowMassDecision"
-    ,"Hlt1SingleMuonNoIPDecision"
-    ,"Hlt1SingleMuonHighPTDecision"
-    ,"Hlt1TrackAllL0Decision"
-    ,"Hlt1TrackMuonDecision"
-    ,"Hlt1TrackPhotonDecision"
-    ,"Hlt1L0AnyDecision"
-    ,"Hlt2SingleElectronTFLowPtDecision"
-    ,"Hlt2SingleElectronTFHighPtDecision"
-    ,"Hlt2DiElectronHighMassDecision"
-    ,"Hlt2DiElectronBDecision"
-    ,"Hlt2B2HHLTUnbiasedDecision"
-    ,"Hlt2Topo2BodySimpleDecision"
-    ,"Hlt2Topo3BodySimpleDecision"
-    ,"Hlt2Topo4BodySimpleDecision"
-    ,"Hlt2Topo2BodyBBDTDecision"
-    ,"Hlt2Topo3BodyBBDTDecision"
-    ,"Hlt2Topo4BodyBBDTDecision"
-    ,"Hlt2TopoMu2BodyBBDTDecision"
-    ,"Hlt2TopoMu3BodyBBDTDecision"
-    ,"Hlt2TopoMu4BodyBBDTDecision"
-    ,"Hlt2TopoE2BodyBBDTDecision"
-    ,"Hlt2TopoE3BodyBBDTDecision"
-    ,"Hlt2TopoE4BodyBBDTDecision"
-    ,"Hlt2MuonFromHLT1Decision"
-    ,"Hlt2DiMuonDecision"
-    ,"Hlt2DiMuonLowMassDecision"
-    ,"Hlt2DiMuonJPsiDecision"
-    ,"Hlt2DiMuonJPsiHighPTDecision"
-    ,"Hlt2DiMuonPsi2SDecision"
-    ,"Hlt2DiMuonBDecision"
+     'L0PhysicsDecision'
+    ,'L0MuonDecision'
+    ,'L0DiMuonDecision'
+    ,'L0MuonHighDecision'
+    ,'L0HadronDecision'
+    ,'L0ElectronDecision'
+    ,'L0PhotonDecision'
+    ,'Hlt1DiMuonHighMassDecision'
+    ,'Hlt1DiMuonLowMassDecision'
+    ,'Hlt1SingleMuonNoIPDecision'
+    ,'Hlt1SingleMuonHighPTDecision'
+    ,'Hlt1TrackAllL0Decision'
+    ,'Hlt1TrackMuonDecision'
+    ,'Hlt1TrackPhotonDecision'
+    ,'Hlt1L0AnyDecision'
+    ,'Hlt2SingleElectronTFLowPtDecision'
+    ,'Hlt2SingleElectronTFHighPtDecision'
+    ,'Hlt2DiElectronHighMassDecision'
+    ,'Hlt2DiElectronBDecision'
+    ,'Hlt2B2HHLTUnbiasedDecision'
+    ,'Hlt2Topo2BodySimpleDecision'
+    ,'Hlt2Topo3BodySimpleDecision'
+    ,'Hlt2Topo4BodySimpleDecision'
+    ,'Hlt2Topo2BodyBBDTDecision'
+    ,'Hlt2Topo3BodyBBDTDecision'
+    ,'Hlt2Topo4BodyBBDTDecision'
+    ,'Hlt2TopoMu2BodyBBDTDecision'
+    ,'Hlt2TopoMu3BodyBBDTDecision'
+    ,'Hlt2TopoMu4BodyBBDTDecision'
+    ,'Hlt2TopoE2BodyBBDTDecision'
+    ,'Hlt2TopoE3BodyBBDTDecision'
+    ,'Hlt2TopoE4BodyBBDTDecision'
+    ,'Hlt2MuonFromHLT1Decision'
+    ,'Hlt2DiMuonDecision'
+    ,'Hlt2DiMuonLowMassDecision'
+    ,'Hlt2DiMuonJPsiDecision'
+    ,'Hlt2DiMuonJPsiHighPTDecision'
+    ,'Hlt2DiMuonPsi2SDecision'
+    ,'Hlt2DiMuonBDecision'
 ]
 TISTOSTool = TupleToolTISTOS('TISTOSTool')
 TISTOSTool.VerboseL0   = True
 TISTOSTool.VerboseHlt1 = True
 TISTOSTool.VerboseHlt2 = True
 TISTOSTool.TriggerList = triglist[:]
-TISTOSTool.addTool( TriggerTisTos, name="TriggerTisTos")
+TISTOSTool.addTool(TriggerTisTos, name = 'TriggerTisTos')
 
-LoKi_B0 = LoKi__Hybrid__TupleTool("LoKi_B0")
+LoKi_B0 = LoKi__Hybrid__TupleTool('LoKi_B0')
 LoKi_B0.Variables =  {
-      "ETA"                    : "ETA"
-    , "PHI"                    : "PHI"
-    , "FDCHI2"                 : "BPVVDCHI2"
-    , "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    , "DIRA"                   : "BPVDIRA"
-    , "DTF_CTAU"               : "DTF_CTAU( 0, True )"
-    , "DTF_CTAUS"              : "DTF_CTAUSIGNIFICANCE( 0, True )"
-    , "DTF_CHI2NDOF"           : "DTF_CHI2NDOF( True )"
-    , "DTF_CTAUERR"            : "DTF_CTAUERR( 0, True )"
-    , "DTF_MASS_constr"        : "DTF_FUN ( M , True , strings(['J/psi(1S)', 'pi0']) )"
-    , "DTF_VCHI2NDOF"          : "DTF_FUN ( VFASPF(VCHI2/VDOF) , True )"
+      'ETA'                    : 'ETA'
+    , 'PHI'                    : 'PHI'
+    , 'FDCHI2'                 : 'BPVVDCHI2'
+    , 'BPVDLS'                 : 'BPVDLS'  # decay length significance to the best PV
+    , 'DIRA'                   : 'BPVDIRA'
+    , 'DTF_CTAU'               : 'DTF_CTAU( 0, True )'
+    , 'DTF_CTAUS'              : 'DTF_CTAUSIGNIFICANCE( 0, True )'
+    , 'DTF_CHI2NDOF'           : 'DTF_CHI2NDOF( True )'
+    , 'DTF_CTAUERR'            : 'DTF_CTAUERR( 0, True )'
+    , 'DTF_MASS_constr'        : 'DTF_FUN ( M , True , strings([\'J/psi(1S)\', \'pi0\']) )'
+    , 'DTF_VCHI2NDOF'          : 'DTF_FUN ( VFASPF(VCHI2/VDOF) , True )'
     }
 
-LoKi_Jpsi = LoKi__Hybrid__TupleTool("LoKi_Jpsi")
+LoKi_Jpsi = LoKi__Hybrid__TupleTool('LoKi_Jpsi')
 LoKi_Jpsi.Variables =  {
-      "BPVDLS"                 : "BPVDLS"  # decay length significance to the best PV
-    }
+    'BPVDLS' : 'BPVDLS'  # decay length significance to the best PV
+}
 
-LoKi_Mu = LoKi__Hybrid__TupleTool("LoKi_Mu")
+LoKi_Mu = LoKi__Hybrid__TupleTool('LoKi_Mu')
 LoKi_Mu.Variables =  {
-    "NSHAREDMU" : "NSHAREDMU"
-    }
+    'NSHAREDMU' : 'NSHAREDMU'
+}
 
 
 from GaudiConfUtils.ConfigurableGenerators import DecayTreeTuple as TUPLE
@@ -238,52 +238,51 @@ rd_selection = SimpleSelection (
     , ToolList = tupletools
     , Branches = {
         #
-          'B0'      : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'Jpsi'    : "[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'muplus'  : "[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'muminus' : "[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'omega'   : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'piplus'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma) )"
-        , 'piminus' : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma) )"
-        , 'pizero'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma) )"
-        , 'gamma1'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma) )"
-        , 'gamma2'  : "[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma) )"
-        }
-    )
+          'B0'      : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'Jpsi'    : '[B0]cc -> ^(J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'muplus'  : '[B0]cc ->  (J/psi(1S) -> ^mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'muminus' : '[B0]cc ->  (J/psi(1S) ->  mu+ ^mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'omega'   : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- ) ^(omega(782) ->  pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'piplus'  : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) -> ^pi+  pi-  (pi0 ->  gamma  gamma) )'
+        , 'piminus' : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+ ^pi-  (pi0 ->  gamma  gamma) )'
+        , 'pizero'  : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi- ^(pi0 ->  gamma  gamma) )'
+        , 'gamma1'  : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 -> ^gamma  gamma) )'
+        , 'gamma2'  : '[B0]cc ->  (J/psi(1S) ->  mu+  mu- )  (omega(782) ->  pi+  pi-  (pi0 ->  gamma ^gamma) )'
+    }
+)
 
 tuple_B2psiomega = rd_selection.algorithm()
 
-for particle in ["B0", "Jpsi", "muplus", "muminus", "omega", "piplus", "piminus", "pizero", "gamma1", "gamma2"]:
+for particle in ['B0', 'Jpsi', 'muplus', 'muminus', 'omega', 'piplus', 'piminus', 'pizero', 'gamma1', 'gamma2']:
     tuple_B2psiomega.addTool(TupleToolDecay, name = particle)
 
 # List of the reconstructed tuples
-tuples = [ tuple_B2psiomega
-           ]
+tuples = [tuple_B2psiomega]
 
 for tup in tuples:
     # tup.ReFitPVs = True
-    if MODE == "MC":
-        tup.addTool(TupleToolMCTruth, name = "TruthTool")
-        tup.addTool(TupleToolMCBackgroundInfo, name = "BackgroundInfo")
-        tup.ToolList += ["TupleToolMCTruth/TruthTool"]
-        tup.ToolList += ["TupleToolMCBackgroundInfo/BackgroundInfo"]
+    if MODE == 'MC':
+        tup.addTool(TupleToolMCTruth, name = 'TruthTool')
+        tup.addTool(TupleToolMCBackgroundInfo, name = 'BackgroundInfo')
+        tup.ToolList += ['TupleToolMCTruth/TruthTool']
+        tup.ToolList += ['TupleToolMCBackgroundInfo/BackgroundInfo']
 
-    tup.B0.addTool( LoKi_B0 )
-    tup.B0.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_B0"]
-    tup.Jpsi.addTool( LoKi_Jpsi )
-    tup.Jpsi.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Jpsi"]
-    tup.muplus.addTool( LoKi_Mu )
-    tup.muplus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
-    tup.muminus.addTool( LoKi_Mu )
-    tup.muminus.ToolList += ["LoKi::Hybrid::TupleTool/LoKi_Mu"]
+    tup.B0.addTool(LoKi_B0)
+    tup.B0.ToolList += ['LoKi::Hybrid::TupleTool/LoKi_B0']
+    tup.Jpsi.addTool(LoKi_Jpsi)
+    tup.Jpsi.ToolList += ['LoKi::Hybrid::TupleTool/LoKi_Jpsi']
+    tup.muplus.addTool(LoKi_Mu)
+    tup.muplus.ToolList += ['LoKi::Hybrid::TupleTool/LoKi_Mu']
+    tup.muminus.addTool(LoKi_Mu)
+    tup.muminus.ToolList += ['LoKi::Hybrid::TupleTool/LoKi_Mu']
     for particle in [ tup.B0 ]:
-        particle.addTool(TISTOSTool, name = "TISTOSTool")
-        particle.ToolList += [ "TupleToolTISTOS/TISTOSTool" ]
+        particle.addTool(TISTOSTool, name = 'TISTOSTool')
+        particle.ToolList += ['TupleToolTISTOS/TISTOSTool']
 
 
 
 from PhysSelPython.Wrappers import SelectionSequence
-rd_SEQ = SelectionSequence  ( 'DATA'  , rd_selection )
+rd_SEQ = SelectionSequence('DATA', rd_selection)
 
 
 ###################### DAVINCI SETTINGS ############################################
