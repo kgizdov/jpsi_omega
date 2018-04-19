@@ -29,7 +29,7 @@ from Configurables import TupleToolDecayTreeFitter
 
 ## DaVinci settings
 mode        = 'DATA'              # DATA or MC
-evtMax      = 1000                  # number of events to read, -1 == all
+evtMax      = -1                  # number of events to read, -1 == all
 inputType   = 'DST'               # input file format
 rootInTES   = ''                  # need to specify if not DST
 dataType    = '2016'              # year of input
@@ -146,7 +146,7 @@ psi2_loc = AutomaticData(psi2s_line)
 # Merge psi lines, as per PSIX0 stream
 MergedPsiSelection = MergedSelection('MergedPsiSelection', RequiredSelections = [jpsi_loc, psi2_loc])
 FilterJpsiCut = FilterDesktop('FilterJpsiCut')
-FilterJpsiCut.Code = '(ADAMASS(\'J/psi(1S)\') < 150.0 * MeV)'
+FilterJpsiCut.Code = '(ADAMASS(\'J/psi(1S)\') < 100.0 * MeV) & (ACHI2DOCA(1,2) < 30)'
 FilteredJPsiSelection = Selection('FilteredJPsiSelection', Algorithm = FilterJpsiCut, RequiredSelections = [MergedPsiSelection])
 
 # Get all pions
@@ -154,22 +154,26 @@ FilteredJPsiSelection = Selection('FilteredJPsiSelection', Algorithm = FilterJps
 pions  = AutomaticData(Location = '/Event/Phys/StdAllLoosePions/Particles')
 
 # Get all variants of Pi0->: gamma gamma; gamma e+ e-; e+ e- e+ e-
-pi0gg  = AutomaticData(Location = '/Event/Phys/StdLoosePi02gg/Particles')
+pi0gg  = AutomaticData(Location = '/Event/Phys/StdLooseResolvedPi0/Particles')  # StdLoosePi02gg with +/- 30 MeV mass cut
 pi0gee = AutomaticData(Location = '/Event/Phys/StdLoosePi02gee/Particles')
 pi04e  = AutomaticData(Location = '/Event/Phys/StdLoosePi024e/Particles')
+pi0mr  = AutomaticData(Location = '/Event/Phys/StdLooseMergedPi0/Particles')
 
 # Filter Pi0 selections with gamma for photon PT
 FilterPi0Cut = FilterDesktop('FilterPi0Cut')
-FilterPi0Cut.Code = '(250 * MeV < MINTREE(\'gamma\' == ID, PT))'
+# FilterPi0Cut.Code = '(250 * MeV < MINTREE(\'gamma\' == ID, PT) & (MINTREE('gamma' == ABSID, LoKi.Particles.Info(LHCb.ProtoParticle.IsNotH, -1)) > 0))'
+FilterPi0Cut.Code = '(250 * MeV < MINTREE(\'gamma\' == ID, PT)) & (ADMASS(\'pi0\') < 30.0 * MeV)'
 Pi0ggFiltered  = Selection('Pi0ggFiltered', Algorithm = FilterPi0Cut, RequiredSelections = [pi0gg])
 Pi0geeFiltered = Selection('Pi0geeFiltered', Algorithm = FilterPi0Cut, RequiredSelections = [pi0gee])
+Pi04eFiltered  = Selection('Pi04eFiltered', Algorithm = FilterPi0Cut, RequiredSelections = [pi04e])
+Pi0mrFiltered  = Selection('Pi0mrFiltered', Algorithm = FilterPi0Cut, RequiredSelections = [pi0mr])
 
 # Use Tagger2g to get good photons
-Pi0Vetoed     = SimpleSelection('Pi0Vetoed', Pi0Veto__Tagger2g, [Pi0ggFiltered], MassWindow = 45 * MeV, MassChi2 = -1, ExtraInfoIndex = 25020)  # unique ExtraInfoIndex!
+Pi0Vetoed     = SimpleSelection('Pi0Vetoed', Pi0Veto__Tagger2g, [Pi0ggFiltered, Pi0geeFiltered, Pi04eFiltered, Pi0mrFiltered], MassWindow = 30 * MeV, MassChi2 = -1, ExtraInfoIndex = 25020)  # unique ExtraInfoIndex!
 # Pi0VetoedChi2 = SimpleSelection('Pi0VetoedChi2', Pi0Veto__Tagger2g, [Pi0ggFiltered], MassWindow = 45 * MeV, MassChi2 = 20, ExtraInfoIndex = 25021)  # unique ExtraInfoIndex!
 
 # Merge all Pi0 into one selection
-Pi0MergedSelection = MergedSelection('Pi0MergedSelection', RequiredSelections = [Pi0Vetoed, Pi0geeFiltered, pi04e])
+Pi0MergedSelection = MergedSelection('Pi0MergedSelection', RequiredSelections = [Pi0Vetoed], Code = '(ADMASS(\'pi0\') < 30.0 * MeV)')
 
 # Filter Pion selections
 FilterPionCut = FilterDesktop('FilterPionCut')
@@ -186,7 +190,7 @@ Omega3Body = SimpleSelection(
     ,[PionFilteredSelection, Pi0MergedSelection]
     ,DecayDescriptor  = 'omega(782) -> pi+ pi- pi0'
     ,Combination12Cut = '(AM < 1.0 * GeV) & (ACHI2DOCA(1,2) < 30)'
-    ,CombinationCut   = '(ADAMASS(\'omega(782)\') < 100.0 * MeV)'
+    ,CombinationCut   = '(ADAMASS(\'omega(782)\') < 100.0 * MeV)'  # ' & (ADAMASS(\'pi0\') < 30.0 * MeV)'
     ,MotherCut        = '(VFASPF(VCHI2) < 25.0)'
 )
 
@@ -197,7 +201,7 @@ BdJpsiOmegaCombination = CombineSelection(
     ,DaughtersCuts   = {
         'omega(782)' : 'PT > 0.5 * GeV'
     }
-    ,CombinationCut  = 'in_range(4.50 * GeV, AM, 6.00 * GeV)'
+    ,CombinationCut  = 'in_range(4.90 * GeV, AM, 5.65 * GeV) & (ACHI2DOCA(1,2) < 30)'
     ,MotherCut       = '(VFASPF(VCHI2PDOF) < 20)'  # & (DTF_CTAU(0,True) > 0.0598)'  # equiv to DecayTreeFitter::tau(B) > 0.2 ps
 )
 
@@ -205,7 +209,7 @@ tl = [
      'TupleToolTrigger'
     ,'TupleToolGeometry'
     ,'TupleToolKinematic'
-    ,'TupleToolPropertime'
+    # ,'TupleToolPropertime'
     ,'TupleToolPrimaries'
     ,'TupleToolEventInfo'
     ,'TupleToolTrackInfo'
@@ -313,6 +317,16 @@ LoKi_EvtTuple.VOID_Variables = {
 tuple_bdjpsiomega.ToolList += ['LoKi::Hybrid::EvtTupleTool/LoKi_EvtTuple']
 tuple_bdjpsiomega.addTool(LoKi_EvtTuple)
 
+LoKi_Tuple2 = LoKi__Hybrid__TupleTool("LoKi_Tuple2")
+LoKi_Tuple2.Variables = {
+     'IsNotE'   : 'PPINFO(LHCb.ProtoParticle.IsNotE, -1000)'
+    ,'IsNotH'   : 'PPINFO(LHCb.ProtoParticle.IsNotH, -1000)'
+    ,'PhotonID' : 'PPINFO(LHCb.ProtoParticle.PhotonID, -1000)'
+    ,'IsPhoton' : 'PPINFO(LHCb.ProtoParticle.IsPhoton, -1000)'
+}
+tuple_bdjpsiomega.ToolList += ['LoKi::Hybrid::TupleTool/LoKi_Tuple2']
+tuple_bdjpsiomega.addTool(LoKi_Tuple2)
+
 # specific tagging tuple tool
 tuple_bdjpsiomega.B.ToolList += ['TupleToolTagging']
 tuple_bdjpsiomega.B.addTool(TupleToolTagging, name = 'TupleToolTagging')
@@ -334,7 +348,7 @@ LoKi_B.Variables = {
     ,'LOKI_DTF_CTAUS'        : 'DTF_CTAUSIGNIFICANCE(0, True)'
     ,'LOKI_DTF_CHI2NDOF'     : 'DTF_CHI2NDOF(True)'
     ,'LOKI_DTF_CTAUERR'      : 'DTF_CTAUERR(0, True)'
-    ,'LOKI_DTF_VCHI2NDOF'    : 'DTF_FUN(VFASPF(VCHI2/VDOF), True)'
+    ,'LOKI_DTF_VCHI2NDOF'    : 'DTF_FUN(VFASPF(VCHI2PDOF), True)'
     ,'LOKI_DTF_JpsiConstr'   : 'DTF_FUN(M, True, \'J/psi(1S)\')'
     ,'LOKI_DTF_JpsiOmConstr' : 'DTF_FUN(M, True, strings([\'J/psi(1S)\', \'omega(782)\']))'
 }
@@ -380,12 +394,12 @@ tuple_bdjpsiomega.hminus.addTool(LoKi_pion)
 tuple_bdjpsiomega.hzero.addTool(LoKi_pion)
 
 # # refit with mass constraint
-# tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsi']
-# tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsi'))
-# tuple_bdjpsiomega.B.ConstJpsi.Verbose = True
-# tuple_bdjpsiomega.B.ConstJpsi.UpdateDaughters = True
-# tuple_bdjpsiomega.B.ConstJpsi.constrainToOriginVertex = True
-# tuple_bdjpsiomega.B.ConstJpsi.daughtersToConstrain = ['J/psi(1S)']
+tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsi']
+tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsi'))
+tuple_bdjpsiomega.B.ConstJpsi.Verbose = True
+tuple_bdjpsiomega.B.ConstJpsi.UpdateDaughters = True
+tuple_bdjpsiomega.B.ConstJpsi.constrainToOriginVertex = True
+tuple_bdjpsiomega.B.ConstJpsi.daughtersToConstrain = ['J/psi(1S)']
 
 # tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiNoPV']
 # tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiNoPV'))
@@ -394,12 +408,12 @@ tuple_bdjpsiomega.hzero.addTool(LoKi_pion)
 # tuple_bdjpsiomega.B.ConstJpsiNoPV.constrainToOriginVertex = False
 # tuple_bdjpsiomega.B.ConstJpsiNoPV.daughtersToConstrain = ['J/psi(1S)']
 
-# tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstBJpsi']
-# tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstBJpsi'))
-# tuple_bdjpsiomega.B.ConstBJpsi.Verbose = True
-# tuple_bdjpsiomega.B.ConstBJpsi.UpdateDaughters = True
-# tuple_bdjpsiomega.B.ConstBJpsi.constrainToOriginVertex = True
-# tuple_bdjpsiomega.B.ConstBJpsi.daughtersToConstrain = ['B0', 'J/psi(1S)']
+tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstBJpsi']
+tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstBJpsi'))
+tuple_bdjpsiomega.B.ConstBJpsi.Verbose = True
+tuple_bdjpsiomega.B.ConstBJpsi.UpdateDaughters = True
+tuple_bdjpsiomega.B.ConstBJpsi.constrainToOriginVertex = True
+tuple_bdjpsiomega.B.ConstBJpsi.daughtersToConstrain = ['B0', 'J/psi(1S)']
 
 # tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstBJpsiNoPV']
 # tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstBJpsiNoPV'))
@@ -408,12 +422,12 @@ tuple_bdjpsiomega.hzero.addTool(LoKi_pion)
 # tuple_bdjpsiomega.B.ConstBJpsiNoPV.constrainToOriginVertex = False
 # tuple_bdjpsiomega.B.ConstBJpsiNoPV.daughtersToConstrain = ['B0', 'J/psi(1S)']
 
-# tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiOmega']
-# tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiOmega'))
-# tuple_bdjpsiomega.B.ConstJpsiOmega.Verbose = True
-# tuple_bdjpsiomega.B.ConstJpsiOmega.UpdateDaughters = True
-# tuple_bdjpsiomega.B.ConstJpsiOmega.constrainToOriginVertex = True
-# tuple_bdjpsiomega.B.ConstJpsiOmega.daughtersToConstrain = ['J/psi(1S)', 'omega(782)']
+tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiOmega']
+tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiOmega'))
+tuple_bdjpsiomega.B.ConstJpsiOmega.Verbose = True
+tuple_bdjpsiomega.B.ConstJpsiOmega.UpdateDaughters = True
+tuple_bdjpsiomega.B.ConstJpsiOmega.constrainToOriginVertex = True
+tuple_bdjpsiomega.B.ConstJpsiOmega.daughtersToConstrain = ['J/psi(1S)', 'omega(782)']
 
 # tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiOmegaNoPV']
 # tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiOmegaNoPV'))
@@ -422,12 +436,12 @@ tuple_bdjpsiomega.hzero.addTool(LoKi_pion)
 # tuple_bdjpsiomega.B.ConstJpsiOmegaNoPV.constrainToOriginVertex = False
 # tuple_bdjpsiomega.B.ConstJpsiOmegaNoPV.daughtersToConstrain = ['J/psi(1S)', 'omega(782)']
 
-# tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiPi0']
-# tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiPi0'))
-# tuple_bdjpsiomega.B.ConstJpsiPi0.Verbose = True
-# tuple_bdjpsiomega.B.ConstJpsiPi0.UpdateDaughters = True
-# tuple_bdjpsiomega.B.ConstJpsiPi0.constrainToOriginVertex = True
-# tuple_bdjpsiomega.B.ConstJpsiPi0.daughtersToConstrain = ['J/psi(1S)', 'pi0']
+tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiPi0']
+tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiPi0'))
+tuple_bdjpsiomega.B.ConstJpsiPi0.Verbose = True
+tuple_bdjpsiomega.B.ConstJpsiPi0.UpdateDaughters = True
+tuple_bdjpsiomega.B.ConstJpsiPi0.constrainToOriginVertex = True
+tuple_bdjpsiomega.B.ConstJpsiPi0.daughtersToConstrain = ['J/psi(1S)', 'pi0']
 
 # tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstJpsiPi0NoPV']
 # tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstJpsiPi0NoPV'))
@@ -436,11 +450,11 @@ tuple_bdjpsiomega.hzero.addTool(LoKi_pion)
 # tuple_bdjpsiomega.B.ConstJpsiPi0NoPV.constrainToOriginVertex = False
 # tuple_bdjpsiomega.B.ConstJpsiPi0NoPV.daughtersToConstrain = ['J/psi(1S)', 'pi0']
 
-# tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstOnlyPV']
-# tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstOnlyPV'))
-# tuple_bdjpsiomega.B.ConstOnlyPV.Verbose = True
-# tuple_bdjpsiomega.B.ConstOnlyPV.UpdateDaughters = True
-# tuple_bdjpsiomega.B.ConstOnlyPV.constrainToOriginVertex = True
+tuple_bdjpsiomega.B.ToolList += ['TupleToolDecayTreeFitter/ConstOnlyPV']
+tuple_bdjpsiomega.B.addTool(TupleToolDecayTreeFitter('ConstOnlyPV'))
+tuple_bdjpsiomega.B.ConstOnlyPV.Verbose = True
+tuple_bdjpsiomega.B.ConstOnlyPV.UpdateDaughters = True
+tuple_bdjpsiomega.B.ConstOnlyPV.constrainToOriginVertex = True
 
 # ### Backgrounds
 # # - eta  -> gamma gamma,
@@ -504,16 +518,20 @@ BdJpsiOmegaSequense = SelectionSequence('DATA', BdJpsiOmega)
 
 # Configure DaVinci
 from Configurables import DaVinci
-DaVinci().UserAlgorithms = [checkpv, smear, BdJpsiOmegaSequense.sequence()]
-DaVinci().DataType       = dataType
-DaVinci().EvtMax         = evtMax
-DaVinci().InputType      = inputType
-DaVinci().PrintFreq      = printFreq
-DaVinci().SkipEvents     = skipEvents
-DaVinci().TupleFile      = tupleFile
-DaVinci().HistogramFile  = histFile
-DaVinci().Simulation     = sim
-DaVinci().Lumi           = lum
+davinci = DaVinci(
+     UserAlgorithms = [checkpv, smear, BdJpsiOmegaSequense.sequence()]
+    ,RootInTES      = rootInTES
+    ,DataType       = dataType
+    ,EvtMax         = evtMax
+    ,InputType      = inputType
+    ,PrintFreq      = printFreq
+    ,SkipEvents     = skipEvents
+    ,TupleFile      = tupleFile
+    ,HistogramFile  = histFile
+    ,Simulation     = sim
+    ,Lumi           = lum
+)
+
 MessageSvc().Format = "% F%60W%S%7W%R%T %0W%M"
 
 ###################################################################################
